@@ -622,8 +622,11 @@
                     <img src="{{ '/innovation-lab.png' | relative_url }}" alt="About PUBLIC TECH NL">
                 </div>
                 <div class="about-text">
-                    <h2>About PUBLIC TECH NL</h2>
-                    <p>Founded in 2023, PUBLIC TECH NL is a collaborative innovation lab dedicated to improving public services through technology, design, and policy innovation. We believe that the best solutions emerge when diverse perspectives come together to solve complex problems.</p>
+                    <h2>Over PUBLIC TECH NL</h2>
+                    <p>In 2015 switchte Johan Groenen van startups naar overheid. Als Code Fellow bij de gemeente Amsterdam stond hij aan de wieg van Datalab Amsterdam en een groot aantal innovatieve toepassingen die daar ontstonden.</p>
+                    <p>Hij was oprichter van onder andere Code for NL (community) en Tiltshift (consultancy).</p>
+                    <p>Sinds 2025 werken we vanuit PUBLIC TECH NL pro-actief aan innovatieve oplossingsconcepten - al dan niet gesubsidieerd.</p>
+                    <p>Sinds 2015 is PUBLIC TECH NL een collaborative innovation lab dedicated to improving public services through technology, design, and policy innovation. We believe that the best solutions emerge when diverse perspectives come together to solve complex problems.</p>
                     <p>Our team brings together expertise from government, technology, design, and academia to create an interdisciplinary approach to public sector challenges. We work as partners with government agencies, municipalities, and civic organizations to develop solutions that are not just innovative but also practical and implementable.</p>
                     <p>PUBLIC TECH NL is committed to open innovation and sharing knowledge across the public sector. Our work is guided by principles of transparency, citizen-centricity, and sustainable impact.</p>
                 </div>
@@ -634,58 +637,20 @@
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>Explore some of our recent work creating innovative solutions for public sector challenges.</p>
+                <h2>Projecten</h2>
+                <p>Wij werken aan innovatieve concepten voor toepassingen van technologie in het publieke belang.</p>
             </div>
             <div class="projects-grid">
+                {% for project in site.data.projects %}
                 <div class="project-card">
                     <div class="project-image" style="background-color: #dbeae8;"></div>
                     <div class="project-content">
-                        <h3>Digital Citizen Services Platform</h3>
-                        <p>A unified platform making government services more accessible and user-friendly for all citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        <a href="{{ project.url }}" class="project-link">Bekijk Project →</a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Participatory Budgeting Tool</h3>
-                        <p>Enabling communities to collaboratively decide how public funds are allocated in their neighborhoods.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Policy Co-creation Platform</h3>
-                        <p>A digital environment where citizens and policymakers can work together on developing new policies.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Smart City Data Dashboard</h3>
-                        <p>Visualizing urban data to help city officials make better decisions about resource allocation.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Public Service Design Toolkit</h3>
-                        <p>Resources and methods to help government teams design better services with and for citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Open Government Data Initiative</h3>
-                        <p>Making government data more accessible and usable for researchers, journalists, and citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -693,28 +658,28 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Get in Touch</h2>
-                <p>Have a project in mind or want to learn more about how we can help your organization? Reach out to us.</p>
+                <h2>Neem contact op!</h2>
+                <p>Heb je een interessant idee of juist behoefte aan innovatieve concepten? Of eerst een kop koffie? Neem contact op!</p>
             </div>
             <div class="contact-form">
                 <form>
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Naam</label>
                         <input type="text" id="name" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">E-mail</label>
                         <input type="email" id="email" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="organization">Organization</label>
+                        <label for="organization">Organisatie</label>
                         <input type="text" id="organization" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">Bericht</label>
                         <textarea id="message" class="form-control" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                    <button type="submit" class="submit-btn">Verstuur bericht</button>
                 </form>
             </div>
         </div>
