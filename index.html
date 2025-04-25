@@ -1,763 +1,139 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBLIC TECH NL - Unlocking Public Innovation</title>
+    <title>PUBLIC TECH NL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/atkinson-hyperlegible/2021-05-13/atkinson-hyperlegible.min.css">
     <style>
-        :root {
-            --teal: #4b9f76;
-            --navy: #1a2a3a;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --dark-gray: #333333;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Arial, sans-serif;
         }
         
-        body {
+        :root {
+            --teal: #4b9f76;
+            --navy: #1a2a3a;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: 'Atkinson Hyperlegible', sans-serif;
             background-color: white;
-            color: var(--dark-gray);
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
         
         .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        /* Header styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 8px 0;
-        }
-        
-        nav {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 10px 0;
+            justify-content: center;
+            text-align: center;
+            max-width: 90%;
         }
         
         .logo {
+            margin-bottom: 40px;
             display: flex;
-            align-items: center;
-            position: relative;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
         }
         
         .logo-icon {
-            height: 56px;
-            filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.1));
-            transition: filter 0.3s ease;
+            height: 130px;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
+            margin-right: 30px;
         }
         
-        .logo:hover .logo-icon {
-            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
+        .logo-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            padding-top: 15px;
         }
         
         .logo-text {
-            font-size: 26px;
+            font-size: 46px;
             font-weight: 700;
             color: var(--navy);
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* Keep original font for logo text */
-            letter-spacing: 0.5px;
-            transition: color 0.3s ease;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            line-height: 1.1;
         }
         
-        .logo:hover .logo-text {
-            color: var(--teal);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--teal);
-        }
-        
-        .btn {
-            background-color: var(--teal);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #3a8f83;
-        }
-        
-        /* Hero section */
-        .hero {
-            background-color: var(--light-gray);
-            padding: 180px 0 100px;
-            position: relative;
-            overflow: hidden;
-            background-image: linear-gradient(to right, rgba(245, 245, 245, 0.97), rgba(245, 245, 245, 0.97)), url('/api/placeholder/1600/800');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .hero-text {
-            width: 50%;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .hero-image {
-            width: 45%;
-            text-align: right;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Features section */
-        .features {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            font-size: 18px;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background-color: var(--teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .feature-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        
-        .feature-card h3 {
+        .tagline {
             font-size: 24px;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-        
-        .feature-card p {
-            color: #555;
-        }
-        
-        /* About section */
-        .about {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .about-image {
-            width: 45%;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-text {
-            width: 50%;
-            padding-left: 50px;
-        }
-        
-        .about-text h2 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-        
-        /* Projects section */
-        .projects {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .project-card {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-image {
-            height: 200px;
-            background-color: var(--medium-gray);
-            position: relative;
-        }
-        
-        .project-content {
-            padding: 20px;
-        }
-        
-        .project-content h3 {
-            font-size: 20px;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-        
-        .project-content p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-        
-        .project-link {
             color: var(--teal);
-            text-decoration: none;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 0.8s;
+            margin-top: 8px;
         }
         
-        .project-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Contact section */
-        .contact {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--navy);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--teal);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--teal);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: #3a8f83;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--navy);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--teal);
-        }
-        
-        .social-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .social-links li {
-            margin-right: 15px;
-        }
-        
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--teal);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ddd;
-            font-size: 14px;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .features-grid, .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
             }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
         @media (max-width: 768px) {
-            .hero-content, .about-content {
+            .logo {
                 flex-direction: column;
-            }
-            
-            .hero-text, .hero-image, .about-text, .about-image {
-                width: 100%;
-            }
-            
-            .hero-image, .about-image {
-                margin-top: 40px;
                 text-align: center;
             }
             
-            .about-text {
-                padding-left: 0;
-                margin-top: 40px;
+            .logo-icon {
+                height: 100px;
+                margin-right: 0;
+                margin-bottom: 20px;
             }
             
-            .nav-links {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .features-grid, .projects-grid {
-                grid-template-columns: 1fr;
+            .logo-content {
+                align-items: center;
+                text-align: center;
+                padding-top: 0;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
+            .logo-text {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <svg class="logo-icon" viewBox="-30 0 95 102.5" width="60" height="56" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#4b9f76" />
-                                <stop offset="100%" stop-color="#3d8962" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M 7.611354,4.4860243 A 30,30 0 0 0 -22.388367,34.485743 30,30 0 0 0 -22.388367,34.48626 v 72.49996 h 12.5000102 v -5.00021 h 9.9999104 a 5,5 0 0 0 5.00021,-4.999699 v -5.00021 h -5.00021 -9.9999104 v -7.4998 h 9.9999104 a 5,5 0 0 0 5.00021,-5.00021 v -5.00021 H -9.8883568 v -9.99991 H 7.611354 A 30,30 0 0 0 37.611584,34.485743 30,30 0 0 0 7.611354,4.4860243 Z m 0,12.5000117 A 17.5,17.5 0 0 1 25.111574,34.485743 17.5,17.5 0 0 1 7.611354,51.985967 H -9.8883568 V 34.485743 A 17.5,17.5 0 0 1 7.611354,16.986036 Z" fill="url(#logo-gradient)" />
-                    </svg>
-                    <div class="logo-text">PUBLIC TECH NL</div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#" class="btn">Get Involved</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Unlocking Public Innovation</h1>
-                    <p>PUBLIC TECH NL is a collaborative innovation lab working at the intersection of technology, policy, and design to create better public services for all citizens.</p>
-                    <a href="#contact" class="btn">Start a Project</a>
-                </div>
-                <div class="hero-image">
-                    <img src="{{ '/public-tech-nl-glass-door.png' | relative_url }}" alt="PUBLIC TECH NL Innovation Space">
-                </div>
+    <div class="container">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="-30 0 95 102.5" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4b9f76" />
+                        <stop offset="100%" stop-color="#3d8962" />
+                    </linearGradient>
+                </defs>
+                <path d="M 7.611354,4.4860243 A 30,30 0 0 0 -22.388367,34.485743 30,30 0 0 0 -22.388367,34.48626 v 72.49996 h 12.5000102 v -5.00021 h 9.9999104 a 5,5 0 0 0 5.00021,-4.999699 v -5.00021 h -5.00021 -9.9999104 v -7.4998 h 9.9999104 a 5,5 0 0 0 5.00021,-5.00021 v -5.00021 H -9.8883568 v -9.99991 H 7.611354 A 30,30 0 0 0 37.611584,34.485743 30,30 0 0 0 7.611354,4.4860243 Z m 0,12.5000117 A 17.5,17.5 0 0 1 25.111574,34.485743 17.5,17.5 0 0 1 7.611354,51.985967 H -9.8883568 V 34.485743 A 17.5,17.5 0 0 1 7.611354,16.986036 Z" fill="url(#logo-gradient)" />
+            </svg>
+            <div class="logo-content">
+                <div class="logo-text">PUBLIC<br>TECH NL</div>
+                <div class="tagline">Unlocking Public Innovation</div>
             </div>
         </div>
-    </section>
-    
-    <section class="features" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>We provide a range of services designed to help public sector organizations innovate and deliver better outcomes for citizens.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
-                            <path d="M2 17L12 22L22 17" fill="white"/>
-                            <path d="M2 12L12 17L22 12" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Digital Transformation</h3>
-                    <p>We help public organizations navigate digital transformation with human-centered approaches that focus on real needs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Innovation Labs</h3>
-                    <p>Create dedicated spaces for experimentation and collaborative problem-solving within your organization.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM6 4H11V12L8.5 10.5L6 12V4Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Policy Design</h3>
-                    <p>Combining policy expertise with design thinking to create more effective and implementable public policies.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Civic Technology</h3>
-                    <p>Building digital tools that empower citizens and make public services more accessible and efficient for everyone.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Capacity Building</h3>
-                    <p>Training and workshops that help public servants develop innovation skills and mindsets for the future.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Data Strategy</h3>
-                    <p>Developing ethical and effective approaches to using data for better decision-making in the public sector.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="{{ '/innovation-lab.png' | relative_url }}" alt="About PUBLIC TECH NL">
-                </div>
-                <div class="about-text">
-                    <h2>About PUBLIC TECH NL</h2>
-                    <p>Founded in 2023, PUBLIC TECH NL is a collaborative innovation lab dedicated to improving public services through technology, design, and policy innovation. We believe that the best solutions emerge when diverse perspectives come together to solve complex problems.</p>
-                    <p>Our team brings together expertise from government, technology, design, and academia to create an interdisciplinary approach to public sector challenges. We work as partners with government agencies, municipalities, and civic organizations to develop solutions that are not just innovative but also practical and implementable.</p>
-                    <p>PUBLIC TECH NL is committed to open innovation and sharing knowledge across the public sector. Our work is guided by principles of transparency, citizen-centricity, and sustainable impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>Explore some of our recent work creating innovative solutions for public sector challenges.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Digital Citizen Services Platform</h3>
-                        <p>A unified platform making government services more accessible and user-friendly for all citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Participatory Budgeting Tool</h3>
-                        <p>Enabling communities to collaboratively decide how public funds are allocated in their neighborhoods.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Policy Co-creation Platform</h3>
-                        <p>A digital environment where citizens and policymakers can work together on developing new policies.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Smart City Data Dashboard</h3>
-                        <p>Visualizing urban data to help city officials make better decisions about resource allocation.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Public Service Design Toolkit</h3>
-                        <p>Resources and methods to help government teams design better services with and for citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Open Government Data Initiative</h3>
-                        <p>Making government data more accessible and usable for researchers, journalists, and citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get in Touch</h2>
-                <p>Have a project in mind or want to learn more about how we can help your organization? Reach out to us.</p>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="organization">Organization</label>
-                        <input type="text" id="organization" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>PUBLIC TECH NL</h3>
-                    <p>Unlocking Public Innovation through technology, design, and collaborative approaches.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Publications</a></li>
-                        <li><a href="#">Toolkits</a></li>
-                        <li><a href="#">Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <ul class="social-links">
-                        <li><a href="#">T</a></li>
-                        <li><a href="#">L</a></li>
-                        <li><a href="#">M</a></li>
-                        <li><a href="#">G</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 PUBLIC TECH NL. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 </body>
 </html>
