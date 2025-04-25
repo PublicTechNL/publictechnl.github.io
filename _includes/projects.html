@@ -1,0 +1,20 @@
+<section class="projects" id="projects">
+    <div class="container">
+        <div class="section-title">
+            <h2>Show cases</h2>
+            <p>Toetsen van nieuwe technologieën op bruikbaarheid en ontwikkelen van innovatieve toepassingen op basis van publieke waarden.</p>
+        </div>
+        <div class="projects-grid">
+            {% for project in site.data.projects %}
+            <div class="project-card">
+                <div class="project-image" style="background-color: #dbeae8;"></div>
+                <div class="project-content">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.url }}" class="project-link">Bekijk Project →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
