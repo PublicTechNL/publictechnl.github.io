@@ -1,740 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUBLIC TECH NL - Unlocking Public Innovation</title>
-    <style>
-        :root {
-            --teal: #48a69a;
-            --navy: #1a2a3a;
-            --light-gray: #f5f5f5;
-            --medium-gray: #e0e0e0;
-            --dark-gray: #333333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: white;
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--navy);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--teal);
-        }
-        
-        .btn {
-            background-color: var(--teal);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #3a8f83;
-        }
-        
-        /* Hero section */
-        .hero {
-            background-color: var(--light-gray);
-            padding: 160px 0 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .hero-text {
-            width: 50%;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .hero-image {
-            width: 45%;
-            text-align: right;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Features section */
-        .features {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            font-size: 18px;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background-color: var(--light-gray);
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background-color: var(--teal);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .feature-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        
-        .feature-card h3 {
-            font-size: 24px;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-        
-        .feature-card p {
-            color: #555;
-        }
-        
-        /* About section */
-        .about {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .about-image {
-            width: 45%;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-text {
-            width: 50%;
-            padding-left: 50px;
-        }
-        
-        .about-text h2 {
-            font-size: 36px;
-            color: var(--navy);
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-        
-        /* Projects section */
-        .projects {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .project-card {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-image {
-            height: 200px;
-            background-color: var(--medium-gray);
-            position: relative;
-        }
-        
-        .project-content {
-            padding: 20px;
-        }
-        
-        .project-content h3 {
-            font-size: 20px;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-        
-        .project-content p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-        
-        .project-link {
-            color: var(--teal);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .project-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Contact section */
-        .contact {
-            padding: 80px 0;
-            background-color: var(--light-gray);
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--navy);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--medium-gray);
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--teal);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--teal);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: #3a8f83;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--navy);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--teal);
-        }
-        
-        .social-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .social-links li {
-            margin-right: 15px;
-        }
-        
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--teal);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ddd;
-            font-size: 14px;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .features-grid, .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Open+Sans&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Open Sans', sans-serif;
+                max-width: 42em;
+                line-height: 2.4em;
+                margin: auto;
+                color: #333;
             }
+            h1, h2, h3, h4, h5 {
+                font-family: 'Merriweather', serif;
+                line-height: 1.4em;
+            }
+            .main-nav a { color: #fff }
+        </style>
+
+    </head>
+    <body style="background: #eee">
+        <nav class="main-nav" style="background: #314243; color: #fff; padding: 2em">
+            <a href="#verkenning">Verkenning</a>
+            <a href="#organisatie">Opstarten</a>
+            <a href="#voortgang">Voortgang bewaken</a>
+            <a href="#specificatie">Specificatie: requirements engineering, </a>
+            <a href="#ontwerp">Ontwerp: functioneel, non-functional, architectuur, infosec</a>
+            <a href="#ontwikkeling">Ontwikkeling: ...</a>
+            <a href="#kwaliteit">Kwaliteit bewaken: code quality, testing, publicatie, penhack, ...</a>
+            <a href="#implementatie">Implementatie: ...</a>
+            <a href="#borging">Borging: product ownership, feedback, borging, ...</a>
+            <a href="#onderhoud">Onderhoud: updates, doorontwikkeling, forking, ...</a>
+            <a href="#hosting">Hosting: uptime, monitoring, ...</a>
+            <a href="#beheer">Functioneel beheer</a>
+            <a href="#ondersteuning">Ondersteuning: training, helpdesk, ...</a>
+            <a href="#incidenten">Incidenten</a>
+        </nav>
+
+        <header style="background: #d3ed68; padding: 2em">
+            <h2>Governance van het Public Tech Ecosysteem</h2>
+            <h1>HOOFDSTUK 5:<br>BORGING VAN OPEN SOURCE APPLICATIES</h1>
+            <h2 style="font-size: 1em; color: #333"><a href="https://www.jgroenen.nl">Johan Groenen</a></h2>
+        </header>
+
+        <nav style="background: #fff; padding: 2em">
+            <ul>
+                <li><a href="#introductie">Introductie</a></li>
+                <li><a href="#introductie">Rollen en functies</a></li>
+                <li><a href="#introductie">Cultuur</a></li>
+            </ul>
+        </nav>
+
+        <main style="background: #fff; padding: 2em">
+
+            <h2>LET OP: dit is een ruwe dump van het pdf artikel uit 2017.</h2>
+
+            <p>Ik ga dit stukje bij beetje bijwerken, met links naar ondermeer <a href="https://collecties.codefor.nl">collecties.codefor.nl</a> voor public tech Use Cases, dingen als <a href="https://opentransformatie.nl">opentransformatie.nl</a> voor toolkits, en meer.</p>
+
+            <h2>Public Tech, een introductie</h2>
+
+            <p>De samenleving digitaliseert in rap tempo. In steeds meer branches worden diensten zoveel mogelijk online aangeboden. Veranderende verwachtingen van de consument zorgen ervoor dat ook de overheid hierin niet achter kan blijven.</p>
+
+            <p>Bij verschillende overheden wordt dan ook geëxperimenteerd met het aanbieden van nieuwe digitale diensten. De software die hiervoor nodig is wordt in de meeste gevallen speciaal voor de overheid ontwikkeld en beheerd, veelal door private partijen. En alhoewel deze publieke voorzieningen worden betaald met publiek geld zijn het vaak black boxes, waarvan het intellectueel eigendom in handen komt van de ontwikkelaar.</p>
+
+            <p>Hierdoor zijn overheden voor wijzigingen aan de software volledig afhankelijk van de bereidheid van de leverancier om de aanpassingen door te voeren, en van diens planning en beprijzing. Overstappen naar een andere leverancier is kostbaar, of zelfs onmogelijk, omdat processen afgestemd zijn op en data gevangen zit in het systeem; de zogenaamde vendor lock-in.</p>
             
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content, .about-content {
-                flex-direction: column;
-            }
+            <p>In toenemende mate is er interesse in het ontwikkelen en gebruiken van open source software; code die controleerbaar is, die in samenwerking tot stand komt, en die vervolgens door iedereen aanpasbaar en herbruikbaar is.</p>
             
-            .hero-text, .hero-image, .about-text, .about-image {
-                width: 100%;
-            }
+            <p>Naast een verminderde afhankelijkheid van specifieke ICT-leveranciers, biedt open source ontwikkeling ook kansen voor het aanleggen van een gezamenlijke "bibliotheek" aan publieke code. Code die betaald is door iedereen, en die dus ook beschikbaar voor iedereen.</p>
             
-            .hero-image, .about-image {
-                margin-top: 40px;
-                text-align: center;
-            }
+            <p>Dit kan zorgen voor lagere ontwikkelkosten, omdat het hergebruik van (deel)oplossingen mogelijk maakt, de kans op fouten verminderd, en leidt tot convergentie van gebruikte technieken. Dit laatste maakt ook een gedeelde infrastructuur en gezamenlijk beheer mogelijk.</p>
             
-            .about-text {
-                padding-left: 0;
-                margin-top: 40px;
-            }
+            <p>Daarnaast biedt een open source ecosysteem de samenleving nieuwe mogelijkheden om hun relatie met de overheid vorm te geven. Meekijken is niet alleen mogelijk, het wordt actief aangemoedigd. Dat maakt discussies mogelijk over de regels die in software worden gegoten, en over de manier waarop informatie wordt bewerkt en opgeslagen. Ook stelt het de groeiende community van software-developers in staat de publieke digitale diensten van de overheid mee vorm te geven en te verbeteren, of zelf de maatwerk applicaties te creëren waar de overheid niet aan toekomt.</p>
             
-            .nav-links {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .features-grid, .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 0C22.4 0 0 22.4 0 50C0 77.6 22.4 100 50 100C77.6 100 100 77.6 100 50C100 22.4 77.6 0 50 0ZM50 85C30.7 85 15 69.3 15 50C15 30.7 30.7 15 50 15C69.3 15 85 30.7 85 50C85 69.3 69.3 85 50 85Z" fill="#48a69a"/>
-                        <path d="M50 15C30.7 15 15 30.7 15 50H50V15Z" fill="#48a69a"/>
-                        <rect x="50" y="65" width="10" height="10" fill="#48a69a"/>
-                        <rect x="50" y="45" width="10" height="10" fill="#48a69a"/>
-                    </svg>
-                    <div class="logo-text">PUBLIC TECH NL</div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#" class="btn">Get Involved</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Unlocking Public Innovation</h1>
-                    <p>PUBLIC TECH NL is a collaborative innovation lab working at the intersection of technology, policy, and design to create better public services for all citizens.</p>
-                    <a href="#contact" class="btn">Start a Project</a>
-                </div>
-                <div class="hero-image">
-                    <img src="/api/placeholder/600/400" alt="PUBLIC TECH NL Innovation Space">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="features" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>We provide a range of services designed to help public sector organizations innovate and deliver better outcomes for citizens.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
-                            <path d="M2 17L12 22L22 17" fill="white"/>
-                            <path d="M2 12L12 17L22 12" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Digital Transformation</h3>
-                    <p>We help public organizations navigate digital transformation with human-centered approaches that focus on real needs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Innovation Labs</h3>
-                    <p>Create dedicated spaces for experimentation and collaborative problem-solving within your organization.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M18 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V4C20 2.9 19.1 2 18 2ZM6 4H11V12L8.5 10.5L6 12V4Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Policy Design</h3>
-                    <p>Combining policy expertise with design thinking to create more effective and implementable public policies.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Civic Technology</h3>
-                    <p>Building digital tools that empower citizens and make public services more accessible and efficient for everyone.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Capacity Building</h3>
-                    <p>Training and workshops that help public servants develop innovation skills and mindsets for the future.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" fill="white"/>
-                        </svg>
-                    </div>
-                    <h3>Data Strategy</h3>
-                    <p>Developing ethical and effective approaches to using data for better decision-making in the public sector.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/600/400" alt="About PUBLIC TECH NL">
-                </div>
-                <div class="about-text">
-                    <h2>About PUBLIC TECH NL</h2>
-                    <p>Founded in 2023, PUBLIC TECH NL is a collaborative innovation lab dedicated to improving public services through technology, design, and policy innovation. We believe that the best solutions emerge when diverse perspectives come together to solve complex problems.</p>
-                    <p>Our team brings together expertise from government, technology, design, and academia to create an interdisciplinary approach to public sector challenges. We work as partners with government agencies, municipalities, and civic organizations to develop solutions that are not just innovative but also practical and implementable.</p>
-                    <p>PUBLIC TECH NL is committed to open innovation and sharing knowledge across the public sector. Our work is guided by principles of transparency, citizen-centricity, and sustainable impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>Explore some of our recent work creating innovative solutions for public sector challenges.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Digital Citizen Services Platform</h3>
-                        <p>A unified platform making government services more accessible and user-friendly for all citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Participatory Budgeting Tool</h3>
-                        <p>Enabling communities to collaboratively decide how public funds are allocated in their neighborhoods.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Policy Co-creation Platform</h3>
-                        <p>A digital environment where citizens and policymakers can work together on developing new policies.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Smart City Data Dashboard</h3>
-                        <p>Visualizing urban data to help city officials make better decisions about resource allocation.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #dbeae8;"></div>
-                    <div class="project-content">
-                        <h3>Public Service Design Toolkit</h3>
-                        <p>Resources and methods to help government teams design better services with and for citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-color: #e8f4f2;"></div>
-                    <div class="project-content">
-                        <h3>Open Government Data Initiative</h3>
-                        <p>Making government data more accessible and usable for researchers, journalists, and citizens.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get in Touch</h2>
-                <p>Have a project in mind or want to learn more about how we can help your organization? Reach out to us.</p>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="organization">Organization</label>
-                        <input type="text" id="organization" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>PUBLIC TECH NL</h3>
-                    <p>Unlocking Public Innovation through technology, design, and collaborative approaches.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Publications</a></li>
-                        <li><a href="#">Toolkits</a></li>
-                        <li><a href="#">Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <ul class="social-links">
-                        <li><a href="#">T</a></li>
-                        <li><a href="#">L</a></li>
-                        <li><a href="#">M</a></li>
-                        <li><a href="#">G</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 PUBLIC TECH NL. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-</body>
+            <p>Dit kan een motor zijn voor de digitale transformatie van de overheid en de samenleving.</p>
+
+            <h2>Verschillende Rollen en Functies</h2>
+
+            <p>In een open source ecosysteem voor overheids-software zijn er verschillende rollen en functies te onderscheiden. Verschillende aspecten van software-ontwikkeling kunnen hierbij door verschillende partijen worden opgepakt. Dit in contrast met vendor-software, waar al deze taken vaak bij één partij liggen.</p>
+
+<h3>Hoofdaannemer</h3>
+
+De hoofdaannemer krijgt opdracht een bepaalde tool of oplossing te realiseren. Er worden budget- en planningsafspraken gemaakt met de opdrachtgever. De eerste keuze die moet worden gemaakt is of er wordt begonnen vanuit een bestaande open source tool, of dat er “from scratch” wordt gestart. Vervolgens kan op verschillende manieren invulling gegeven worden aan het ontwikkeltraject. In het paper “Open Source Ecosysteem” [5] suggereert ICTU een interessante optie, namelijk micro-funding voor kleine stukjes functionaliteit.
+
+<h3>Beschikbare oplossingen en projecten</h3>
+
+Om beter hergebruik van bestaande software mogelijk te maken, is het belangrijk dat er hiervan een actueel 
+overzicht is. Dit overzicht moet regelmatig worden bijgewerkt. Op dit moment gebeurt dat sporadisch in projecten als E-DEM en D-CENT, maar dit zijn indexeringen achteraf. Beter zou het zijn om ook zicht te hebben op lopende ontwikkeltrajecten en voornemens, zodat samenwerkingen kunnen worden aangegaan en vanaf het begin van projecten open source kan worden samengewerkt. Voor het vinden van beschikbare tools is een 
+groot aantal online zoekmachines en overzichten beschikbaar. Enkele voorbeelden zijn:
+• D-CENT https://dcentproject.eu/ 
+• OGP Toolbox https://ogptoolbox.org/
+• Code for America Civic Tech Project Search http://brigade.codeforamerica.org/
+• Joinup https://joinup.ec.europa.eu
+• Transparencee Tools https://transparencee.org/scaling/ 
+• Digital Social Innovation https://digitalsocial.eu/ 
+• Participedia https://www.participedia.net/
+• Clarity Marketplace https://clarity-csa.eu/portfolio-classic-3cols 
+• Github and Government https://government.github.com/ 
+
+Veel van deze catalogi zijn ontstaan in een project, en worden daarom niet actief onderhouden. Veel van de beschikbare informatie technisch, op de software gericht in plaats van op de use case, en bovendien alleen in het Engels beschikbaar. Het zou goed zijn om een actuele centrale vraagbaak te hebben voor dit soort informatie.
+
+<h2>Innovatie, ontwikkeling van nieuwe toepassingen</h2>
+
+Indien er geen geschikte tools beschikbaar zijn, of nog niet duidelijk is wat er precies nodig is, dan kan er ook “from scratch” iets ontwikkeld worden. Daarbij is het belangrijk om te bepalen welke programmeertaal, technieken en infrastructuur gebruikt moeten worden, om te zorgen voor maximale onderhoudbaarheid. Daarnaast moet er gekozen worden voor een ontwikkelmethode, zoals Agile of Design Thinking. Product eigenaarschap De wensen van gemeenten moeten ergens binnenkomen en vervolgens vertaald worden 
+naar features of “user stories” voor ontwikkeling. Vervolgens moeten er beslissingen genomen worden over welke wijzigingen wel of niet worden geaccepteerd in de code, wat de focus is van de ontwikkeling. De aannemer wijst een producteigenaar aan. Deze kan al dan niet inspraakmogelijkheden organiseren en daarvoor regels opstellen. In de software-wereld bestaat het gezegde: “a camel is a horse designed by committee”. Het is noodzakelijk om iemand aan te wijzen, één product owner, die uiteindelijk de eindverantwoordelijkheid heeft.
+
+<h2>Kwaliteitscontrole op de code</h2>
+
+De code moet ergens worden opgeslagen en daar worden onderhouden. Aan te raden is om hiervoor Github te gebruiken, de de facto standaard voor open source community projecten. Vervolgens moet de kwaliteit van de ontwikkelde code gecontroleerd worden en gecheckt op functionaliteit, leesbaarheid, veiligheid en ook of er aan  juridische eisen zoals bijvoorbeeld privacy moet worden voldaan. Gezien het open source code betreft, ligt de verantwoordelijkheid voor problemen bij gebruik geheel bij de aanbieder van de applicatie. Dat wil dus zeggen dat deze kwaliteitscontrole erg belangrijk is voor die aanbieder, en deze dus vertrouwen moet hebben in 
+het gebruikte protocol en controlemechanisme. Om dit proces enigszins te kunnen beheersen wordt er gewerkt in een ‘fork’ van een bestaande repository. Periodiek kan er in beide richtingen uitwisseling plaatsvinden. De ontwikkelaars kunnen  via een ‘pull request’ functionele blokken toevoegen aan de oorspronkelijke repository, en nieuwe functionaliteit of bug-fixes in die oorspronkelijke repository kunnen worden samengevoegd met de fork waarin ontwikkeld wordt. Derden kunnen via hetzelfde mechanisme ook direct bijdragen aan deze fork.
+
+<h3>Promotie van hergebruik, gezamenlijk gebruik en samenwerking</h3>
+
+Een andere taak is het promoten van gebruik van de beschikbare oplossingen. Dan gaat het enerzijds om het vergroten van het gebruik door gemeenten die dat nog niet van plan waren, anderzijds door het aanprijzen van deze oplossing bij gemeenten die iets dergelijks zoeken. Het overkoepelende belang van het open source ecosysteem uitdragen, en de noodzakelijke gedragsregels blijven aanstippen.  Actief samenwerking opzoeken, plannen delen, hergebruik stimuleren, actief participeren in open source projecten, actief doorontwikkelen van oplossingen... Deze cultuur in in de context van digitale overheidsdienstverlening en dienstverleners nog niet vanzelfsprekend.
+
+<h3>Afstemming van cultuur, best practices en technieken</h3>
+
+Om te zorgen dat er een cultuur ontstaat onder de dienstverleners en ontwikkelaars, en levende standaarden en best practices gedeeld worden, zijn meetups cruciaal. Zo leren de ontwikkelaars elkaar en elkaars projecten kennen. Dit zorgt voor meer vertrouwen, meer samenwerking, meer hergebruik van code, en convergentie van technieken. Code for NL is in 2017 begonnen met maandelijkse meetups, in samenwerking met onder meer 
+ICTU, Waag, Datalab Amsterdam, gemeente Haarlem, en de interesse vanuit gemeenten om deel te nemen groeit. Daarnaast is er een Slack kanaal geopend voor vragen en discussies in de tussentijd: http://praatmee.codefor.nl
+
+<h3>Infrastructuur</h3>
+
+Een digitale dienst of toepassing draait op een infrastructuur. Bij het Datalab van de gemeente Amsterdam is er gekozen om een infrastructuur in te richten voor het ontsluiten, analyseren en gebruiken van (open) data uit de stad. Deze infrastructuur heet Datapunt en is gebaseerd op open stack. [6] Momenteel worden er stappen gezet om Datapunt geschikt te maken voor het beheren van open source applicaties. Een goede infrastructuur opzetten met hoge service level is niet eenvoudig en vereist veel initieel werk en onderhoud. Het valt daarom aan te raden om dit centraal op te zetten. Hiervoor wordt gekeken naar VNG, maar de Nederlandse overheid heeft met ODC-Noord een datacenter dat openstack aanbiedt. Het verdient de aanbeveling om te kijken of daarvan gebruik kan worden gemaakt. Hierbij kan ook de technologie en kennis die is ontwikkeld bij het
+opzetten van Datapunt worden aangewend. Andere zaken waaraan gedacht kan worden is bijvoorbeeld 
+een Rancher omgeving voor Docker en VPS beheer, orchestratie, en iets van KONG of API-Umbrella 
+voor diensten die samenhangen met API hosting (rate limiting, authenticatie, load balancing, etc.)
+
+<h3>Ruimte voor maatwerk</h3>
+
+Het is in het belang van alle gemeenten dat zoveel mogelijk gebruik wordt gemaakt van dezelfde tools, maar ook dat er ruimte is voor eigen inbreng en specifieke wensen. Voor een deel is dit technisch op te lossen door voor een modulaire opzet te kiezen in de software. Voor een ander deel is het een belangenafweging. Hierin moet een middenweg gevonden worden. De rol voor het promoten van gedeelde oplossingen, en en het beoordelen van algemene dan wel specifieke wensen zou bij de VNG kunnen liggen.. Gemeenten met specifieke 
+wensen die extra maatwerk vergen kunnen hun eigen devops/service team inrichten om een fork te maken met de noodzakelijke aanpassingen, en deze up-to-date te houden met de originele repository. Vaak is het wenselijk om nog wat dingen aan te passen in de applicatie. Denk hierbij aan vertaling van de teksten binnen de applicatie naar het Nederlands, het net anders inrichten van ingebouwde processen, of eenvoudigweg het aanpassen van de visuele stijl van de applicatie en het gebruiken van een ander logo. In sommige applicaties is dit configureerbaar, dat wil zeggen: in te stellen in de applicatie na de installatie. Dit wordt vaak aangeduid met “functioneel beheer”. In andere gevallen moet een programmeur hiervoor dingen aanpassen in de code. Bij open source software ligt dit vaak dicht tegen elkaar aan. Als je besluit aanpassingen aan de software te gaan maken, dan is het belangrijk om te bepalen of je wilt dat de software gekoppeld blijft aan de oorspronkelijke software (die vaak ook doorontwikkelt wordt). Als je namelijk teveel wijzigingen maakt, zonder daarbij rekening te houden met de ontwikkelingen in de oorspronkelijke code, dan drijft je eigen variant af. Het kan dan gebeuren dat de twee versies op een bepaald moment niet meer compatibel zijn, en je geen profijt meer hebt van updates aan de oorspronkelijke code. Oplossingen hiervoor zijn tijdige “pull requests”, waarbij je vraagt of jouw veranderingen mogen worden opgenomen in de oorspronkelijke code, of een modulaire opzet, waarbij extra functionaliteit los staat van de oorspronkelijke code en er via gedocumenteerd open protocollen en standaarden aan kan worden gekoppeld.
+
+<h3>Aanbieder</h3>
+
+Om een applicatie vervolgens echt te kunnen inzetten, is er een aanbieder nodig. De aanbieder neemt verantwoordelijkheid voor de veiligheid en beschikbaarheid van de applicatie, en maakt hierover afspraken met de afnemer in de vorm van een Service Level Agreement. Er zijn verschillende manieren om dit organisatorisch in te richten.
+
+<h4>INTERNE MANAGED HOSTING (ICT AFDELING)</h4>
+
+De traditionele manier om software te implementeren in de organisatie is een ICT afdeling. Deze afdeling beheert toepassingen op verzoek van de operations. Het voordeel is dat er veel controlemechanismen zijn binnen de organisatie, bijvoorbeeld op het gebied van service level, privacy en security. Een nadeel kan zijn dat deze afdeling vaak vastzit aan een bepaalde (vaak verouderde) infrastructuur, die zich niet leent voor het hosten van moderne web applicaties, en al helemaal niet voor meer experimentele toepassingen. Door eerdere oorzaken, van budgettaire aard of door legacy code is de werkwijze vaak minder flexibel. In het geval van Datapunt Amsterdam is ervoor gekozen om een nieuwe interne aanbieder op te zetten, naast de traditionele ICT organisatie, die minder bureaucratisch is ingericht en meer vrijheid heeft met betrekking tot de keuze voor technieken en andere manieren van werken. Dit heeft op nationaal niveau navolging gekregen vanuit VNG (common ground), waarbij gekeken wordt of er op een agile manier nieuwe toepassingen kunnen worden gebouwd, in eerste instantie buiten de bestaande ICT-organisaties om. Een toekomstige mogelijkheid is om Datapunt-achtige aanbieders niet alleen diensten aan te laten bieden aan hun eigen organisatie, maar ook aan andere gemeenten. Dit zou een ecosysteem opleveren waarin gemeenten elkaars applicaties afnemen (“as a Service”), in plaats van deze te moeten kopiëren of beleggen bij een centrale partij als VNG.
+
+<h4>INTERNE SERVICE TEAMS</h4>
+
+In plaats van een algemene interne hostingpartij, kunnen er ook interne service teams ontstaan, die zelf zorg dragen voor hun digitale diensten. Deze manier van denken komt uit de Digital Transformation en heeft als voordeel dat de verantwoordelijkheid voor de business en voor de software bij één en hetzelfde team liggen. Dit team kan hierdoor volledig zelfstandig bepalen hoe ze hun software en processen intern inrichten voor hun domein, terwijl ze naar buiten toe alleen afgerekend worden op hun kwaliteit van dienstverlening. In Amsterdam wordt op dit moment geëxperimenteerd met Open Stad, een afdeling die zich volledig richt op het aanbieden van digitale participatietools.
+
+<h4>EXTERNE MANAGED HOSTING  (WEB DEVELOPMENT BUREAU)</h4>
+
+Een andere optie is om een web development bureau in de hand te nemen en deze verantwoordelijk te maken voor het installeren, onderhouden en beheren van de web applicatie. Het voordeel hiervan is dat er ruime keus aan is. Het nadeel is dat er een situatie ontstaat waarbij iedere gemeente telkens weer moet zoeken naar een geschikt bureau en dat deze bureaus bij het implementeren van de software telkens weer dezelfde oplossingen gaan maken voor veel voorkomende problemen, zonder deze met elkaar te delen. Ook is er vaak weinig zicht op de interne processen van de bureaus, wat bepaalde veiligheidsrisico’s met zich mee kan brengen. Belangrijk is het om bij de keuze voor een web development bureau duidelijk vast te leggen dat de data eigendom is van de gemeente, dat deze eenvoudig te exporteren moet zijn, dat de software-wijzigingen open source moeten worden gepubliceerd, en dat er open standaarden worden gehanteerd. Daarnaast is het belangrijk om een audit te doen, waarbij gecontroleerd wordt hoe en waar de data wordt opgeslagen en hoe de servers beveiligd zijn. Ook moet worden bepaald wie applicatiebeheer en support verzorgd. Waarschijnlijk is het wenselijk dat gebruikers zich bij de gemeentelijke dienst melden en niet bij het ingeschakelde bureau, alhoewel dit natuurlijk varieert met het soort dienst en de doelgroep ervan.
+
+<h4>STICHTING MET SPECIFIEK DOEL</h4>
+
+Voor veelgebruikte oplossingen is het een optie om een stichting op te richten voor het aanbieden en beheren van deze oplossing. Een voorbeeld hiervan is Pleio, een open source discussieplatform voor overheden. De Stichting Pleio [7] draagt zorg voor de doorontwikkeling, het aanbieden en beheren van de software “as a Service”. Het voordeel is dat er heel specifiek kan worden gefocust op het doorontwikkelen van de service en de software en dat alle capaciteit daarvoor wordt ingezet. Nadeel kan zijn dat er een kritieke massa aan lange termijn commitment moet zijn van gemeenten en een stabiele stroom inkomsten om dit stabiel op te zetten.
+
+<h4>SPECIFIEKE COÖPERATIE OF VERENIGING</h4>
+
+Om de gemeenten meer invloed te geven op hoe de aanbieder zich ontwikkeld, kan in plaats van een stichting ook worden gekozen voor een coöperatie of vereniging. Voordeel is hierbij dat er kan worden besloten door de leden welke koers moet worden gevolgd. Nadeel kan zijn dat er veel management overhead geïntroduceerd wordt, waardoor er veel tijd en geld gaat zitten in vergaderen over ontwikkeling, in plaats van ontwikkeling zelf.
+
+<h4>ALGEMENE STICHTINGEN</h4>
+
+Een andere optie is om het beheer neer te leggen bij een algemene stichting die meerdere applicaties onderhoud en aanbiedt. Zo wil Stichting ICTU, de ICT uitvoeringsorganisatie voor de overheid, graag een aantal toepassingen in beheer nemen. Voordeel hiervan is dat dit snel kan worden opgetuigd. Het nadeel kan zijn dat er intern wordt bepaald waar ontwikkel- en service capaciteit wordt ingezet, en het dus kan zijn dat sommige 
+applicaties niet heel actief worden doorontwikkeld.
+
+Ook andere diensten kunnen in algemene stichtingen worden ondergebracht. Zo is recent de Foundation for Public Code opgericht, om een portfolio aan open source applicaties voor steden te gaan beheren. Stichting Code for NL is opgericht om een actief netwerk op te bouwen en te onderhouden van open source developers en designers die zich inzetten voor een betere digitale overheid. De Stichting Open Source en Overheid zet zich in voor een minder afhankelijke positie van de overheid ten aanzien van softwarebedrijven. VNG Gemeenten zijn al verenigd in de VNG. Binnen VNG zou een afdeling kunnen ontstaan die zich bezighoudt met het ontwikkelen en aanbieden van open source applicaties aan gemeenten. Een goed voorbeeld van hoe dat eruit kan zien is 6AIKA: 6 Finse steden hebben gezamenlijk een development team opgezet dat zich bezighoudt met het ontwikkelen van toepassingen en deze beschikbaar maken en ondersteunen. Zie https://dev.hel.fi 
+
+<h4>ALGEMENE COÖPERATIE OF VERENIGING</h4>
+
+Niet alleen gemeenten hebben behoefte aan infrastructuur en beheer van open source oplossingen. Ook veel kleine marktpartijen in het open source ecosysteem zouden graag gebruik maken van dergelijke diensten. Zo kunnen ze zich namelijk richten op het ontwikkelen van maatwerkoplossingen in processen. Een samenwerking tussen overheid en marktpartijen in een vereniging of coöperatie kan een interessante optie zijn als basis voor 
+een levendig open source ecosysteem.
+
+<h4>STARTUPS</h4>
+
+Er zijn ook startups die e-participatietools as a Service aanbieden. Hierbij gaat het doorgaans om closed source oplossingen. In bepaalde situaties kan dit een snelle en relatief eenvoudige manier zijn om hiermee te experimenteren. Daarbij is het wel belangrijk om te bespreken wat er met de data gebeurt, en om bepaalde controlemechanismen in te bouwen, zodat er niet gesjoemeld kan worden met bijvoorbeeld de uitslagen van een stemming. Misschien is aandeelhouderschap hiervoor een manier. In het algemeen verdienen closed-source oplossingen, uit oogpunt van transparantie en vendor lock-in,  niet de voorkeur.
+
+<h3>devOps</h3>
+
+In opdracht van de aanbieder installeert en configureert een door de aanbieder aangestuurd devOps team de software, regelt de infrastructuur en voert monitoring en onderhoudswerkzaamheden uit. Ze registreren ook domeinnamen en SSL certificaten voor beveiligde verbinding. Daarnaast zorgen ze voor backups en het beheer van de infrastructuur.
+
+<h3>Functioneel testen</h3>
+
+Alvorens de applicatie te gaan gebruiken, is het verstandig om deze grondig te testen. Dit gebeurt onder leiding van de product owner, welke representatieve groepen betrekt en een test schema opstelt.
+
+<h3>PEN/Hack test</h3>
+
+White hat hackers proberen de applicatie op van allerhande manieren te hacken, om beveiligingsproblemen in kaart te brengen. Naar aanleiding van dit rapport kunnen aanpassingen worden gedaan om de beveiligingsproblemen te verhelpen.
+
+<h3>Functioneel en gebruikersbeheer</h3>
+
+Het aanmaken van gebruikers en toekennen van rechten, waarbij ook controleprocessen worden gevolgd voor het vaststellen van identiteit en autorisaties vanuit de organisatie, maar ook het controleren van de logs en in de gaten houden of er dingen mis gaan. Run-time configuratie (soms grijs gebied met devOps: in de applicatie vs in de code/database).
+
+<h3>Implementatie en ondersteuning</h3>
+
+De software moet vervolgens ook nog in processen worden ingepast. Vaak gaat dit hand in hand met kleine maatwerk aanpassingen. Daarnaast is er een behoefte aan het kunnen stellen van vragen en het krijgen van uitleg over het gebruik van de software. 
+
+<h3>Samen onderzoeken</h3>
+
+Gezien zowel de technologie als de organisaties nog volop in ontwikkeling zijn, en het ernaar uitziet dat dit nog wel even zo blijft, is het belangrijk om samen te testen en verkennen wat werkt, wat wenselijk is, welke ambities er zijn, en wie wat waar kan bijdragen. Verschillende partijen kunnen op termijn een rol spelen, maar zijn nog niet altijd in staat om die rol per direct te vervullen. Daarnaast is het een puzzel om binnen dit groeiende en zich ontwikkelende ecosysteem van open source dienstverleners te bepalen hoe de taken te verdelen, de samenhang te vinden en de samenwerking te bevorderen
+
+<h2>Open Source mentaliteit</h2>
+
+Om van open source een succes te maken, is een bepaalde houding nodig.
+
+<h3>1. SAMENWERKEN</h3>
+
+Door nauw (inter)nationaal samen te werken in projecten worden krijgen de oplossingen meer schaal, worden ze modulair (voor maatwerk), worden best practices gedeeld en convergeren technieken. Dit zorgt voor betere 
+herbruikbaarheid van zowel de oplossingen als de infrastructuur en goedkoper beheer.
+
+<h3>2. DELEN VAN CODE, KENNIS, ERVARING</h3>
+
+Door te delen wat er precies gedaan is, wat de resultaten waren, zowel de positieve als de fouten die gemaakt zijn, zorg je voor convergentie van technieken, ontwikkeling van de kennis, en een positieve cultuur van samen delen en samen experimenteren.
+
+<h3>3. DURF TE VRAGEN (MAAR PROBEER HET EERST EVEN ZELF UIT TE ZOEKEN)</h3>
+
+Niemand weet alles. Een vraag kan voorkomen dat je tijd verspilt aan de verkeerde dingen doen of dingen verkeerd doen. Beantwoord daarom ook vragen van anderen, en moedig mensen aan om ze te stellen.
+
+<h3>4. DURF TE -FALEN- LEREN</h3>
+
+Niet alles kan altijd goed gaan. Zorg voor een veilige omgeving, waarin fouten niet worden verstopt, maar gevierd. Dit zorgt ervoor dat ze snel boven tafel komen, en ervan kan worden geleerd.
+
+<h3>5. HERGEBRUIKEN</h3>
+
+Zoveel mogelijk doorontwikkelen wat er is, in plaats van telkens opnieuw beginnen. Dit zorgt voor een actieve community rondom open source projecten, in plaats van een enorme veelheid aan verlaten applicaties. Dit zorgt ervoor dat er een kritieke massa is voor doorontwikkeling, waardoor projecten blijven leven en beheer eenvoudiger wordt.
+
+<h3>6. OPEN (WEB) STANDAARDEN</h3>
+
+Gebruik waar mogelijk open (web) standaarden, in plaats van eigen standaarden bedenken. Dit zorgt voor begrijpelijke code en betere herbruikbaarheid. Open web standaarden zijn over lange tijd ontstaan uit internationale consensus. Het is onwaarschijnlijk dat de standaarden die je zelf verzint hetzelfde draagvlak gaan krijgen.
+
+<h3>7. BOTTOM-UP</h3>
+
+Volg en doe mee, in plaats van proberen te sturen. Bijsturen kun je doen door middel van inzet en initiatief. Volg zoveel mogelijk de gangbare werkwijze. Volg de coding standards van een project.
+
+<h3>8. EAT YOUR OWN DOGFOOD EN SCRATCH YOUR OWN ITCH</h3>
+
+Gebruik je eigen code, en draag bij aan projecten waar je gebruik van maakt.
+
+<h3>9. KUDO'S</h3>
+
+Geef kudo's aan bijdragers, steel geen ideeen, maar geef credit where credit's due.
+
+<h2>Ontwikkelingen in Nederland</h2>
+
+<p>Er zijn op dit moment enkele relevante ontwikkelingen gaande op het gebied van e-participatie tools in Nederland, die mede bepalen welke richting de governance op zal gaan.</p>
+
+<p>ARGU (https://argu.co) is een jong discussieplatform As A Service. De (commerciële) onderneming is verantwoordelijk voor technologie, beheer en ontwikkeling. Simpel uit te rollen, maar over data eigenaarschap en -portabiliteit is op de site niets te vinden (op het moment van schrijven zijn de ‘terms of use’ en ‘privacy’ pagina’s niet beschikbaar).</p>
+
+<p>Stichting Pleio (https://www.pleio.nl) ontwikkelt en beheert open source online kennisdelingsplatform As A Service, speciaal voor overheidsorganisaties en bestuurslagen binnen de overheid. Tot nu toe niet ingezet als deliberatieplatform met burgers.</p>
+
+<p>Ideeënvijver is een open source tool voor het pitchen van ideeën en het daarop stemmen.  Vanuit Code for NL fellowships bij de gemeente Eindhoven ontwikkeld en onder beheer bij Code For NL. (https://e52.nl/tag/ideeenvijver/)</p>
+
+<p>Your Priorities (https://www.yrpri.org/) is een in IJsland en Estland zeer succesvol open source deliberatie platform. Het is beschikbaar in het Nederlands, en een nl proefversie is uit te proberen op https://e-dem.nl. Ook op e-dem.nl is een Nederlandstalige versie van Consul (http://consulproject.org) te vinden, een open source platform dat met succes ingezet wordt in Madrid.</p>
+
+<p>De Stichting ICTU organiseert software-development voor de overheid, waarbij marktpartijen worden aangehaakt om te bouwen. ICTU is voornemens om een  rol te spelen in het beheer van open source tools op het gebied van participatieve democratie.</p>
+
+<p>Stichting Code for NL organiseert maandelijks bijeenkomsten voor open source developers en designers (en andere geïnteresseerden) die werkenbij of voor de overheid, om kennis en ervaring uit te wisselen, resultaten te delen en samenwerkingen te promoten. Een overzicht van use cases van digitale tools bij overheden op clarity.codefor.nl</p>
+
+<p>Open Stad is een doorontwikkeling van Open Stadsdeel, dat op zijn beurt een doorontwikkeling is van Stem van West. Deze applicaties wordt gehost vanuit Datapunt Amsterdam, is open source en heeft zich als Stem van West als interessante, door de overheid gestuurde ontwikkeling gemanifesteerd.. Informatie: https://www.amsterdam.nl/bestuur-organisatie/geef-mening/openstad-online/</p>
+
+<p>Datalab Amsterdam ontwikkelt de afdeling “innovatieve toepassingen” open source procesapplicaties voor uitvoerende ambtenaren. Deze maatwerkapplicaties worden beheerd en gehost door Datapunt Amsterdam, de nieuwe infrastructuur voor data services, data-toepassingen en in-house ontwikkelde open source web applicaties van de gemeente Amsterdam. Doorontwikkeling en ondersteuning door oorspronkelijke team. (lange termijn betrokkenheid) Amsterdam neemt hiermee het voortouw, in de hoop dat andere (grote) gemeenten en VNG spoedig zullen volgen en de (open source) samenwerking zullen opzoeken. (https://data.amsterdam.nl)</p>
+
+<p>Het zeer nieuwe Nederlandse  initiatief Foundation for Public Code richt zich op het beheer en de sustainable inzet van open source publieke code en publieke digitale infrastructuur. (http://publiccode.net).</p>
+
+<p>Stichting Open Source en Overheid (https://oseno.nl) zet zich in om de Nederlandse overheid minder afhankelijk te maken van software-leveranciers.</p>
+
+<h2>Aandachtspunten</h2>
+
+• Open source ecosysteem kan alleen bestaan als er proactief samengewerkt wordt.
+• Het beheer van open source broncode is iets totaal anders dan het beheer van draaiende open source applicaties.
+• Open source software is pas waardevol als er een organisatie is die er een bepaalde service level aan toevoegt. 
+• Open source software is niet gratis; in plaats van licentiekosten dient rekening te worden gehouden met 
+kosten voor (door)ontwikkeling. 
+• Code open source maken is niet een laatste stap, maar een eerste stap. Het gaat  niet om open source 
+code, maar om open source samenwerking. 
+• Zorg zoveel mogelijk voor een modulaire opzet in open source projecten, zodat maatwerk mogelijk blijft, 
+terwijl nog wel kan worden samengewerkt aan de co-re-functionaliteiten
+• Lange termijn betrokkenheid van en verantwoordelijkheidsgevoel bij programmeurs gaan hand in hand. 
+• Leesbare code, gangbare volwassen talen en technieken, eenvoudige architectuur en andere best practices zorgen voor een maximale onderhoudbaarheid (“bus factor”, zie https://en.wikipedia.org/wiki/Bus_factor).
+
+<h2>Open vragen</h2>
+
+• Hoe zorg je voor de democratische controleerbaarheid die essentieel is voor e-participatietools?
+• Hoe align je de motivaties van bedrijven met de motivaties van overheid en het publiek belang?
+• Op welke manier kunnen bedrijven, non-profits en overheid samen een beheerorganisatie vormen?
+• Kunnen we een systeem van micro funding bedenken in combinatie met een pool (“zwerm”) van open source ontwikkelaars, om een constante ontwikkelcapaciteit te realiseren?
+• Er is veel bereidheid om digitale services toe te voegen voor een ecosysteem van open source applicaties. 
+Hoe maken we hiervoor een marktplaats?
+• Welke organisaties willen welke rol precies vervullen? Hoe combineer je die ambities in één ecosysteem?
+</main>
+    </body>
 </html>
