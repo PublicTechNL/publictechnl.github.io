@@ -1,32 +1,128 @@
-- title: "Standaard voor Publieke Code"
-  description: "Nederlandse vertaling van de Standard for Public Code - leidraad voor het ontwikkelen van software voor de publieke sector."
-  image: "images/project3.png"
-  url: "https://www.standaardvoorpubliekecode.nl"
-- title: "Beheertool voor Verantwoorde Inzet van Technologie"
-  description: "Beheertool voor Verantwoorde Inzet van Algoritmes, Data en Sensoren."
-  image: "images/project1.png"
-  url: "https://www.algoritmeregister.org"
-- title: "Eurocities Algorithmic Transparency Standard"
-  description: "Standaard voor algoritmische transparantie in de publieke sector."
-  image: "images/project1.png"
-  url: "https://www.algorithmregister.org"
-- title: "Gegevensboekhouding"
-  description: "Gedegen boekhouding van alle gegevens die in de organisatie worden gebruikt."
-  image: "images/project2.png"
-  url: "https://www.gegevensboekhouding.nl"
-- title: "TakeNode"
-  description: "Registratie van intellectueel eigendom voor digitale werken."
-  image: "images/project3.png"
-  url: "https://www.takenode.org"
-- title: "CleanStreet"
-  description: "Taaksysteem voor het schoonhouden van de openbare ruimte."
-  image: "images/project3.png"
-  url: "https://www.cleanstreet.nl"
-- title: "OpenSamen"
-  description: "CrowdFunding platform voor open samenwerking tussen publieke organisaties."
-  image: "images/project3.png"
-  url: "https://www.opensamen.nl"
-- title: "OpenDiensten"
-  description: "Selectie aan publiek toegankelijk gehoste open source software gericht op community organisatie."
-  image: "images/project3.png"
+# Portfolio van het Public Tech NL Lab.
+#
+# Velden:
+#   id                        - korte naam, ook bestandsnaam van de preview in assets/previews/
+#   title, description        - publiek
+#   url                       - link naar het project (optioneel; zonder url geen screenshot via het script)
+#   preview_url               - andere pagina voor het screenshot dan url (optioneel)
+#   repo                      - link naar de broncode (optioneel)
+#   status                    - id uit _data/statuses.yml
+#   partner                   - opdrachtgever of samenwerkingspartner (optioneel)
+#   sinds                     - jaar van start (optioneel)
+#   tags                      - lijst met trefwoorden (optioneel)
+#   bijgewerkt                - wanneer je er laatst aan werkte, JJJJ-MM-DD (optioneel)
+#   volgende_stap, notitie    - labjournaal: alleen zichtbaar bij lokaal `jekyll serve`
+
+- id: minipol
+  title: "MiniPol"
+  description: "Klein, open gesprekstool voor gesprekken met veel mensen: deelnemers reageren op stellingen en zien welke groepen er ontstaan."
+  url: "https://minipol.nl"
+  status: werkbank
+  tags: [participatie, open source]
+  volgende_stap: ""
+  notitie: ""
+
+- id: opendiensten
+  title: "OpenDiensten"
+  description: "Open en gratis publiek toegankelijke SaaS-omgevingen voor community-organisaties, zoals videobellen en samen documenten schrijven."
   url: "https://www.opendiensten.nl"
+  status: proefopstelling
+  partner: "Code for NL"
+  tags: [open source, community]
+  volgende_stap: ""
+  notitie: ""
+
+- id: pnb-sensoren
+  title: "Beheertool voor Verantwoorde Inzet van Technologie"
+  description: "Beheertool waarin een organisatie vastlegt in welke projecten en processen sensoren, algoritmes en data worden ingezet, met doelen, afwegingen en verantwoordelijkheden. Prototype bij de Provincie Noord-Brabant."
+  url: "https://www.algoritmeregister.org/pnb-sensoren/"
+  status: proefopstelling
+  partner: "Provincie Noord-Brabant"
+  tags: [algoritmes, sensoren, transparantie]
+  volgende_stap: ""
+  notitie: "Algemene site: https://www.algoritmeregister.org"
+
+- id: algoritmeregister-schemas
+  title: "Schema's voor Verantwoorde Inzet van Technologie"
+  description: "Herbruikbare schema's voor het vastleggen van de inzet van sensoren en algoritmes, zoals de algoritmestandaard, DPIA, IAMA en maatschappelijke-baten-afwegingen."
+  url: "https://www.algoritmeregister.org/schemas/"
+  status: proefopstelling
+  tags: [standaard, algoritmes, sensoren]
+  volgende_stap: ""
+  notitie: ""
+
+- id: straatnotes
+  title: "Straatnotes"
+  description: "Digitaal notitieboekje voor straatcoaches, ontwikkeld met Jeugd en Veiligheid en de straatcoaches zelf. Hiermee delen straatcoaches veilig en secuur wat ze op straat zien, zodat stadsdelen weten waar extra aandacht en zorg nodig is."
+  status: productie
+  partner: "Gemeente Amsterdam"
+  tags: [privacy by design, datagedreven werken, common ground]
+  sinds: 2016
+  volgende_stap: ""
+  notitie: "Fixxx / Datalab Amsterdam, rol: Product Lead. App draait niet meer online; preview is een eigen foto."
+
+- id: eurocities-ats
+  title: "Eurocities Algorithmic Transparency Standard"
+  description: "Standaard voor algoritmische transparantie in de publieke sector."
+  url: "https://www.algorithmregister.org"
+  status: productie
+  partner: "Eurocities"
+  tags: [standaard, algoritmes, transparantie]
+  volgende_stap: ""
+  notitie: ""
+
+- id: standaard-publieke-code
+  title: "Standaard voor Publieke Code"
+  description: "Nederlandse vertaling van de Standard for Public Code: leidraad voor het ontwikkelen van software voor de publieke sector."
+  url: "https://www.standaardvoorpubliekecode.nl"
+  preview_url: "https://www.codefor.nl//community-translations-standard/nl/"
+  status: productie
+  tags: [standaard, open source]
+  volgende_stap: ""
+  notitie: ""
+
+- id: clarity
+  title: "Clarity Show Cases"
+  description: "Verzameling van voorbeelden van digitale overheidsdiensten, zoals meldingen openbare ruimte en participatietools, om van elkaar te leren."
+  url: "https://clarity.codefor.nl/"
+  status: proefopstelling
+  partner: "Code for NL"
+  tags: [participatie, openbare ruimte, kennisdeling]
+  volgende_stap: ""
+  notitie: ""
+
+- id: gegevensboekhouding
+  title: "Gegevensboekhouding"
+  description: "Gedegen boekhouding van alle gegevens die in de organisatie worden gebruikt."
+  url: "https://www.gegevensboekhouding.nl"
+  status: proefopstelling
+  tags: [data]
+  volgende_stap: ""
+  notitie: ""
+
+- id: opensamen
+  title: "OpenSamen"
+  description: "Crowdfundingplatform voor open samenwerking tussen publieke organisaties."
+  url: "https://www.opensamen.nl"
+  status: schetsboek
+  tags: [samenwerking, financiering]
+  volgende_stap: ""
+  notitie: ""
+
+- id: takenode
+  title: "TakeNode"
+  description: "Registratie van intellectueel eigendom voor digitale werken."
+  url: "https://www.takenode.org"
+  status: productie
+  tags: [eigendom]
+  volgende_stap: ""
+  notitie: ""
+
+- id: cleanstreet
+  title: "CleanStreet"
+  description: "Taaksysteem voor het schoonhouden van de openbare ruimte."
+  url: "https://www.cleanstreet.nl"
+  status: koelkast
+  tags: [openbare ruimte]
+  volgende_stap: ""
+  notitie: "Website reageerde niet op 2026-10-08."

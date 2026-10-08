@@ -2,39 +2,21 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-column">
-                <h3>PUBLIC TECH NL</h3>
-                <p>Unlocking Public Innovation through technology, design, and collaborative approaches.</p>
+                <h3>{{ site.title | remove: " LAB" }} <span class="logo-lab">LAB</span></h3>
+                <p>Een open lab voor publieke technologie. Concepten door <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
             </div>
             <div class="footer-column">
-                <h3>Quick Links</h3>
+                <h3>Het lab</h3>
                 <ul class="footer-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Publications</a></li>
-                    <li><a href="#">Toolkits</a></li>
-                    <li><a href="#">Events</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <ul class="social-links">
-                    <li><a href="#">T</a></li>
-                    <li><a href="#">L</a></li>
-                    <li><a href="#">M</a></li>
-                    <li><a href="#">G</a></li>
+                    {% for status in site.data.statuses %}
+                    {% assign items = site.data.projects | where: "status", status.id %}
+                    {% if items.size > 0 %}<li><a href="{{ '/' | relative_url }}#{{ status.id }}">{{ status.label }}</a></li>{% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 Apitecture B.V. | PublicTechNL. All rights reserved.</p>
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.author.url }}">jgroenen.nl</a></p>
         </div>
     </div>
 </footer>

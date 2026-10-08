@@ -1,8 +1,6 @@
-<ul class="nav-links">
-    <li><a href="#about">Over</a></li>
-    <li><a href="#services">Activiteiten</a></li>
-    <li><a href="#projects">Portfolio</a></li>
-    <li><a href="#methodology">Methodiek</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#" class="btn">Meedoen!</a></li>
+<ul class="nav-links" id="nav-links">
+    {% for status in site.data.statuses %}
+    {% assign items = site.data.projects | where: "status", status.id %}
+    {% if items.size > 0 %}<li><a href="{{ '/' | relative_url }}#{{ status.id }}">{{ status.label | remove: "Op de " | remove: "In de " | remove: "In het " | capitalize }}</a></li>{% endif %}
+    {% endfor %}
 </ul>

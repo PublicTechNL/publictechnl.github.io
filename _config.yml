@@ -1,3 +1,12 @@
-title: PUBLIC TECH NL
+title: PUBLIC TECH NL LAB
+name: Public Tech NL Lab
 tagline: Unlocking Public Innovation
-description: PUBLIC TECH NL ontwerpt en ontwikkelt innovatieve toepassingen op het raakvlak van technologie, design en publieke waarden in dienst van een betere digitale overheid en samenleving.
+description: Een open lab voor publieke technologie. Hier ontwerp ik concepten en bouw ik werkende prototypes en proofs of concept, op het raakvlak van technologie, design en publieke waarden, in dienst van een betere digitale overheid en samenleving.
+author:
+  name: Johan Groenen
+  url: https://jgroenen.nl
+exclude:
+  - scripts/
+  - README.md
+# Waar "Haal mij erbij" naartoe linkt (bijv. mailto:… of een contactpagina)
+contact_url: https://jgroenen.nl

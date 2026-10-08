@@ -1,0 +1,62 @@
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+<section class="portfolio" id="projecten">
+    <div class="container">
+        <nav class="lab-index" aria-label="Statussen">
+            {% for status in site.data.statuses %}
+            {% assign items = site.data.projects | where: "status", status.id %}
+            {% if items.size > 0 %}
+            <a href="#{{ status.id }}" class="lab-index-item status-{{ status.id }}">
+                <span class="status-dot"></span>{{ status.label }} <span class="lab-count">{{ items.size }}</span>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </nav>
+
+        {% for status in site.data.statuses %}
+        {% assign items = site.data.projects | where: "status", status.id %}
+        {% if items.size > 0 %}
+        <div class="lab-shelf status-{{ status.id }}" id="{{ status.id }}">
+            <div class="lab-shelf-title">
+                <h2><span class="status-dot"></span>{{ status.label }}</h2>
+                <p>{{ status.description }}</p>
+            </div>
+            <div class="lab-grid">
+                {% for project in items %}
+                {% assign preview_path = '/assets/previews/' | append: project.id | append: '.jpg' %}
+                {% assign preview = site.static_files | where: "path", preview_path | first %}
+                {% assign domain = project.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
+                <article class="lab-card">
+                    {% if project.url %}<a href="{{ project.url }}" class="lab-photo" tabindex="-1" aria-hidden="true">{% else %}<div class="lab-photo">{% endif %}
+                        {% if preview %}
+                        <img src="{{ preview_path | relative_url }}" alt="" loading="lazy">
+                        {% else %}
+                        <span class="lab-photo-empty">{{ project.title | slice: 0 }}</span>
+                        {% endif %}
+                    {% if project.url %}</a>{% else %}</div>{% endif %}
+                    <div class="lab-meta">
+                        <h3>{% if project.url %}<a href="{{ project.url }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>
+                        <p class="lab-description">{{ project.description }}</p>
+                        {% if project.tags %}
+                        <ul class="lab-tags">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+                        {% endif %}
+                        <dl class="lab-facts">
+                            {% if project.partner %}<dt>Met</dt><dd>{{ project.partner }}</dd>{% endif %}
+                            {% if project.sinds %}<dt>Sinds</dt><dd>{{ project.sinds }}</dd>{% endif %}
+                            {% if project.url %}<dt>Website</dt><dd><a href="{{ project.url }}">{{ domain }}</a></dd>{% endif %}
+                            {% if project.repo %}<dt>Code</dt><dd><a href="{{ project.repo }}">broncode</a></dd>{% endif %}
+                        </dl>
+                        {% if dev %}
+                        {% capture journal %}{% if project.bijgewerkt %}<dt>Laatst bezig</dt><dd>{{ project.bijgewerkt | date: "%-d %b %Y" }}</dd>{% endif %}{% if project.volgende_stap and project.volgende_stap != "" %}<dt>Volgende stap</dt><dd>{{ project.volgende_stap }}</dd>{% endif %}{% if project.notitie and project.notitie != "" %}<dt>Notitie</dt><dd>{{ project.notitie }}</dd>{% endif %}{% endcapture %}
+                        {% if journal != "" %}
+                        <dl class="lab-facts lab-journal" title="Alleen lokaal zichtbaar">{{ journal }}</dl>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
