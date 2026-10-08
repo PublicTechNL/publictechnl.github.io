@@ -51,16 +51,6 @@
   volgende_stap: ""
   notitie: ""
 
-- id: straatnotes
-  title: "Straatnotes"
-  description: "Digitaal notitieboekje voor straatcoaches, ontwikkeld met Jeugd en Veiligheid en de straatcoaches zelf. Hiermee delen straatcoaches veilig en secuur wat ze op straat zien, zodat stadsdelen weten waar extra aandacht en zorg nodig is."
-  status: productie
-  partner: "Gemeente Amsterdam"
-  tags: [privacy by design, datagedreven werken, common ground]
-  sinds: 2016
-  volgende_stap: ""
-  notitie: "Fixxx / Datalab Amsterdam, rol: Product Lead. App draait niet meer online; preview is een eigen foto."
-
 - id: eurocities-ats
   title: "Eurocities Algorithmic Transparency Standard"
   description: "Standaard voor algoritmische transparantie in de publieke sector."
@@ -126,3 +116,126 @@
   tags: [openbare ruimte]
   volgende_stap: ""
   notitie: "Website reageerde niet op 2026-10-08."
+
+- id: leaderboard
+  title: "Issue Leaderboard code.overheid.nl"
+  description: "Overzicht van de issues van code.overheid.nl, gesorteerd op het aantal duimpjes, zodat zichtbaar wordt welke wensen de community het belangrijkst vindt."
+  url: "https://www.jgroenen.nl/leaderboard/"
+  repo: "https://github.com/jgroenen/leaderboard"
+  status: proefopstelling
+  tags: [open source, community, prioritering]
+  volgende_stap: ""
+  notitie: "Proof of concept; haalt issues op via proxy.apitecture.io."
+
+- id: social-overheid-demo
+  title: "social.overheid.nl demo"
+  description: "Schermvullende live-weergave van berichten op social.overheid.nl, de Mastodon-omgeving van de overheid, gemaakt voor een demodag."
+  url: "https://www.jgroenen.nl/social-overheid-nl-demo-dag/"
+  repo: "https://github.com/jgroenen/social-overheid-nl-demo-dag"
+  status: proefopstelling
+  tags: [fediverse, open source, community]
+  volgende_stap: ""
+  notitie: "Demo, gebruikt tijdens een demodag."
+
+- id: embed-mastodon-post
+  title: "Mastodon-post embedden"
+  description: "Handleiding en werkend voorbeeld voor het embedden van een post van social.codefor.nl (of een andere Mastodon-server) in een eigen website, handmatig of automatisch via oEmbed."
+  url: "https://www.jgroenen.nl/embed-mastodon-post/"
+  repo: "https://github.com/jgroenen/embed-mastodon-post"
+  status: proefopstelling
+  partner: "Code for NL"
+  tags: [fediverse, open source, kennisdeling]
+  volgende_stap: ""
+  notitie: "Prototype."
+
+- id: community-workspace
+  title: "Community Workspace"
+  description: "Gezamenlijke werkplek voor communities: per kanaal chatten, met daarnaast een bureaublad om samen documenten te schrijven en videogesprekken te starten. Als app te installeren op telefoon of computer."
+  url: "https://www.jgroenen.nl/community-workspace-prototype/"
+  repo: "https://github.com/jgroenen/community-workspace-prototype"
+  status: proefopstelling
+  tags: [community, samenwerking]
+  volgende_stap: ""
+  notitie: "Proof of concept."
+
+- id: mastodon-external-accounts-feed
+  title: "Gecureerde Overheidsfeed"
+  description: "Dashboard dat gecureerde lijsten van Mastodon-accounts op andere servers als één tijdlijn toont, zoals overheidsaccounts of de lijst Public Tech Peeps. Posts zijn te openen op je eigen Mastodon-server of door te delen op andere sociale media."
+  url: "https://www.jgroenen.nl/mastodon-external-accounts-feed/"
+  repo: "https://github.com/jgroenen/mastodon-external-accounts-feed"
+  status: proefopstelling
+  tags: [fediverse, open source, communicatie]
+  volgende_stap: ""
+  notitie: "Proof of concept."
+
+- id: teksten-tool
+  title: "Teksten Tool"
+  description: "Tool om rollen in een open source-ecosysteem, zoals regiepartij, ontwikkelpartij en hostingpartij, te verdelen in een RACI-matrix en daaruit per rol contractteksten samen te stellen. Met een voorbeeldprofiel voor het OpenZaak-ecosysteem."
+  url: "https://www.jgroenen.nl/teksten-tool/"
+  repo: "https://github.com/jgroenen/teksten-tool"
+  status: proefopstelling
+  tags: [contracten, governance, open source]
+  volgende_stap: ""
+  notitie: "Proof of concept."
+
+- id: docs-no-cloud
+  title: "Docs P2P"
+  description: "Lokaal-eerst editor om samen documenten te schrijven, peer-to-peer en zonder cloud: alles blijft op je eigen apparaat en je deelt een document met een link."
+  url: "https://www.jgroenen.nl/docs-no-cloud/"
+  repo: "https://github.com/jgroenen/docs-no-cloud"
+  status: proefopstelling
+  partner: "Code for NL"
+  tags: [open source, privacy by design, samenwerking]
+  volgende_stap: ""
+  notitie: "Proof of concept. Gebouwd met Yjs (CRDT), IndexedDB en Nostr."
+
+- id: open-source-ecosysteem
+  title: "Open Source Ecosysteem voor Overheids-Software"
+  description: "Kennisdocument over de structuur en governance van een open source-ecosysteem voor overheidssoftware: van principes en rollen via governancemodellen en Nederlandse initiatieven naar implementatie."
+  url: "https://www.jgroenen.nl/Open-Source-Ecosysteem/"
+  repo: "https://github.com/jgroenen/Open-Source-Ecosysteem"
+  status: productie
+  tags: [kennisdocument, open source, governance]
+  volgende_stap: ""
+  notitie: "Schrijfsel; herstructurering van een oorspronkelijk document, dat ook op de site staat."
+
+- id: samen-muziek-maken
+  title: "Solo Jam"
+  description: "Muziek maken in lagen: neem opnames op in de browser, bekijk ze als golfvorm en speel alle sporen tegelijk af. Werkt ook offline; opnames blijven op je eigen apparaat."
+  url: "https://www.jgroenen.nl/samenMuziekMaken/"
+  repo: "https://github.com/jgroenen/samenMuziekMaken"
+  status: proefopstelling
+  tags: [muziek, privacy by design]
+  volgende_stap: ""
+  notitie: "Proof of concept, werktitel samenMuziekMaken. Gebouwd met wavesurfer.js en Dexie (IndexedDB)."
+
+- id: tiltshift-audio-brand
+  title: "TiltShift audiovisuele brand-animatie"
+  description: "Brand experiment: een geanimeerd TiltShift-logo met bijpassend, in de browser gegenereerd geluid."
+  url: "https://www.jgroenen.nl/tiltshift-audio-brand-experiment/"
+  repo: "https://github.com/jgroenen/tiltshift-audio-brand-experiment"
+  status: proefopstelling
+  partner: "TiltShift"
+  tags: [branding, audio, experiment]
+  volgende_stap: ""
+  notitie: "Brand experiment."
+
+- id: cdolodex
+  title: "CDOlodex"
+  description: "Digitale rolodex van Chief Data Officers: per organisatieonderdeel zie je wie de CDO is, welke gegevensgebieden er zijn en wie daarvoor het aanspreekpunt is, en je kunt een gegevensfout melden."
+  url: "https://www.jgroenen.nl/CDOlodex/"
+  repo: "https://github.com/jgroenen/CDOlodex"
+  status: proefopstelling
+  tags: [data, governance]
+  volgende_stap: ""
+  notitie: "Prototype, met fictieve gegevens."
+
+- id: routinemasterpro
+  title: "RoutineMasterPro"
+  description: "App om routines op te bouwen uit taken met een vaste duur en eventueel een bijbehorende website, en ze daarna met een timer te doorlopen (starten, stoppen, resetten)."
+  url: "https://www.jgroenen.nl/RoutineMasterPro/"
+  repo: "https://github.com/jgroenen/RoutineMasterPro"
+  status: proefopstelling
+  tags: [productiviteit]
+  volgende_stap: ""
+  notitie: "Prototype, gebouwd met Vue."

@@ -983,6 +983,20 @@ footer {
     text-decoration: underline;
 }
 
+.lab-facts a.lab-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: top;
+}
+
+.icon-github {
+    flex: none;
+    width: 15px;
+    height: 15px;
+    color: #000;
+}
+
 /* Eigen notities, alleen lokaal zichtbaar */
 .lab-journal {
     margin-top: 10px;
