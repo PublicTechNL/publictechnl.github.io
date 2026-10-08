@@ -239,3 +239,13 @@
   tags: [productiviteit]
   volgende_stap: ""
   notitie: "Prototype, gebouwd met Vue."
+
+- id: pitchdeck
+  title: "Pitchdeck Generator"
+  description: "Schrijf een pitchdeck aan de hand van de 10 slides van Guy Kawasaki. Werkt in de browser, zonder account of server: decks worden automatisch op je eigen apparaat opgeslagen."
+  url: "https://www.jgroenen.nl/pitchdeck/"
+  repo: "https://github.com/jgroenen/pitchdeck"
+  status: proefopstelling
+  tags: [ondernemen, privacy by design]
+  volgende_stap: ""
+  notitie: "Werkend prototype. Statische app met native ES modules, opslag in localStorage."
