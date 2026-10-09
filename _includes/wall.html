@@ -1,0 +1,56 @@
+{% comment %}
+De muur: één lange witte muur van links naar rechts, waar de concepten op hangen.
+Helemaal links staat de koelkast (fase `koelkast`), daarna de andere fases in de volgorde van _data/statuses.yml:
+van schetsboek (ideeën) naar uitgevlogen (live). Het is een slider: je schuift hem met de pijlen, door te vegen of met de zonebalk.
+Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur van de context).
+{% endcomment %}
+{% comment %}Geen `default`: die vervangt ook een lege lijst, en dan zou een leeg lab alles tonen.{% endcomment %}
+{% assign projects = site.data.projects %}{% if include.projects %}{% assign projects = include.projects %}{% endif %}
+{% assign fridge_items = projects | where: "status", "koelkast" %}
+<section class="wall-scroller" id="concepten"{% if include.tint %} style="--tint: {{ include.tint }}"{% endif %}>
+        <nav class="wall-nav" aria-label="Fases op de muur">
+            <a href="#zone-koelkast" class="lab-index-item{% if fridge_items.size == 0 %} lab-index-empty{% endif %}" data-zone="zone-koelkast">In de koelkast <span class="lab-count">{{ fridge_items.size }}</span></a>
+            {% for status in site.data.statuses %}{% if status.id != "koelkast" %}
+            {% assign items = projects | where: "status", status.id %}
+            <a href="#zone-{{ status.id }}" class="lab-index-item{% if items.size == 0 %} lab-index-empty{% endif %}" data-zone="zone-{{ status.id }}">{{ status.label }} <span class="lab-count">{{ items.size }}</span></a>
+            {% endif %}{% endfor %}
+        </nav>
+
+        <div class="wall-stage">
+        <button type="button" class="wall-arrow wall-arrow-prev" aria-label="Verder naar links" hidden>‹</button>
+        <button type="button" class="wall-arrow wall-arrow-next" aria-label="Verder naar rechts" hidden>›</button>
+        <div class="wall-track" tabindex="0" aria-label="De muur met concepten, schuif horizontaal">
+        <div class="wall">
+            {% comment %}De koelkast staat linksonder op de vloer; de concepten hangen met magneetjes op de deur.{% endcomment %}
+            <div class="wall-zone wall-zone-koelkast" id="zone-koelkast">
+                <h2 class="wall-zone-label">In de koelkast <span class="lab-count">{{ fridge_items.size }}</span></h2>
+                <div class="fridge">
+                    <span class="fridge-freezer" aria-hidden="true"></span>
+                    <div class="fridge-door">
+                        {% for project in fridge_items %}{% include wall-item.html i=forloop.index fridge=true %}{% endfor %}
+                        {% if fridge_items.size == 0 %}<p class="wall-empty">Leeg. Niets op pauze.</p>{% endif %}
+                    </div>
+                    <span class="fridge-handle" aria-hidden="true"></span>
+                </div>
+            </div>
+
+            {% for status in site.data.statuses %}{% if status.id != "koelkast" %}
+            {% assign items = projects | where: "status", status.id %}
+            <div class="wall-zone" id="zone-{{ status.id }}">
+                <h2 class="wall-zone-label">{{ status.label }} <span class="lab-count">{{ items.size }}</span></h2>
+                <p class="wall-zone-note">{{ status.description }}</p>
+                <div class="wall-items">
+                    {% for project in items %}{% include wall-item.html i=forloop.index %}{% endfor %}
+                    {% if items.size == 0 %}<p class="wall-empty lab-sticky">Hier hangt nog niets.</p>{% endif %}
+                </div>
+            </div>
+            {% endif %}{% endfor %}
+        </div>
+        </div>
+        </div>
+</section>
+
+<dialog class="a4-dialog" aria-label="Concept">
+    <form method="dialog"><button class="a4-dialog-close" aria-label="Sluiten">×</button></form>
+    <div class="a4-dialog-sheet"></div>
+</dialog>

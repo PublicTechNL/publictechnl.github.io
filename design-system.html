@@ -65,7 +65,7 @@ css: /assets/css/design-system.css
                         <li>Regenboog alleen in beeldmerk en merkstreep</li>
                         <li>Zeshoekpatroon als achtergrond</li>
                         <li>Polaroids met plakband</li>
-                        <li>Kaartenbak: indexkaarten, tabs en catalogusnummers</li>
+                        <li>De muur: A4'tjes, polaroids en stickies, van links naar rechts</li>
                     </ul>
                 </article>
             </div>
@@ -97,7 +97,7 @@ css: /assets/css/design-system.css
                 </li>
                 <li>
                     <strong>Volwassen speels, geen kermis</strong>
-                    <span>Speels zit in de vorm (zeshoeken, polaroids, de kaartenbak), niet in de hoeveelheid kleur. Kleur betekent iets, of is er niet. Niets beweegt uit zichzelf; alleen bij hover een kleine reactie.</span>
+                    <span>Speels zit in de vorm (zeshoeken, polaroids, de muur), niet in de hoeveelheid kleur. Kleur betekent iets, of is er niet. Niets beweegt uit zichzelf; alleen bij hover een kleine reactie.</span>
                 </li>
                 <li>
                     <strong>Punt aan punt, geen honingraat</strong>
@@ -132,8 +132,8 @@ css: /assets/css/design-system.css
                 <figure class="ds-motif"><div class="ds-motif-box"><span class="ds-motif-cluster">{% include hex-cluster.html %}</span></div><figcaption><strong>Cluster</strong> · beeldmerk van de labs, met één losse zeshoek zoals in het Apitecture-logo</figcaption></figure>
                 <figure class="ds-motif"><div class="ds-motif-box ds-motif-pattern"></div><figcaption><strong>Zeshoekpatroon</strong> · <code>--hex-pattern-mask</code>, punt aan punt zoals in het logo, in één zachte tint, vervaagt naar links</figcaption></figure>
                 <figure class="ds-motif"><div class="ds-motif-box"><div class="ds-rainbow" style="background: var(--rainbow); width: 100%"></div></div><figcaption><strong>Regenboogstreep</strong> · alleen onder de header en boven de footer. Op een labpagina zoomt de headerstreep in (×4) met de labkleur in het midden; bij navigeren zoomt hij in, uit of schuift hij mee.</figcaption></figure>
-                <figure class="ds-motif"><div class="ds-motif-box ds-motif-kaartenbak"><span class="lab-shelf-tab" style="--tint: var(--r-blue)">Werkbank</span><span class="lab-shelf-tab" style="--tint: var(--r-blue)">Schetsboek</span></div><figcaption><strong>Kaartenbak</strong> · tabjes op z'n kant langs de linkerrand voor de planken, indextabs met het aantal concepten als navigatie aan de rand van het scherm, indexkaarten met catalogusnummer, invulvelden en een zeshoekig ponsgat. De moderne bibliotheek.</figcaption></figure>
-                <figure class="ds-motif"><div class="ds-motif-box" style="--tint: var(--r-orange)"><span class="lab-photo ds-motif-polaroid"><span class="lab-photo-empty">P</span></span></div><figcaption><strong>Plakband</strong> · foto's hangen met een strookje in de kleur van hun lab</figcaption></figure>
+                <figure class="ds-motif"><div class="ds-motif-box ds-motif-wall"><span class="ds-mini-a4"></span><span class="ds-mini-a4 ds-mini-a4-low"></span><span class="ds-mini-fridge"></span></div><figcaption><strong>De muur</strong> · een lange witte muur van links (koelkast, schetsboek) naar rechts (uitgevlogen). Concepten hangen als A4'tjes met plakband, met polaroids en stickies erbij. De muur is een slider: schuiven met pijlen, vegen of de zonebalk.</figcaption></figure>
+                <figure class="ds-motif"><div class="ds-motif-box" style="--tint: var(--r-orange)"><span class="lab-photo ds-motif-polaroid"><img src="{{ '/assets/previews/minipol.jpg' | relative_url }}" alt=""></span></div><figcaption><strong>Plakband</strong> · foto's hangen met een strookje in de kleur van hun lab</figcaption></figure>
             </div>
         </section>
 
@@ -257,8 +257,8 @@ css: /assets/css/design-system.css
 
             <div class="ds-grid">
                 <div class="ds-specimen ds-specimen-wide">
-                    <div class="ds-demo"><nav class="lab-index" style="margin: 0; --tint: var(--r-green)">{% for status in site.data.statuses %}{% if forloop.index == 3 %}<span class="lab-index-item lab-index-empty">{{ status.label }} <span class="lab-count">0</span></span>{% else %}<a href="#moleculen" class="lab-index-item">{{ status.label }} <span class="lab-count">{{ forloop.index }}</span></a>{% endif %}{% endfor %}</nav></div>
-                    <p class="ds-name">Fasefilter <code>.lab-index-item</code> · naam en aantal in de kleur van het lab; alle fases staan er altijd, een lege fase met stippelrand</p>
+                    <div class="ds-demo"><nav class="ds-zone-nav" style="--tint: var(--r-green)">{% for status in site.data.statuses %}{% if forloop.index == 3 %}<span class="lab-index-item lab-index-empty">{{ status.label }} <span class="lab-count">0</span></span>{% else %}<a href="#moleculen" class="lab-index-item">{{ status.label }} <span class="lab-count">{{ forloop.index }}</span></a>{% endif %}{% endfor %}</nav></div>
+                    <p class="ds-name">Zonebalk <code>.wall-nav</code> · de fases als knoppen boven de muur, met aantal; de zone die in beeld is licht op. Een lege fase krijgt een stippelrand.</p>
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo ds-demo-polaroid" style="--tint: var(--r-violet)"><span class="lab-photo"><img src="{{ '/assets/previews/mastodon-external-accounts-feed.jpg' | relative_url }}" alt=""></span></div>
@@ -279,22 +279,28 @@ css: /assets/css/design-system.css
         <section class="ds-section" id="organismen">
             <h2 class="ds-title"><span class="ds-step">5</span>Organismen</h2>
             <p class="ds-intro-text">Zelfstandige onderdelen van een pagina. De header staat bovenaan en de footer onderaan deze pagina; de indextabs (<code>_includes/side-tabs.html</code>) zijn de navigatie: één tab per lab met een wit zeshoekje en het aantal concepten, rechts uit het scherm; het huidige lab steekt verder uit en bij hover verschijnt de naam. Op schermen smaller dan 1180px steken ze onderaan omhoog. Er is geen menu bovenin.</p>
+            <p class="ds-intro-text">De concepten hangen op de muur (<code>_includes/wall.html</code>): links de koelkast, dan de fases van schetsboek tot uitgevlogen. De muur is een horizontale slider die zacht vastklikt op de zones; <code>assets/js/muur.js</code> regelt de pijlen, de zonebalk en het groot openen van een A4'tje.</p>
 
-            <p class="ds-name">Projectkaart <code>_includes/lab-card.html</code> · een indexkaart: catalogusnummer (labcode·volgnummer), feiten als invulvelden, zeshoekig ponsgat</p>
-            {% assign project = site.data.projects | where: "id", "mastodon-external-accounts-feed" | first %}
-            <div class="ds-organism">
-                <div class="lab-grid ds-single">{% include lab-card.html %}</div>
+            <p class="ds-name">Concept op de muur <code>_includes/wall-item.html</code> · een A4'tje met plakband in de labkleur, catalogusnummer en invulvelden; de foto als polaroid en ideeën als stickies. Afwisselend hoog en laag gehangen, licht scheef.</p>
+            {% assign project = site.data.projects | where: "id", "opendiensten" | first %}
+            <div class="ds-organism ds-wall-demo">
+                <div class="wall-items">{% include wall-item.html i=1 %}</div>
+            </div>
+
+            <p class="ds-name">Koelkast <code>.fridge</code> · concepten op pauze hangen met een zeshoekig magneetje op de deur</p>
+            {% assign fridge_items = site.data.projects | where: "status", "koelkast" %}
+            <div class="ds-organism ds-wall-demo">
+                <div class="fridge"><span class="fridge-freezer" aria-hidden="true"></span><div class="fridge-door">{% for project in fridge_items %}{% include wall-item.html i=forloop.index fridge=true %}{% endfor %}</div><span class="fridge-handle" aria-hidden="true"></span></div>
             </div>
 
             <p class="ds-name">Collage <code>.lab-collage</code> · de deur en de concepten met <code>uitgelicht: true</code>, als polaroids op een muur</p>
             <div class="ds-organism ds-collage">{% include collage.html %}</div>
 
-            <p class="ds-name">Plank <code>.lab-shelf-tab</code> <code>.lab-shelf-title</code> · het tabje ligt op z'n kant tegen de linkerrand van het scherm en blijft hangen zolang je door de plank scrollt; in de inhoud alleen een lijn met de omschrijving</p>
-            <div class="ds-organism ds-shelf-demo" style="--tint: var(--r-orange)">
-                {% for status in site.data.statuses %}
-                <span class="lab-shelf-tab">{{ status.label }} <span class="lab-count">{{ forloop.index }}</span></span>
-                {% endfor %}
-                <p class="lab-shelf-title" style="margin: 0; flex: 1 1 100%">Prototypes en pilots die getest worden.</p>
+            <p class="ds-name">Zone <code>.wall-zone</code> · een stuk muur per fase, met het label in monospace en de omschrijving eronder; zones gescheiden door een stippellijn</p>
+            <div class="ds-organism" style="--tint: var(--r-orange)">
+                {% assign demo_status = site.data.statuses | where: "id", "buiten-spelen" | first %}
+                <h2 class="wall-zone-label">{{ demo_status.label }} <span class="lab-count">19</span></h2>
+                <p class="wall-zone-note">{{ demo_status.description }}</p>
             </div>
 
             <p class="ds-name">Samenwerken <code>_includes/samen.html</code></p>
@@ -310,8 +316,8 @@ css: /assets/css/design-system.css
                     <div class="ds-wire-page">
                         <span class="ds-wire-block ds-wire-header">Header</span>
                         <span class="ds-wire-block ds-wire-intro">Intro · kicker, kop, tekst, knoppen, collage</span>
-                        <span class="ds-wire-block">Statuspillen</span>
-                        <span class="ds-wire-block ds-wire-shelf">Plank per status · projectkaarten</span>
+                        <span class="ds-wire-block">Zonebalk</span>
+                        <span class="ds-wire-block ds-wire-shelf">De muur · koelkast, schetsboek → uitgevlogen, als horizontale slider</span>
                         <span class="ds-wire-block">Laten we het samen doen</span>
                         <span class="ds-wire-block ds-wire-footer">Footer</span>
                     </div>
@@ -321,8 +327,8 @@ css: /assets/css/design-system.css
                     <div class="ds-wire-page">
                         <span class="ds-wire-block ds-wire-header">Header</span>
                         <span class="ds-wire-block ds-wire-intro">Intro · labnaam, beschrijving, beeldmerk</span>
-                        <span class="ds-wire-block">Statuspillen</span>
-                        <span class="ds-wire-block ds-wire-shelf">Plank per status · alleen projecten van dit lab</span>
+                        <span class="ds-wire-block">Zonebalk</span>
+                        <span class="ds-wire-block ds-wire-shelf">De muur · alleen concepten van dit lab</span>
                         <span class="ds-wire-block">Laten we het samen doen</span>
                         <span class="ds-wire-block ds-wire-footer">Footer</span>
                     </div>

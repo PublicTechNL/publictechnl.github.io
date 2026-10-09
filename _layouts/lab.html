@@ -16,7 +16,7 @@ layout: default
                 <p>{{ lab.description }}</p>
                 {% if lab.intro %}<p>{{ lab.intro }}</p>{% endif %}
                 <div class="lab-intro-actions">
-                    <a href="#projecten" class="btn">Bekijk de concepten</a>
+                    <a href="#concepten" class="btn">Bekijk de concepten</a>
                     <a href="#samen" class="btn btn-secondary">Laten we het samen doen</a>
                 </div>
             </div>
@@ -26,12 +26,7 @@ layout: default
 </section>
 
 {% capture lab_tint %}var(--r-{{ lab.color }}){% endcapture %}
-{% include portfolio.html projects=lab_projects tint=lab_tint %}
-{% if lab_projects.size == 0 %}
-<div class="container">
-    <p class="lab-empty">Dit lab is net geopend. De eerste concepten volgen.</p>
-</div>
-{% endif %}
+{% include wall.html projects=lab_projects tint=lab_tint %}
 
 {{ content }}
 
