@@ -1,0 +1,16 @@
+{% comment %}Collage, als foto's op een muur: de deur en de uitgelichte concepten (uitgelicht: true).
+Met `static=true` (header) zonder links en zonder alt-teksten: dan is het puur decoratie.{% endcomment %}
+{% assign uitgelicht = site.data.projects | where: "uitgelicht", true %}
+<div class="lab-collage">
+    <figure class="lab-photo lab-collage-door" style="--tint: var(--accent)">
+        <img src="{{ '/publictechnl.jpeg' | relative_url }}" alt="{% unless include.static %}Glazen deur met het beeldmerk van Public Tech NL: een cluster van regenboogzeshoeken, met daarachter de werkplaats{% endunless %}" width="1055" height="1024">
+        <figcaption>innovatiewerkplaats</figcaption>
+    </figure>
+    {% for project in uitgelicht limit: 2 %}
+    {% assign concept_lab = site.data.labs | where: "id", project.lab | first %}
+    {% if include.static %}<span{% else %}<a href="{{ project.url }}"{% endif %} class="lab-photo lab-collage-concept lab-collage-concept-{{ forloop.index }}"{% if concept_lab %} style="--tint: var(--r-{{ concept_lab.color }})"{% endif %}>
+        <img src="{{ '/assets/previews/' | append: project.id | append: '.jpg' | relative_url }}" alt="{% unless include.static %}Concept: {{ project.title }}{% endunless %}">
+        <span class="lab-collage-caption">{{ project.title }}</span>
+    {% if include.static %}</span>{% else %}</a>{% endif %}
+    {% endfor %}
+</div>

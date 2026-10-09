@@ -1,4 +1,4 @@
-# Portfolio van het Public Tech NL Lab.
+# Portfolio van Public Tech NL Labs.
 #
 # Velden:
 #   id                        - korte naam, ook bestandsnaam van de preview in assets/previews/
@@ -10,6 +10,9 @@
 #   partner                   - opdrachtgever of samenwerkingspartner (optioneel)
 #   sinds                     - jaar van start (optioneel)
 #   tags                      - lijst met trefwoorden (optioneel)
+#   lab                       - id uit _data/labs.yml, bijv. fediverse (optioneel)
+#   uitgelicht                - true: hangt in de collage op de homepage (houd het bij twee)
+#   ideeen                    - lijst met ideeën die als sticky op de kaart geplakt worden (optioneel)
 #   bijgewerkt                - wanneer je er laatst aan werkte, JJJJ-MM-DD (optioneel)
 #   volgende_stap, notitie    - labjournaal: alleen zichtbaar bij lokaal `jekyll serve`
 
@@ -17,7 +20,9 @@
   title: "MiniPol"
   description: "Klein, open gesprekstool voor gesprekken met veel mensen: deelnemers reageren op stellingen en zien welke groepen er ontstaan."
   url: "https://minipol.nl"
-  status: werkbank
+  status: buiten-spelen
+  uitgelicht: true
+  lab: publieke-innovatie
   tags: [participatie, open source]
   volgende_stap: ""
   notitie: ""
@@ -26,9 +31,12 @@
   title: "OpenDiensten"
   description: "Open en gratis publiek toegankelijke SaaS-omgevingen voor community-organisaties, zoals videobellen en samen documenten schrijven."
   url: "https://www.opendiensten.nl"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: mijn-bureau
   partner: "Code for NL"
   tags: [open source, community]
+  ideeen:
+    - "organisatieprofiel"
   volgende_stap: ""
   notitie: ""
 
@@ -36,7 +44,8 @@
   title: "Beheertool voor Verantwoorde Inzet van Technologie"
   description: "Beheertool waarin een organisatie vastlegt in welke projecten en processen sensoren, algoritmes en data worden ingezet, met doelen, afwegingen en verantwoordelijkheden. Prototype bij de Provincie Noord-Brabant."
   url: "https://www.algoritmeregister.org/pnb-sensoren/"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: public-tech
   partner: "Provincie Noord-Brabant"
   tags: [algoritmes, sensoren, transparantie]
   volgende_stap: ""
@@ -46,7 +55,8 @@
   title: "Schema's voor Verantwoorde Inzet van Technologie"
   description: "Herbruikbare schema's voor het vastleggen van de inzet van sensoren en algoritmes, zoals de algoritmestandaard, DPIA, IAMA en maatschappelijke-baten-afwegingen."
   url: "https://www.algoritmeregister.org/schemas/"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: public-tech
   tags: [standaard, algoritmes, sensoren]
   volgende_stap: ""
   notitie: ""
@@ -55,7 +65,8 @@
   title: "Eurocities Algorithmic Transparency Standard"
   description: "Standaard voor algoritmische transparantie in de publieke sector."
   url: "https://www.algorithmregister.org"
-  status: productie
+  status: uitgevlogen
+  lab: public-tech
   partner: "Eurocities"
   tags: [standaard, algoritmes, transparantie]
   volgende_stap: ""
@@ -66,7 +77,8 @@
   description: "Nederlandse vertaling van de Standard for Public Code: leidraad voor het ontwikkelen van software voor de publieke sector."
   url: "https://www.standaardvoorpubliekecode.nl"
   preview_url: "https://www.codefor.nl//community-translations-standard/nl/"
-  status: productie
+  status: uitgevlogen
+  lab: public-tech
   tags: [standaard, open source]
   volgende_stap: ""
   notitie: ""
@@ -75,7 +87,9 @@
   title: "Clarity Show Cases"
   description: "Verzameling van voorbeelden van digitale overheidsdiensten, zoals meldingen openbare ruimte en participatietools, om van elkaar te leren."
   url: "https://clarity.codefor.nl/"
-  status: proefopstelling
+  status: buiten-spelen
+  uitgelicht: true
+  lab: publieke-innovatie
   partner: "Code for NL"
   tags: [participatie, openbare ruimte, kennisdeling]
   volgende_stap: ""
@@ -85,7 +99,8 @@
   title: "Gegevensboekhouding"
   description: "Gedegen boekhouding van alle gegevens die in de organisatie worden gebruikt."
   url: "https://www.gegevensboekhouding.nl"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: public-tech
   tags: [data]
   volgende_stap: ""
   notitie: ""
@@ -95,6 +110,7 @@
   description: "Crowdfundingplatform voor open samenwerking tussen publieke organisaties."
   url: "https://www.opensamen.nl"
   status: schetsboek
+  lab: publieke-innovatie
   tags: [samenwerking, financiering]
   volgende_stap: ""
   notitie: ""
@@ -103,7 +119,7 @@
   title: "TakeNode"
   description: "Registratie van intellectueel eigendom voor digitale werken."
   url: "https://www.takenode.org"
-  status: productie
+  status: uitgevlogen
   tags: [eigendom]
   volgende_stap: ""
   notitie: ""
@@ -122,7 +138,8 @@
   description: "Overzicht van de issues van code.overheid.nl, gesorteerd op het aantal duimpjes, zodat zichtbaar wordt welke wensen de community het belangrijkst vindt."
   url: "https://www.jgroenen.nl/leaderboard/"
   repo: "https://github.com/jgroenen/leaderboard"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: publieke-innovatie
   tags: [open source, community, prioritering]
   volgende_stap: ""
   notitie: "Proof of concept; haalt issues op via proxy.apitecture.io."
@@ -132,8 +149,9 @@
   description: "Schermvullende live-weergave van berichten op social.overheid.nl, de Mastodon-omgeving van de overheid, gemaakt voor een demodag."
   url: "https://www.jgroenen.nl/social-overheid-nl-demo-dag/"
   repo: "https://github.com/jgroenen/social-overheid-nl-demo-dag"
-  status: proefopstelling
-  tags: [fediverse, open source, community]
+  status: buiten-spelen
+  lab: fediverse
+  tags: [open source, community]
   volgende_stap: ""
   notitie: "Demo, gebruikt tijdens een demodag."
 
@@ -142,9 +160,10 @@
   description: "Handleiding en werkend voorbeeld voor het embedden van een post van social.codefor.nl (of een andere Mastodon-server) in een eigen website, handmatig of automatisch via oEmbed."
   url: "https://www.jgroenen.nl/embed-mastodon-post/"
   repo: "https://github.com/jgroenen/embed-mastodon-post"
-  status: proefopstelling
+  status: buiten-spelen
   partner: "Code for NL"
-  tags: [fediverse, open source, kennisdeling]
+  lab: fediverse
+  tags: [open source, kennisdeling]
   volgende_stap: ""
   notitie: "Prototype."
 
@@ -153,7 +172,8 @@
   description: "Gezamenlijke werkplek voor communities: per kanaal chatten, met daarnaast een bureaublad om samen documenten te schrijven en videogesprekken te starten. Als app te installeren op telefoon of computer."
   url: "https://www.jgroenen.nl/community-workspace-prototype/"
   repo: "https://github.com/jgroenen/community-workspace-prototype"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: mijn-bureau
   tags: [community, samenwerking]
   volgende_stap: ""
   notitie: "Proof of concept."
@@ -163,8 +183,9 @@
   description: "Dashboard dat gecureerde lijsten van Mastodon-accounts op andere servers als één tijdlijn toont, zoals overheidsaccounts of de lijst Public Tech Peeps. Posts zijn te openen op je eigen Mastodon-server of door te delen op andere sociale media."
   url: "https://www.jgroenen.nl/mastodon-external-accounts-feed/"
   repo: "https://github.com/jgroenen/mastodon-external-accounts-feed"
-  status: proefopstelling
-  tags: [fediverse, open source, communicatie]
+  status: buiten-spelen
+  lab: fediverse
+  tags: [open source, communicatie]
   volgende_stap: ""
   notitie: "Proof of concept."
 
@@ -173,7 +194,8 @@
   description: "Tool om rollen in een open source-ecosysteem, zoals regiepartij, ontwikkelpartij en hostingpartij, te verdelen in een RACI-matrix en daaruit per rol contractteksten samen te stellen. Met een voorbeeldprofiel voor het OpenZaak-ecosysteem."
   url: "https://www.jgroenen.nl/teksten-tool/"
   repo: "https://github.com/jgroenen/teksten-tool"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: publieke-innovatie
   tags: [contracten, governance, open source]
   volgende_stap: ""
   notitie: "Proof of concept."
@@ -183,7 +205,8 @@
   description: "Lokaal-eerst editor om samen documenten te schrijven, peer-to-peer en zonder cloud: alles blijft op je eigen apparaat en je deelt een document met een link."
   url: "https://www.jgroenen.nl/docs-no-cloud/"
   repo: "https://github.com/jgroenen/docs-no-cloud"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: mijn-bureau
   partner: "Code for NL"
   tags: [open source, privacy by design, samenwerking]
   volgende_stap: ""
@@ -194,7 +217,8 @@
   description: "Kennisdocument over de structuur en governance van een open source-ecosysteem voor overheidssoftware: van principes en rollen via governancemodellen en Nederlandse initiatieven naar implementatie."
   url: "https://www.jgroenen.nl/Open-Source-Ecosysteem/"
   repo: "https://github.com/jgroenen/Open-Source-Ecosysteem"
-  status: productie
+  status: koelkast
+  lab: publieke-innovatie
   tags: [kennisdocument, open source, governance]
   volgende_stap: ""
   notitie: "Schrijfsel; herstructurering van een oorspronkelijk document, dat ook op de site staat."
@@ -204,7 +228,7 @@
   description: "Muziek maken in lagen: neem opnames op in de browser, bekijk ze als golfvorm en speel alle sporen tegelijk af. Werkt ook offline; opnames blijven op je eigen apparaat."
   url: "https://www.jgroenen.nl/samenMuziekMaken/"
   repo: "https://github.com/jgroenen/samenMuziekMaken"
-  status: proefopstelling
+  status: buiten-spelen
   tags: [muziek, privacy by design]
   volgende_stap: ""
   notitie: "Proof of concept, werktitel samenMuziekMaken. Gebouwd met wavesurfer.js en Dexie (IndexedDB)."
@@ -214,7 +238,7 @@
   description: "Brand experiment: een geanimeerd TiltShift-logo met bijpassend, in de browser gegenereerd geluid."
   url: "https://www.jgroenen.nl/tiltshift-audio-brand-experiment/"
   repo: "https://github.com/jgroenen/tiltshift-audio-brand-experiment"
-  status: proefopstelling
+  status: buiten-spelen
   partner: "TiltShift"
   tags: [branding, audio, experiment]
   volgende_stap: ""
@@ -225,7 +249,8 @@
   description: "Digitale rolodex van Chief Data Officers: per organisatieonderdeel zie je wie de CDO is, welke gegevensgebieden er zijn en wie daarvoor het aanspreekpunt is, en je kunt een gegevensfout melden."
   url: "https://www.jgroenen.nl/CDOlodex/"
   repo: "https://github.com/jgroenen/CDOlodex"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: public-tech
   tags: [data, governance]
   volgende_stap: ""
   notitie: "Prototype, met fictieve gegevens."
@@ -235,7 +260,8 @@
   description: "App om routines op te bouwen uit taken met een vaste duur en eventueel een bijbehorende website, en ze daarna met een timer te doorlopen (starten, stoppen, resetten)."
   url: "https://www.jgroenen.nl/RoutineMasterPro/"
   repo: "https://github.com/jgroenen/RoutineMasterPro"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: mijn-bureau
   tags: [productiviteit]
   volgende_stap: ""
   notitie: "Prototype, gebouwd met Vue."
@@ -245,7 +271,49 @@
   description: "Schrijf een pitchdeck aan de hand van de 10 slides van Guy Kawasaki. Werkt in de browser, zonder account of server: decks worden automatisch op je eigen apparaat opgeslagen."
   url: "https://www.jgroenen.nl/pitchdeck/"
   repo: "https://github.com/jgroenen/pitchdeck"
-  status: proefopstelling
+  status: buiten-spelen
+  lab: publieke-innovatie
   tags: [ondernemen, privacy by design]
   volgende_stap: ""
   notitie: "Werkend prototype. Statische app met native ES modules, opslag in localStorage."
+
+- id: publictechnl
+  title: "Public Tech NL LABS"
+  description: "Deze kaartenbak zelf: een open innovatiewerkplaats waarin concepten per lab en per fase te bekijken zijn, met een eigen design system rond zeshoek en regenboog."
+  url: "https://publictech.nl"
+  repo: "https://github.com/PublicTechNL/publictechnl.github.io"
+  status: werkbank
+  lab: publieke-innovatie
+  partner: "Apitecture"
+  tags: [kennisdeling, design system, open source]
+  volgende_stap: ""
+  notitie: "Jekyll-site; zie /design-system/."
+
+- id: publicxs
+  title: "PublicXS"
+  description: "Een gedeelde, actuele kennisbank van pilots, standaarden, bouwstenen en diensten in de publieke sector, te bekijken door verschillende lenzen: levensgebeurtenissen van inwoners, thema's, rollen en techniek. Een gemeenschappelijk informatiemodel verbindt organisaties, financiering, samenwerkingen, onderwerpen, standaarden, documenten en diensten. Naar het voorbeeld van eduXS voor het onderwijs."
+  status: schetsboek
+  lab: public-tech
+  tags: [kennisdeling, standaard, interoperabiliteit]
+  volgende_stap: ""
+  notitie: "Preview: het informatiemodel van eduXS (versie 2025.02.11). Inspiratie: eduXS van SURF, https://www.surf.nl/themas/interoperabiliteit/projecten-en-samenwerkingen/project-eduxs"
+
+- id: zwammerdam-mastodon
+  title: "Mastodon voor Zwammerdam"
+  description: "Een eigen Mastodon-server voor het dorp Zwammerdam, waar alle inwoners en verenigingen een account kunnen krijgen. Lokaal nieuws, aankondigingen en gesprekken op een plek van het dorp zelf, en toch verbonden met de rest van het fediverse."
+  preview_url: "https://damsezaken.nu"
+  status: schetsboek
+  lab: fediverse
+  tags: [lokale gemeenschap, verenigingen, communicatie]
+  volgende_stap: ""
+  notitie: "Preview: damsezaken.nu."
+
+- id: khabbaz-mastodon
+  title: "Mastodon voor KHABBAZ"
+  description: "Een Mastodon-server voor KHABBAZ, waar de culturele verenigingen van Alphen aan den Rijn en de omliggende dorpen hun activiteiten kunnen promoten en content kunnen delen: met elkaar en met de buitenwereld."
+  preview_url: "https://khabbaz.nl/"
+  status: schetsboek
+  lab: fediverse
+  tags: [cultuur, verenigingen, communicatie]
+  volgende_stap: ""
+  notitie: "Preview: khabbaz.nl."

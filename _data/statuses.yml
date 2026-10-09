@@ -1,16 +1,17 @@
-# Lab-statussen, in de volgorde waarin ze op de portfolio verschijnen.
-- id: productie
-  label: In productie
-  description: Live, in gebruik en in beheer.
-- id: werkbank
-  label: Op de werkbank
-  description: Hier wordt nu actief aan gewerkt.
-- id: proefopstelling
-  label: In de proefopstelling
-  description: Prototypes en pilots die getest worden.
+# Fases van een concept in de kaartenbak, in de volgorde van de levensloop.
+# Uitgevlogen concepten zijn het lab uit, maar blijven in de kaartenbak als bewijs dat ze werken.
 - id: schetsboek
   label: In het schetsboek
   description: Ideeën en concepten die nog opgepakt kunnen worden.
+- id: werkbank
+  label: Op de werkbank
+  description: Hier wordt nu actief aan gewerkt.
+- id: buiten-spelen
+  label: Buiten spelen
+  description: Live en te gebruiken, maar nog lang niet af. Hier schaaf ik af en toe verder aan.
+- id: uitgevlogen
+  label: Uitgevlogen
+  description: Het lab uit. Deze concepten leven elders verder, in gebruik bij anderen.
 - id: koelkast
   label: In de koelkast
   description: Gepauzeerd, maar niet vergeten.

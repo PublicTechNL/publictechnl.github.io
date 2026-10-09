@@ -2,18 +2,16 @@
     <div class="container">
         <div class="lab-intro-content">
             <div class="lab-intro-text">
-                <p class="lab-kicker">{{ site.name }} · concepten door <a href="{{ site.author.url }}">{{ site.author.name }}</a></p>
-                <h1>{{ site.tagline }}</h1>
+                <p class="lab-kicker">{{ site.name }} · innovatiewerkplaats van <a href="{{ site.organization.url }}">{{ site.organization.name }}</a></p>
+                {% assign words = site.tagline | split: " " %}<h1>{% for word in words %}{% if forloop.last %}<span class="accent-text">{{ word }}</span>{% else %}{{ word }} {% endif %}{% endfor %}</h1>
                 <p>{{ site.description }}</p>
-                <p>Kijk rond en laat je inspireren: wat live staat, wat op de werkbank ligt en wat nog in het schetsboek zit. En ga je zelf concepten bedenken of uitwerken? Haal mij erbij.</p>
+                <p>Blader door de kaartenbak: wat nog in het schetsboek zit, wat op de werkbank ligt, wat buiten speelt en wat al is uitgevlogen. En ga je zelf concepten bedenken of uitwerken? Laten we het samen doen.</p>
                 <div class="lab-intro-actions">
-                    <a href="#haal-mij-erbij" class="btn">Haal mij erbij</a>
-                    <a href="#projecten" class="btn btn-secondary">Bekijk het lab</a>
+                    <a href="#samen" class="btn">Laten we het samen doen</a>
+                    <a href="#projecten" class="btn btn-secondary">Bekijk de concepten</a>
                 </div>
             </div>
-            <div class="lab-intro-image">
-                <img src="{{ '/public-tech-nl-glass-door.png' | relative_url }}" alt="De glazen deur van het {{ site.name }}">
-            </div>
+            {% include collage.html %}
         </div>
     </div>
 </section>

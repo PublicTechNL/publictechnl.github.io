@@ -1,27 +1,47 @@
-<header>
+{% comment %}
+Merkstreep onder de header. Homepage: de hele regenboog. Labpagina: ingezoomd (×4) met de labkleur in het midden,
+met aan weerszijden nog een uitgerekt stuk regenboog. Bij navigeren zoomt of schuift hij vanaf de vorige stand
+(sessionStorage): regenboog → lab is inzoomen, lab → regenboog uitzoomen, lab → lab schuiven.
+--strip-f is de plek van de kleur in de regenboog (0 = roze, 1 = violet).
+{% endcomment %}
+{% assign strip_lab = site.data.labs | where: "id", page.lab | first %}
+{% assign strip_map = "pink:0,orange:0.2,amber:0.3,yellow:0.4,green:0.6,blue:0.8,violet:1" | split: "," %}
+{% assign strip_f = "" %}
+{% if strip_lab %}{% for pair in strip_map %}{% assign kv = pair | split: ":" %}{% if kv[0] == strip_lab.color %}{% assign strip_f = kv[1] %}{% endif %}{% endfor %}{% endif %}
+<header class="strip" style="{% if strip_f != "" %}--strip-f: {{ strip_f }}; --strip-s: 4{% else %}--strip-f: 0.5; --strip-s: 1{% endif %}">
+    <span class="strip-bar" aria-hidden="true"><span class="strip-rainbow"></span></span>
     <div class="container">
         <nav>
-            {% include logo.html %}
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
-                <span></span>
-            </button>
-            {% include navlinks.html %}
+            <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="{{ site.name }}, naar de homepage">{% include logo.html %}</a>
+            {% comment %}Op kleine schermen staat het beeld van de pagina klein naast de titel.{% endcomment %}
+            {% if page.lab %}
+            {% assign lab = site.data.labs | where: "id", page.lab | first %}
+            <span class="header-visual" aria-hidden="true">{% include lab-mark.html %}</span>
+            {% elsif page.url == '/' %}
+            <span class="header-visual header-visual-collage" aria-hidden="true">{% include collage.html static=true %}</span>
+            {% endif %}
         </nav>
     </div>
 </header>
 <script>
     (function () {
-        var toggle = document.querySelector('.nav-toggle');
-        var links = document.getElementById('nav-links');
-        function setOpen(open) {
-            toggle.setAttribute('aria-expanded', open);
-            links.classList.toggle('open', open);
-        }
-        toggle.addEventListener('click', function () {
-            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-        });
-        links.addEventListener('click', function (e) {
-            if (e.target.closest('a')) setOpen(false);
-        });
+        var header = document.querySelector('header.strip');
+        var target = header.getAttribute('style');
+        var key = 'ptnl-strip';
+        try {
+            var prev = sessionStorage.getItem(key);
+            sessionStorage.setItem(key, target);
+            if (!prev || prev === target) return;
+            // Begin op de vorige stand en schuif dan naar de nieuwe
+            header.classList.add('strip-still');
+            header.setAttribute('style', prev);
+            // beginstand vastleggen, daarna meteen naar de nieuwe stand: de transitie doet de rest
+            var bar = header.querySelector('.strip-rainbow');
+            getComputedStyle(bar).transform;
+            header.classList.remove('strip-still');
+            getComputedStyle(bar).transitionDuration;
+            header.setAttribute('style', target);
+        } catch (e) {}
     })();
 </script>
+{% include side-tabs.html %}

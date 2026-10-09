@@ -1,0 +1,21 @@
+{% comment %}
+Indextabs aan de rand van het scherm, zoals scheidingskaarten in een kaartenbak: de navigatie van de site.
+Eén tab per lab met een wit zeshoekje en het aantal concepten; de tab van het huidige lab steekt verder uit.
+Op brede schermen rechts, op smalle schermen onderaan, staand op de rand van het kaartje van het actieve tabje.
+{% endcomment %}
+{% assign active_lab = site.data.labs | where: "id", page.lab | first %}
+<nav class="side-tabs" aria-label="Labs" style="--active: {% if active_lab %}var(--r-{{ active_lab.color }}){% else %}var(--card){% endif %}">
+    <a href="{{ '/' | relative_url }}" class="side-tab side-tab-home{% if page.url == '/' %} is-active{% endif %}"{% if page.url == '/' %} aria-current="page"{% endif %}>
+        <span class="side-tab-icon">{% include hex-cluster.html %}</span>
+        <span class="side-tab-count">{{ site.data.projects.size }}</span>
+        <span class="side-tab-label">Alle labs</span>
+    </a>
+    {% for lab in site.data.labs %}
+    {% assign lab_items = site.data.projects | where: "lab", lab.id %}
+    <a href="{{ lab.path | relative_url }}" class="side-tab{% if page.lab == lab.id %} is-active{% endif %}" style="--lab: var(--r-{{ lab.color }})"{% if page.lab == lab.id %} aria-current="page"{% endif %}>
+        <span class="side-tab-icon side-tab-hex"></span>
+        <span class="side-tab-count">{{ lab_items.size }}</span>
+        <span class="side-tab-label">{{ lab.name | remove: " LABS" }}</span>
+    </a>
+    {% endfor %}
+</nav>

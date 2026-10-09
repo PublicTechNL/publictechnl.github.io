@@ -1,0 +1,58 @@
+# Thematische labs binnen Public Tech NL Labs: elk domein of type probleem z'n eigen LABS.
+# Een project hoort bij een lab via het veld `lab` in _data/projects.yml.
+# Een labpagina is een bestand met `layout: lab` en `lab: <id>` in de front matter.
+#
+#   id             - waarde voor `lab` in projects.yml
+#   label          - tekst op het badge bij een project en in het menu
+#   name           - naam van het lab
+#   code           - twee letters voor het catalogusnummer op de kaarten, zoals in een kaartenbak
+#   color          - kleur uit het spectrum: pink, orange, amber, yellow, green, blue, violet
+#   rainbow        - true: de ring van het beeldmerk in pastel-regenboog, midden en losse zeshoek in labkleur (optioneel)
+#   domain         - eigen domein dat naar de labpagina doorverwijst (optioneel)
+#   path           - pagina van het lab op deze site
+#   heading        - kop op de labpagina; het laatste deel (heading_accent) komt in regenboog
+#   description    - korte uitleg, op de homepage en de labpagina
+#   intro          - extra alinea op de labpagina (optioneel)
+
+- id: mijn-bureau
+  label: mijn bureau
+  name: Mijn Bureau LABS
+  code: MB
+  color: blue
+  path: /mijn-bureau/
+  heading: "Concepten voor"
+  heading_accent: "samenwerken"
+  description: "Concepten voor samenwerken: samen schrijven, chatten, videobellen en plannen, open source en zonder afhankelijkheid van grote cloudplatforms. Hoe ziet een digitaal bureau eruit dat echt van jezelf is?"
+
+- id: publieke-innovatie
+  label: publieke innovatie
+  name: Publieke Innovatie LABS
+  code: PI
+  color: orange
+  path: /publieke-innovatie/
+  heading: "Concepten voor"
+  heading_accent: "innovatie&shy;management"
+  description: "Concepten voor innovatiemanagement: ideeën ophalen, prioriteren, financieren en delen. Hoe organiseer je vernieuwing in en tussen publieke organisaties, open en samen?"
+
+- id: public-tech
+  label: public tech
+  name: Public Tech LABS
+  code: PT
+  color: green
+  path: /public-tech/
+  heading: "Verantwoorde inzet van"
+  heading_accent: "technologie"
+  description: "Concepten voor verantwoorde inzet van technologie: registers, standaarden en schema's voor algoritmes, sensoren en data. Hoe leg je vast wat je inzet, waarom, en wie ervoor verantwoordelijk is?"
+
+- id: fediverse
+  label: fediverse
+  name: Fediverse LABS
+  code: FV
+  color: violet
+  rainbow: true
+  domain: fedilabs.nl
+  path: /fediverse/
+  heading: "Fediverse-"
+  heading_accent: "concepten"
+  description: "Concepten voor het fediverse: het open, gedecentraliseerde netwerk van sociale media zoals Mastodon. Hoe kunnen overheden en publieke organisaties hier zelf de regie nemen over hun communicatie, zonder afhankelijk te zijn van commerciële platforms?"
+  intro: "Hier verzamel ik concepten rond Mastodon en andere fediverse-diensten, uitgewerkt tot prototypes en proofs of concept: om te laten zien wat er kan, en om van te leren. Alles is open source, dus kijk gerust mee in de code."

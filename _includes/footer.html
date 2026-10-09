@@ -2,11 +2,14 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-column">
-                <h3>{{ site.title | remove: " LAB" }} <span class="logo-lab">LAB</span></h3>
-                <p>Een open lab voor publieke technologie. Concepten door <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
+                <h3 class="footer-brand">{% include hex-cluster.html %}<span>{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></span></h3>
+                <p>Open labs voor publieke technologie: de innovatiewerkplaats van {{ site.organization.legal_name }}, het bedrijf van <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
+                <p class="footer-org">Een werkplaats van
+                    <a href="{{ site.organization.url }}"><span class="apitecture-logo" role="img" aria-label="{{ site.organization.name }}" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></a>
+                </p>
             </div>
             <div class="footer-column">
-                <h3>Het lab</h3>
+                <h3>Portfolio</h3>
                 <ul class="footer-links">
                     {% for status in site.data.statuses %}
                     {% assign items = site.data.projects | where: "status", status.id %}
@@ -14,9 +17,16 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div class="footer-column">
+                <h3>Labs</h3>
+                <ul class="footer-links">
+                    {% for lab in site.data.labs %}<li><a href="{{ lab.path | relative_url }}">{{ lab.name }}</a>{% if lab.domain %} · <a href="https://{{ lab.domain }}">{{ lab.domain }}</a>{% endif %}</li>{% endfor %}
+                </ul>
+            </div>
         </div>
         <div class="copyright">
-            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.author.url }}">jgroenen.nl</a></p>
+            <p><a href="{{ '/design-system/' | relative_url }}">Design system</a></p>
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.organization.url }}">{{ site.organization.legal_name }}</a> · <a href="{{ site.author.url }}">jgroenen.nl</a></p>
         </div>
     </div>
 </footer>

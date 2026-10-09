@@ -1,0 +1,2 @@
+{% comment %}Beeldmerk van een lab: de cluster in tinten van de labkleur; met `rainbow: true` staat de ring in pastel-regenboog. Verwacht `lab`.{% endcomment %}
+<span class="lab-mark{% if lab.rainbow %} lab-mark-rainbow{% endif %}" style="--lab: var(--r-{{ lab.color }})">{% include hex-cluster.html %}</span>

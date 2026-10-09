@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{% comment %}Labpagina. Verwacht `lab: <id>` in de front matter; gegevens komen uit _data/labs.yml.{% endcomment %}
+{% assign lab = site.data.labs | where: "id", page.lab | first %}
+{% assign lab_projects = site.data.projects | where: "lab", page.lab %}
+{% assign heading_end = lab.heading | slice: -1 %}
+{% include header.html %}
+
+<section class="lab-intro lab-intro-{{ lab.id }}" style="--lab: var(--r-{{ lab.color }})">
+    <div class="container">
+        <div class="lab-intro-content">
+            <div class="lab-intro-text">
+                <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name }}</a> · {{ lab.name }}</p>
+                <h1>{{ lab.heading }}{% unless heading_end == "-" %}&#32;{% endunless %}<span class="accent-text">{{ lab.heading_accent }}</span></h1>
+                <p>{{ lab.description }}</p>
+                {% if lab.intro %}<p>{{ lab.intro }}</p>{% endif %}
+                <div class="lab-intro-actions">
+                    <a href="#projecten" class="btn">Bekijk de concepten</a>
+                    <a href="#samen" class="btn btn-secondary">Laten we het samen doen</a>
+                </div>
+            </div>
+            <div class="lab-intro-art">{% include lab-mark.html %}</div>
+        </div>
+    </div>
+</section>
+
+{% capture lab_tint %}var(--r-{{ lab.color }}){% endcapture %}
+{% include portfolio.html projects=lab_projects tint=lab_tint %}
+{% if lab_projects.size == 0 %}
+<div class="container">
+    <p class="lab-empty">Dit lab is net geopend. De eerste concepten volgen.</p>
+</div>
+{% endif %}
+
+{{ content }}
+
+{% include samen.html %}
+
+{% include footer.html %}

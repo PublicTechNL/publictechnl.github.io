@@ -1,0 +1,45 @@
+{% comment %}Eén projectkaart. Verwacht `project`.{% endcomment %}
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+{% assign preview_path = '/assets/previews/' | append: project.id | append: '.jpg' %}
+{% assign preview = site.static_files | where: "path", preview_path | first %}
+{% assign domain = project.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
+{% comment %}Catalogusnummer zoals op een indexkaart: labcode plus volgnummer binnen het lab (LB voor projecten zonder lab).{% endcomment %}
+{% assign card_lab = nil %}{% if project.lab %}{% assign card_lab = site.data.labs | where: "id", project.lab | first %}{% endif %}
+{% assign card_siblings = site.data.projects | where: "lab", project.lab %}
+{% for sibling in card_siblings %}{% if sibling.id == project.id %}{% assign card_nr = forloop.index %}{% endif %}{% endfor %}
+<article class="lab-card"{% if card_lab %} style="--tint: var(--r-{{ card_lab.color }})"{% endif %}>
+    {% if project.url %}<a href="{{ project.url }}" class="lab-photo" tabindex="-1" aria-hidden="true">{% else %}<div class="lab-photo">{% endif %}
+        {% if preview %}
+        <img src="{{ preview_path | relative_url }}" alt="" loading="lazy">
+        {% else %}
+        <span class="lab-photo-empty">{{ project.title | slice: 0 }}</span>
+        {% endif %}
+    {% if project.url %}</a>{% else %}</div>{% endif %}
+    {% if project.ideeen %}
+    {% comment %}Ideeën als stickies onder de polaroid.{% endcomment %}
+    <ul class="lab-stickies" aria-label="Ideeën">
+        {% for idee in project.ideeen %}<li class="lab-sticky">{{ idee }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    <div class="lab-meta">
+        <p class="lab-callnr" title="Catalogusnummer">{{ card_lab.code | default: "LB" }}·{% if card_nr < 10 %}0{% endif %}{{ card_nr }}</p>
+        {% if card_lab %}<a href="{{ card_lab.path | relative_url }}" class="lab-badge lab-badge-{{ card_lab.id }}" style="--lab: var(--r-{{ card_lab.color }})">{{ card_lab.label }}</a>{% endif %}
+        <h3>{% if project.url %}<a href="{{ project.url }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>
+        <p class="lab-description">{{ project.description }}</p>
+        {% if project.tags %}
+        <ul class="lab-tags">{% for tag in project.tags %}<li>{{ tag }}</li>{% endfor %}</ul>
+        {% endif %}
+        <dl class="lab-facts">
+            {% if project.partner %}<dt>Met</dt><dd>{{ project.partner }}</dd>{% endif %}
+            {% if project.sinds %}<dt>Sinds</dt><dd>{{ project.sinds }}</dd>{% endif %}
+            {% if project.url %}<dt>Website</dt><dd><a href="{{ project.url }}">{{ domain }}</a></dd>{% endif %}
+            {% if project.repo %}<dt>Code</dt><dd><a href="{{ project.repo }}" class="lab-repo">{% if project.repo contains "github.com" %}<svg class="icon-github" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>{% endif %}broncode</a></dd>{% endif %}
+        </dl>
+        {% if dev %}
+        {% capture journal %}{% if project.bijgewerkt %}<dt>Laatst bezig</dt><dd>{{ project.bijgewerkt | date: "%-d %b %Y" }}</dd>{% endif %}{% if project.volgende_stap and project.volgende_stap != "" %}<dt>Volgende stap</dt><dd>{{ project.volgende_stap }}</dd>{% endif %}{% if project.notitie and project.notitie != "" %}<dt>Notitie</dt><dd>{{ project.notitie }}</dd>{% endif %}{% endcapture %}
+        {% if journal != "" %}
+        <dl class="lab-facts lab-journal" title="Alleen lokaal zichtbaar">{{ journal }}</dl>
+        {% endif %}
+        {% endif %}
+    </div>
+</article>
