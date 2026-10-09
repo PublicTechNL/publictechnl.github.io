@@ -317,3 +317,14 @@
   tags: [cultuur, verenigingen, communicatie]
   volgende_stap: ""
   notitie: "Preview: khabbaz.nl."
+
+- id: innovatiekaarten
+  title: "Innovatiekaarten"
+  description: "Opdrachtkaarten voor een sessie om samen innovaties te bedenken: per kaart een methode en een opdracht, en met één klik de volgende."
+  url: "https://publictech.nl/innovatiekaarten/"
+  repo: "https://github.com/PublicTechNL/innovatiekaarten"
+  status: buiten-spelen
+  lab: publieke-innovatie
+  tags: [innovatiemethode, workshop]
+  volgende_stap: ""
+  notitie: "Live, maar nog behoorlijk brak."
