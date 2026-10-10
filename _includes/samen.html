@@ -1,17 +1,30 @@
+{% comment %}
+Laten we het samen doen: in de stijl van jgroenen.nl (de kernlaag): papier, witte kaarten met een dunne rand,
+Arial, oranje als enige accent. Links het profielkaartje zoals op jgroenen.nl, rechts de uitnodiging.
+{% endcomment %}
 <section class="samen" id="samen">
     <div class="container">
-        <div class="samen-card">
-            <div class="samen-text">
-                <p class="lab-kicker">Samenwerken</p>
+        <div class="samen-grid">
+            <a href="{{ site.author.url }}" class="samen-profile">
+                <img class="samen-banner" src="{{ '/assets/jgroenen/banner.jpg' | relative_url }}" alt="">
+                <span class="samen-photo-wrap">
+                    <img class="samen-photo" src="{{ '/assets/jgroenen/johan-groenen.jpg' | relative_url }}" alt="Johan Groenen" width="124" height="124">
+                    <img class="samen-klik" src="{{ '/assets/jgroenen/klik.svg' | relative_url }}" alt="">
+                </span>
+                <span class="samen-name">{{ site.author.name }}</span>
+                <span class="samen-tagline">Digitale gemeenschapsgoederen en open source werken in de publieke sector: van concept naar werkende software naar draaiende dienst.</span>
+                <span class="samen-more">jgroenen.nl</span>
+            </a>
+            <div class="samen-card">
                 <h2>Laten we het samen doen</h2>
                 <p>Ga je concepten bedenken of uitwerken voor een betere digitale overheid en samenleving? Dan denk ik graag mee, van eerste idee tot werkend prototype.</p>
+                <ol class="samen-steps">
+                    <li><strong>Bedenken</strong><span>Samen het concept scherp krijgen: welk publiek probleem, welke waarden, welke oplossing.</span></li>
+                    <li><strong>Uitwerken</strong><span>Van schets naar ontwerp, met de mensen die het straks gaan gebruiken.</span></li>
+                    <li><strong>Bouwen</strong><span>Een werkend prototype of proof of concept, open source en herbruikbaar.</span></li>
+                </ol>
                 <a href="{{ site.contact_url }}" class="btn">Neem contact op</a>
             </div>
-            <ol class="samen-steps">
-                <li><strong>Bedenken</strong><span>Samen het concept scherp krijgen: welk publiek probleem, welke waarden, welke oplossing.</span></li>
-                <li><strong>Uitwerken</strong><span>Van schets naar ontwerp, met de mensen die het straks gaan gebruiken.</span></li>
-                <li><strong>Bouwen</strong><span>Een werkend prototype of proof of concept, open source en herbruikbaar.</span></li>
-            </ol>
         </div>
     </div>
 </section>

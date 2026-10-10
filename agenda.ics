@@ -1,0 +1,22 @@
+---
+layout: null
+permalink: /agenda.ics
+---
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PUBLIC TECH NL//Hackathon-agenda//NL
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Public Tech Hackathons
+X-WR-TIMEZONE:Europe/Amsterdam
+{% for e in site.data.agenda %}{% assign end = e.eind | default: e.datum | date: "%s" | plus: 86400 | date: "%Y%m%d" %}BEGIN:VEVENT
+UID:{{ e.id }}@publictech.nl
+DTSTAMP:{{ site.time | date: "%Y%m%dT%H%M%SZ" }}
+DTSTART;VALUE=DATE:{{ e.datum | date: "%Y%m%d" }}
+DTEND;VALUE=DATE:{{ end }}
+SUMMARY:{{ e.naam }}{% if e.soort %} ({{ e.soort }}){% endif %}
+{% if e.plek %}LOCATION:{{ e.plek | replace: ",", "\," }}
+{% endif %}DESCRIPTION:{% if e.tijd %}{{ e.tijd }}. {% endif %}{{ e.beschrijving | replace: ",", "\," | replace: ";", "\;" }}{% if e.aanmelden %} Aanmelden: {{ e.aanmelden }}{% endif %}
+{% if e.url %}URL:{{ e.url }}
+{% endif %}END:VEVENT
+{% endfor %}END:VCALENDAR

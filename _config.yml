@@ -2,15 +2,14 @@ title: PUBLIC TECH NL LABS
 name: Public Tech NL LABS
 url: https://publictech.nl
 tagline: Unlocking Public Innovation
-description: Open labs voor publieke technologie, elk rond een eigen domein of type probleem. Hier ontwerp ik concepten en bouw ik werkende prototypes en proofs of concept, op het raakvlak van technologie, design en publieke waarden, in dienst van een betere digitale overheid en samenleving.
-# Public Tech NL Labs is de innovatiewerkplaats van Apitecture, de BV van Johan Groenen
-organization:
-  name: Apitecture
-  legal_name: Apitecture BV
-  url: https://apitecture.nl
+description: Concepten, werkende prototypes en proofs of concept, op het raakvlak van technologie, design en publieke waarden, in dienst van een betere digitale overheid en samenleving.
+# Organisator van PUBLIC TECH NL is Johan Groenen (jgroenen.nl); Apitecture is sponsor
 author:
   name: Johan Groenen
   url: https://jgroenen.nl
+sponsor:
+  name: Apitecture
+  url: https://apitecture.nl
 exclude:
   - scripts/
   - README.md

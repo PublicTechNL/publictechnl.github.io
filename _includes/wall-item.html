@@ -13,7 +13,7 @@ en `fridge=true` (klein velletje met een magneet op de koelkastdeur).
 {% for sibling in card_siblings %}{% if sibling.id == project.id %}{% assign card_nr = forloop.index %}{% endif %}{% endfor %}
 {% assign pos = include.i | default: 1 | modulo: 2 %}
 {% assign tilt = include.i | default: 1 | modulo: 5 %}
-<article class="wall-item{% if pos == 0 %} wall-item-low{% endif %}{% if include.fridge %} wall-item-fridge{% endif %} tilt-{{ tilt }}"{% if card_lab %} style="--tint: var(--r-{{ card_lab.color }})"{% endif %}>
+<article data-id="{{ project.id }}"{% if project.verbonden %} data-verbonden="{{ project.verbonden | join: ' ' }}"{% endif %} class="wall-item{% if pos == 0 %} wall-item-low{% endif %}{% if include.fridge %} wall-item-fridge{% endif %} tilt-{{ tilt }}"{% if card_lab %} style="--tint: var(--r-{{ card_lab.color }})"{% endif %}>
     <div class="a4" tabindex="0" role="button" aria-haspopup="dialog" aria-label="{{ project.title }}: lees het hele velletje">
         <p class="a4-callnr" title="Catalogusnummer">{{ card_lab.code | default: "LB" }}·{% if card_nr < 10 %}0{% endif %}{{ card_nr }}</p>
         <h3 class="a4-title">{% if project.url %}<a href="{{ project.url }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</h3>

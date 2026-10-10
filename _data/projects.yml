@@ -13,6 +13,8 @@
 #   lab                       - id uit _data/labs.yml, bijv. fediverse (optioneel)
 #   uitgelicht                - true: hangt in de collage op de homepage (houd het bij twee)
 #   ideeen                    - lijst met ideeën die als sticky op de kaart geplakt worden (optioneel)
+#   verbonden                 - id's van concepten waarmee een rood draadje op de muur gespannen wordt (optioneel)
+#   publicxs_type             - Service, Standard of Document in het PublicXS-model (optioneel; anders afgeleid uit de tags)
 #   bijgewerkt                - wanneer je er laatst aan werkte, JJJJ-MM-DD (optioneel)
 #   volgende_stap, notitie    - labjournaal: alleen zichtbaar bij lokaal `jekyll serve`
 
@@ -284,7 +286,7 @@
   repo: "https://github.com/PublicTechNL/publictechnl.github.io"
   status: werkbank
   lab: publieke-innovatie
-  partner: "Apitecture"
+  partner: "Apitecture (sponsor)"
   tags: [kennisdeling, design system, open source]
   volgende_stap: ""
   notitie: "Jekyll-site; zie /design-system/."
@@ -293,7 +295,9 @@
   title: "PublicXS"
   description: "Een gedeelde, actuele kennisbank van pilots, standaarden, bouwstenen en diensten in de publieke sector, te bekijken door verschillende lenzen: levensgebeurtenissen van inwoners, thema's, rollen en techniek. Een gemeenschappelijk informatiemodel verbindt organisaties, financiering, samenwerkingen, onderwerpen, standaarden, documenten en diensten. Naar het voorbeeld van eduXS voor het onderwijs."
   status: schetsboek
-  lab: public-tech
+  verbonden: [publictechnl]
+  publicxs_type: Service
+  lab: publieke-innovatie
   tags: [kennisdeling, standaard, interoperabiliteit]
   volgende_stap: ""
   notitie: "Preview: het informatiemodel van eduXS (versie 2025.02.11). Inspiratie: eduXS van SURF, https://www.surf.nl/themas/interoperabiliteit/projecten-en-samenwerkingen/project-eduxs"

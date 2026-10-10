@@ -25,6 +25,8 @@ Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur
         <button type="button" class="wall-arrow wall-arrow-next" aria-label="Verder naar rechts" hidden>›</button>
         <div class="wall-track" tabindex="0" aria-label="De muur met concepten, schuif horizontaal">
         <div class="wall">
+            {% comment %}Rode draadjes tussen verbonden concepten; getekend door assets/js/muur.js{% endcomment %}
+            <svg class="wall-threads" aria-hidden="true"></svg>
             {% comment %}De koelkast staat linksonder op de vloer; de concepten hangen met magneetjes op de deur.{% endcomment %}
             <div class="wall-zone wall-zone-koelkast" id="zone-koelkast">
                 <h2 class="wall-zone-label">In de koelkast <span class="lab-count">{{ fridge_items.size }}</span></h2>

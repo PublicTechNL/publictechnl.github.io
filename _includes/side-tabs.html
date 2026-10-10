@@ -18,4 +18,12 @@ Op brede schermen rechts, op smalle schermen onderaan, staand op de rand van het
         <span class="side-tab-label">{{ lab.name | remove: " LABS" }}</span>
     </a>
     {% endfor %}
+    {% comment %}De agenda: hackathons en open hack dagen. Het getal is het aantal komende momenten.{% endcomment %}
+    {% assign today = site.time | date: "%Y-%m-%d" %}{% assign upcoming_count = 0 %}
+    {% for e in site.data.agenda %}{% assign last_day = e.eind | default: e.datum | date: "%Y-%m-%d" %}{% if last_day >= today %}{% assign upcoming_count = upcoming_count | plus: 1 %}{% endif %}{% endfor %}
+    <a href="{{ '/agenda/' | relative_url }}" class="side-tab side-tab-agenda{% if page.url == '/agenda/' %} is-active{% endif %}"{% if page.url == '/agenda/' %} aria-current="page"{% endif %}>
+        <span class="side-tab-icon side-tab-cal" aria-hidden="true"></span>
+        <span class="side-tab-count">{{ upcoming_count }}</span>
+        <span class="side-tab-label">Hackathons</span>
+    </a>
 </nav>

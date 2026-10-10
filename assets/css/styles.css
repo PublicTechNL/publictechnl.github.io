@@ -578,95 +578,159 @@ footer::before {
     background-color: var(--card);
 }
 
-/* Laten we het samen doen */
+
+/*
+ * Laten we het samen doen: in de stijl van jgroenen.nl. Witte kaarten met een dunne rand,
+ * Arial, oranje als enige accent, en het profielkaartje met banner, ronde foto en "klik!".
+ */
 .samen {
-    padding: 0 0 100px;
+    padding: 70px 0 100px;
     scroll-margin-top: 110px;
 }
 
-.samen-card {
+.samen,
+.samen * {
+    font-family: Arial, sans-serif;
+}
+
+.samen-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 48px;
-    align-items: center;
+    grid-template-columns: minmax(0, 330px) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.samen-profile,
+.samen-card {
     background-color: var(--card);
     border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    position: relative;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.samen-profile {
+    display: block;
     overflow: hidden;
-    padding: 54px 48px 48px;
+    padding-bottom: 24px;
+    color: #333;
+    text-decoration: none;
 }
 
-.samen-card::before {
-    content: "";
+.samen-banner {
+    display: block;
+    width: 100%;
+    height: 82px;
+    object-fit: cover;
+}
+
+.samen-photo-wrap {
+    position: relative;
+    display: block;
+    margin: -34px 0 10px 24px;
+}
+
+.samen-photo {
+    display: block;
+    width: 124px;
+    height: 124px;
+    border: 4px solid white;
+    border-radius: 100%;
+    box-shadow: 0 2px 8px #aaa;
+}
+
+.samen-klik {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: var(--accent);
+    left: 112px;
+    top: 52px;
+    width: 92px;
 }
 
-.samen-text h2 {
-    font-size: 40px;
-    line-height: 1.15;
-    color: var(--ink);
-    margin-bottom: 16px;
+.samen-name {
+    display: block;
+    padding: 0 24px;
+    font-size: 1.4em;
+    font-weight: 700;
 }
 
-.samen-text p:not(.lab-kicker) {
-    font-size: 18px;
-    color: var(--dark-gray);
-    margin-bottom: 24px;
+.samen-tagline {
+    display: block;
+    padding: 4px 24px 0;
+    line-height: 1.5;
+}
+
+.samen-more {
+    display: block;
+    padding: 12px 24px 0;
+    color: #666;
+}
+
+.samen-more::after {
+    content: " »";
+}
+
+.samen-profile:hover .samen-more {
+    color: var(--accent);
+}
+
+.samen-card {
+    padding: 28px 32px 32px;
+}
+
+.samen-card h2 {
+    font-size: 2em;
+    line-height: 1.2;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.samen-card > p {
+    font-size: 17px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .samen-steps {
     list-style: none;
-    counter-reset: stap;
     display: grid;
-    gap: 20px;
+    gap: 0;
+    margin-bottom: 24px;
 }
 
+/* zoals de projectregels op jgroenen.nl: dunne scheidingslijn, oranje stipje */
 .samen-steps li {
-    counter-increment: stap;
+    position: relative;
     display: grid;
-    grid-template-columns: 40px 1fr;
-    column-gap: 14px;
+    gap: 2px;
+    padding: 12px 24px 12px 0;
+    border-bottom: 1px solid var(--paper);
 }
 
-.samen-steps li::before {
-    content: counter(stap);
-    grid-row: span 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 46px;
-    clip-path: var(--hexagon);
-    background-color: color-mix(in srgb, var(--step) 15%, white);
-    color: color-mix(in srgb, var(--step) 75%, black);
-    font-weight: 700;
+.samen-steps li::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent);
 }
-
-.samen-steps li { --step: var(--accent); }
 
 .samen-steps strong {
-    color: var(--ink);
+    color: #333;
 }
 
 .samen-steps span {
-    color: var(--muted);
+    color: #666;
 }
 
 @media (max-width: 768px) {
-    .samen-card {
+    .samen-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 28px;
     }
 
-    .samen-text h2 {
-        font-size: 32px;
+    .samen-card {
+        padding: 24px;
     }
 }
 
@@ -1939,4 +2003,265 @@ footer::before {
         padding: 36px 24px 24px 44px;
     }
 
+}
+
+/* Indextab voor de agenda: donker, met een klein scheurkalendertje als tekentje */
+.side-tab-agenda {
+    --lab: var(--ink);
+    margin-top: 10px;
+}
+
+.side-tab-cal {
+    width: 16px;
+    height: 16px;
+    margin: 0 2px;
+    border-radius: 3px;
+    background: linear-gradient(white 0 0) bottom / 100% 11px no-repeat, var(--accent);
+}
+
+/*
+ * Public Tech Hackathon-agenda: komende momenten als scheurkalenderblaadjes met de gegevens ernaast.
+ */
+.agenda {
+    padding: 56px 0 90px;
+}
+
+.agenda-heading {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+}
+
+.agenda-heading + .agenda-list,
+.agenda-heading + .agenda-empty {
+    margin-bottom: 56px;
+}
+
+.agenda-list {
+    list-style: none;
+    display: grid;
+    gap: 20px;
+    max-width: 860px;
+}
+
+.agenda-item {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding: 24px;
+    background-color: var(--card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--card-shadow);
+}
+
+/* Het scheurkalenderblaadje */
+.agenda-date {
+    display: grid;
+    justify-items: center;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px var(--medium-gray), 0 3px 8px -2px rgba(0, 0, 0, 0.12);
+    transform: rotate(-2deg);
+}
+
+.agenda-month {
+    width: 100%;
+    padding: 4px 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    background-color: var(--accent);
+}
+
+.agenda-day {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    padding-top: 4px;
+    color: var(--ink);
+}
+
+.agenda-year {
+    padding-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.agenda-kind {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+}
+
+.agenda-body h3 {
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 4px 0 2px;
+}
+
+.agenda-body h3 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.agenda-body h3 a:hover {
+    color: var(--accent-dark);
+}
+
+.agenda-when,
+.agenda-org {
+    color: var(--muted);
+}
+
+.agenda-text {
+    margin: 10px 0;
+}
+
+.agenda-concepts {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.agenda-concept {
+    font-family: var(--font-hand);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.agenda-signup {
+    margin-top: 16px;
+}
+
+.agenda-list-past .agenda-item {
+    opacity: 0.75;
+}
+
+.agenda-list-past .agenda-month {
+    background-color: var(--muted);
+}
+
+.agenda-empty {
+    color: var(--muted);
+    font-size: 18px;
+}
+
+@media (max-width: 576px) {
+    .agenda-item {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .agenda-day {
+        font-size: 30px;
+    }
+}
+
+/* Rode draadjes tussen verbonden concepten, met een speldje aan elk eind */
+.wall-threads {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.wall-threads path {
+    fill: none;
+    stroke: #c8102e;
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.18));
+}
+
+.wall-threads circle {
+    fill: #c8102e;
+    stroke: white;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
+}
+
+/* Linked data van een concept, in het geopende velletje: potloodlinkje en een uitgeprint strookje */
+.a4-ld {
+    margin-top: 18px;
+}
+
+.a4 .a4-ld-toggle {
+    padding: 2px 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #8a8780;
+    cursor: pointer;
+}
+
+.a4 .a4-ld-toggle:hover {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+.a4 .a4-ld-data,
+.a4 .a4-ld-data * {
+    font-family: var(--font-mono);
+}
+
+.a4-ld-data {
+    margin-top: 8px;
+    padding: 12px 14px;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #fbfbf9;
+    box-shadow: 0 0 0 1px var(--medium-gray), 0 3px 8px -3px rgba(0, 0, 0, 0.14);
+    transform: rotate(-0.4deg);
+}
+
+.a4-ld-uri {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.a4-ld-uri code {
+    padding: 0;
+    background: none;
+    overflow-wrap: anywhere;
+}
+
+.a4 .a4-ld-uri button {
+    padding: 2px 8px;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--radius-pill);
+    background: white;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.a4-ld-data pre {
+    max-height: 260px;
+    overflow: auto;
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #3a3b44;
+}
+
+.a4-ld-data a {
+    color: color-mix(in srgb, var(--tint) 80%, black);
 }

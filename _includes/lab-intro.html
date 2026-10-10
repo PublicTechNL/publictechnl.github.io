@@ -2,7 +2,6 @@
     <div class="container">
         <div class="lab-intro-content">
             <div class="lab-intro-text">
-                <p class="lab-kicker">{{ site.name }} · innovatiewerkplaats van <a href="{{ site.organization.url }}">{{ site.organization.name }}</a></p>
                 {% assign words = site.tagline | split: " " %}<h1>{% for word in words %}{% if forloop.last %}<span class="accent-text">{{ word }}</span>{% else %}{{ word }} {% endif %}{% endfor %}</h1>
                 <p>{{ site.description }}</p>
                 <p>Loop langs de muur: van wat nog in het schetsboek zit, via de werkbank en wat buiten speelt, naar wat al is uitgevlogen. En ga je zelf concepten bedenken of uitwerken? Laten we het samen doen.</p>

@@ -1,0 +1,25 @@
+{% comment %}Eén moment in de agenda, als scheurkalenderblaadje met de gegevens ernaast. Verwacht `e`.{% endcomment %}
+{% assign months = "jan,feb,mrt,apr,mei,jun,jul,aug,sep,okt,nov,dec" | split: "," %}
+{% assign m = e.datum | date: "%-m" | minus: 1 %}
+<li class="agenda-item">
+    <span class="agenda-date" aria-hidden="true">
+        <span class="agenda-month">{{ months[m] }}</span>
+        <span class="agenda-day">{{ e.datum | date: "%-d" }}</span>
+        <span class="agenda-year">{{ e.datum | date: "%Y" }}</span>
+    </span>
+    <div class="agenda-body">
+        <p class="agenda-kind">{{ e.soort }}{% if e.plek %} · {{ e.plek }}{% endif %}</p>
+        <h3>{% if e.url %}<a href="{{ e.url }}">{{ e.naam }}</a>{% else %}{{ e.naam }}{% endif %}</h3>
+        <p class="agenda-when">
+            <time datetime="{{ e.datum | date: '%Y-%m-%d' }}">{{ e.datum | date: "%-d" }} {{ months[m] }} {{ e.datum | date: "%Y" }}</time>{% if e.eind %} – {{ e.eind | date: "%-d" }} {% assign m2 = e.eind | date: "%-m" | minus: 1 %}{{ months[m2] }}{% endif %}{% if e.tijd %}, {{ e.tijd }}{% endif %}
+        </p>
+        {% if e.beschrijving %}<p class="agenda-text">{{ e.beschrijving }}</p>{% endif %}
+        <p class="agenda-org">door {{ e.organisator }}{% if e.met %}, samen met {{ e.met }}{% endif %}</p>
+        {% if e.concepten %}
+        <p class="agenda-concepts">Concepten die een stap zetten:
+            {% for cid in e.concepten %}{% assign c = site.data.projects | where: "id", cid | first %}{% if c %}<span class="agenda-concept">{{ c.title }}</span>{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+        </p>
+        {% endif %}
+        {% if e.aanmelden %}<a href="{{ e.aanmelden }}" class="btn agenda-signup">Meld je aan</a>{% endif %}
+    </div>
+</li>

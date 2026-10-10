@@ -47,9 +47,9 @@ css: /assets/css/design-system.css
                     </ul>
                 </article>
                 <article class="ds-layer ds-layer-apitecture">
-                    <p class="lab-kicker">Laag 2 · bedrijf</p>
+                    <p class="lab-kicker">Laag 2 · sponsor</p>
                     <h3><span class="apitecture-logo ds-layer-logo" role="img" aria-label="Apitecture" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></h3>
-                    <p>De BV. Technisch en precies: het logo levert de zeshoek, het eigen oranje en de monospace.</p>
+                    <p>De sponsor. Technisch en precies: het logo levert de zeshoek, het eigen oranje en de monospace.</p>
                     <ul>
                         <li>Zeshoek als vorm</li>
                         <li>Oranje <code>#ff5900</code>, nacht <code>#141416</code></li>
@@ -270,7 +270,7 @@ css: /assets/css/design-system.css
                 </div>
                 <div class="ds-specimen ds-specimen-wide">
                     <div class="ds-demo"><ol class="samen-steps"><li><strong>Bedenken</strong><span>Samen het concept scherp krijgen.</span></li><li><strong>Uitwerken</strong><span>Van schets naar ontwerp.</span></li><li><strong>Bouwen</strong><span>Een werkend prototype, open source.</span></li></ol></div>
-                    <p class="ds-name">Stappen <code>.samen-steps</code> · genummerde zeshoeken in het oranje van de kern</p>
+                    <p class="ds-name">Stappen <code>.samen-steps</code> · in de stijl van jgroenen.nl: regels met een dunne lijn en een oranje stipje</p>
                 </div>
             </div>
         </section>
@@ -281,7 +281,7 @@ css: /assets/css/design-system.css
             <p class="ds-intro-text">Zelfstandige onderdelen van een pagina. De header staat bovenaan en de footer onderaan deze pagina; de indextabs (<code>_includes/side-tabs.html</code>) zijn de navigatie: één tab per lab met een wit zeshoekje en het aantal concepten, rechts uit het scherm; het huidige lab steekt verder uit en bij hover verschijnt de naam. Op schermen smaller dan 1180px steken ze onderaan omhoog. Er is geen menu bovenin.</p>
             <p class="ds-intro-text">De concepten hangen op de muur (<code>_includes/wall.html</code>): links de koelkast, dan de fases van schetsboek tot uitgevlogen. De muur is een horizontale slider die zacht vastklikt op de zones; <code>assets/js/muur.js</code> regelt de pijlen, de zonebalk en het groot openen van een A4'tje.</p>
 
-            <p class="ds-name">Concept op de muur <code>_includes/wall-item.html</code> · een met de hand beschreven A4'tje op lijntjespapier, met plakband in de labkleur, een krabbelstreep onder de titel en een potloodschets van de cluster; de screenshot als printje en ideeën als stickies. Afwisselend hoog en laag gehangen, licht scheef. Binnen een zone hangen concepten per lab in een clustertje bij elkaar (<code>.wall-cluster</code>), met de labnaam in handschrift erboven.</p>
+            <p class="ds-name">Concept op de muur <code>_includes/wall-item.html</code> · een met de hand beschreven A4'tje op lijntjespapier, met plakband in de labkleur, een krabbelstreep onder de titel en een potloodschets van de cluster; de screenshot als printje en ideeën als stickies. Afwisselend hoog en laag gehangen, licht scheef. Binnen een zone hangen concepten per lab in een clustertje bij elkaar (<code>.wall-cluster</code>), met de labnaam in handschrift erboven. Concepten die met elkaar te maken hebben (<code>verbonden</code> in de data) krijgen een rood draadje van speldje naar speldje (<code>.wall-threads</code>). In een geopend velletje klapt <code>{ } linked data</code> het stukje PublicXS-data van dat concept open, met de vaste URI.</p>
             {% assign project = site.data.projects | where: "id", "opendiensten" | first %}
             <div class="ds-organism ds-wall-demo">
                 <div class="wall-items">{% include wall-item.html i=1 %}</div>
@@ -343,6 +343,7 @@ css: /assets/css/design-system.css
             <p class="ds-intro-text">De templates gevuld met echte inhoud.</p>
             <ul class="ds-pages">
                 <li><a href="{{ '/' | relative_url }}"><strong>{{ site.name }}</strong><span>Alle projecten, per status</span></a></li>
+                <li><a href="{{ '/agenda/' | relative_url }}"><strong>Public Tech Hackathons</strong><span>/agenda/ · ook als agendafeed</span></a></li>
                 {% for lab in site.data.labs %}
                 <li><a href="{{ lab.path | relative_url }}"><strong>{{ lab.name }}</strong><span>{{ lab.domain | default: lab.path }}</span></a></li>
                 {% endfor %}

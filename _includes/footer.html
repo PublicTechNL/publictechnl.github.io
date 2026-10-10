@@ -3,9 +3,9 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3 class="footer-brand">{% include hex-cluster.html %}<span>{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></span></h3>
-                <p>Open labs voor publieke technologie: de innovatiewerkplaats van {{ site.organization.legal_name }}, het bedrijf van <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
-                <p class="footer-org">Een werkplaats van
-                    <a href="{{ site.organization.url }}"><span class="apitecture-logo" role="img" aria-label="{{ site.organization.name }}" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></a>
+                <p>Open labs voor publieke technologie. Georganiseerd door <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
+                <p class="footer-org">Mogelijk gemaakt door
+                    <a href="{{ site.sponsor.url }}"><span class="apitecture-logo" role="img" aria-label="Sponsor: {{ site.sponsor.name }}" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></a>
                 </p>
             </div>
             <div class="footer-column">
@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="copyright">
-            <p><a href="{{ '/design-system/' | relative_url }}">Design system</a></p>
-            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.organization.url }}">{{ site.organization.legal_name }}</a> · <a href="{{ site.author.url }}">jgroenen.nl</a></p>
+            <p><a href="{{ '/agenda/' | relative_url }}">Hackathon-agenda</a> · <a href="{{ '/publicxs.jsonld' | relative_url }}">Open data (PublicXS)</a> · <a href="{{ '/design-system/' | relative_url }}">Design system</a></p>
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.author.url }}">{{ site.author.name }}</a> · sponsor <a href="{{ site.sponsor.url }}">{{ site.sponsor.name }}</a></p>
         </div>
     </div>
 </footer>

@@ -1,0 +1,91 @@
+---
+layout: null
+permalink: /publicxs.jsonld
+---
+{% comment %}
+De inhoud van deze site als linked data (JSON-LD), naar het informatiemodel van eduXS / PublicXS:
+Organisation, Funding, Topic, Collaboration, Standard, Document en Service, met hun relaties.
+Eigen namespace met de klasse- en relatienamen uit het model; waar het kan ook schema.org.
+Concepten zijn Service, Standard of Document (veld publicxs_type, anders afgeleid uit de tags);
+labs zijn Topic; partners en organisatoren zijn Organisation; PUBLIC TECH NL en agendamomenten zijn Collaboration.
+{% endcomment %}
+{% assign base = site.url | append: site.baseurl %}
+{%- capture orgs -%}{{ site.author.name }}|{{ site.sponsor.name }}{% for p in site.data.projects %}{% if p.partner %}|{{ p.partner | remove: " (sponsor)" }}{% endif %}{% endfor %}{% for e in site.data.agenda %}{% if e.organisator %}|{{ e.organisator }}{% endif %}{% if e.met %}|{{ e.met }}{% endif %}{% endfor %}{%- endcapture -%}
+{% assign org_names = orgs | split: "|" | uniq %}
+{
+  "@context": {
+    "@vocab": "https://publictech.nl/ns/publicxs#",
+    "schema": "https://schema.org/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": { "@id": "schema:url", "@type": "@id" },
+    "image": { "@id": "schema:image", "@type": "@id" },
+    "startDate": "schema:startDate",
+    "endDate": "schema:endDate",
+    "location": "schema:location",
+    "keywords": "schema:keywords",
+    "status": "status",
+    "relatedTo": { "@type": "@id" },
+    "develops": { "@type": "@id" },
+    "coordinatedBy": { "@type": "@id" },
+    "givesOut": { "@type": "@id" },
+    "funds": { "@type": "@id" }
+  },
+  "@graph": [
+    {
+      "@id": "{{ base }}/id/collaboration/public-tech-nl",
+      "@type": ["Collaboration", "schema:Project"],
+      "name": {{ site.name | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "url": "{{ base }}/",
+      "coordinatedBy": "{{ base }}/id/organisation/{{ site.author.name | slugify }}",
+      "relatedTo": [{% for lab in site.data.labs %}"{{ base }}/id/topic/{{ lab.id }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]
+    },
+    {
+      "@id": "{{ base }}/id/funding/{{ site.sponsor.name | slugify }}",
+      "@type": "Funding",
+      "name": {{ "Sponsoring door " | append: site.sponsor.name | jsonify }},
+      "funds": "{{ base }}/id/collaboration/public-tech-nl"
+    },
+    {% for org in org_names %}{
+      "@id": "{{ base }}/id/organisation/{{ org | slugify }}",
+      "@type": ["Organisation", "schema:Organization"],
+      "name": {{ org | jsonify }}{% if org == site.author.name %},
+      "url": "{{ site.author.url }}"{% elsif org == site.sponsor.name %},
+      "url": "{{ site.sponsor.url }}",
+      "givesOut": "{{ base }}/id/funding/{{ site.sponsor.name | slugify }}"{% endif %}{% capture dev %}{% for p in site.data.projects %}{% assign pn = p.partner | remove: " (sponsor)" %}{% if pn == org %}"{{ base }}/id/concept/{{ p.id }}",{% endif %}{% endfor %}{% endcapture %}{% if dev != "" %},
+      "develops": [{{ dev | split: "," | join: ", " }}]{% endif %}
+    },
+    {% endfor %}{% for lab in site.data.labs %}{
+      "@id": "{{ base }}/id/topic/{{ lab.id }}",
+      "@type": ["Topic", "schema:DefinedTerm"],
+      "name": {{ lab.name | jsonify }},
+      "description": {{ lab.description | jsonify }},
+      "url": "{{ lab.path | absolute_url }}"
+    },
+    {% endfor %}{% for e in site.data.agenda %}{
+      "@id": "{{ base }}/id/collaboration/{{ e.id }}",
+      "@type": ["Collaboration", "schema:Event"],
+      "name": {{ e.naam | jsonify }},
+      "description": {{ e.beschrijving | default: e.soort | jsonify }},
+      "startDate": "{{ e.datum | date: '%Y-%m-%d' }}",
+      "endDate": "{{ e.eind | default: e.datum | date: '%Y-%m-%d' }}"{% if e.plek %},
+      "location": {{ e.plek | jsonify }}{% endif %}{% if e.url %},
+      "url": {{ e.url | jsonify }}{% endif %},
+      "coordinatedBy": "{{ base }}/id/organisation/{{ e.organisator | slugify }}"{% if e.concepten %},
+      "relatedTo": [{% for cid in e.concepten %}"{{ base }}/id/concept/{{ cid }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %}
+    },
+    {% endfor %}{% for p in site.data.projects %}{% assign tags = p.tags | join: " " %}{% assign t = p.publicxs_type %}{% unless t %}{% if tags contains "standaard" %}{% assign t = "Standard" %}{% elsif tags contains "kennisdocument" %}{% assign t = "Document" %}{% else %}{% assign t = "Service" %}{% endif %}{% endunless %}{% if t == "Standard" %}{% assign st = "schema:CreativeWork" %}{% elsif t == "Document" %}{% assign st = "schema:DigitalDocument" %}{% else %}{% assign st = "schema:SoftwareApplication" %}{% endif %}{
+      "@id": "{{ base }}/id/concept/{{ p.id }}",
+      "@type": ["{{ t }}", "{{ st }}"],
+      "name": {{ p.title | jsonify }},
+      "description": {{ p.description | jsonify }},
+      "status": {{ p.status | jsonify }}{% if p.url %},
+      "url": {{ p.url | jsonify }}{% endif %}{% if p.repo %},
+      "schema:codeRepository": {{ p.repo | jsonify }}{% endif %}{% if p.tags %},
+      "keywords": {{ p.tags | jsonify }}{% endif %},
+      "relatedTo": [{% if p.lab %}"{{ base }}/id/topic/{{ p.lab }}"{% endif %}{% for v in p.verbonden %}{% if p.lab or forloop.index > 1 %}, {% endif %}"{{ base }}/id/concept/{{ v }}"{% endfor %}]
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
