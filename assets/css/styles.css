@@ -1202,6 +1202,10 @@ footer::before {
 
 .lab-sticky {
     position: relative;
+    /* altijd een vierkant briefje, nooit uitgerekt tot een balk */
+    flex: none;
+    align-self: flex-start;
+    box-sizing: border-box;
     width: 128px;
     min-height: 96px;
     padding: 16px 12px 10px;
@@ -1249,7 +1253,20 @@ footer::before {
     position: relative;
 }
 
+/*
+ * Whiteboardglim: zachte schuine lichtbanen op het oppervlak. Het is de achtergrond van het scrollvenster,
+ * dus de reflectie blijft staan (zoals een lamp) terwijl de muur eronderdoor schuift.
+ */
 .wall-track {
+    background:
+        linear-gradient(112deg,
+            transparent 18%,
+            rgba(255, 255, 255, 0.95) 27%,
+            transparent 36%,
+            transparent 58%,
+            rgba(255, 255, 255, 0.7) 63%,
+            transparent 69%),
+        linear-gradient(180deg, #f4f3ef, #faf9f6 45%, #f2f1ec);
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
@@ -1335,7 +1352,7 @@ footer::before {
 
 .wall {
     --wall-h: clamp(460px, calc(100svh - var(--header-h) - 170px), 760px);
-    --a4-h: clamp(280px, calc(var(--wall-h) * 0.6), 540px);
+    --a4-h: clamp(250px, calc(var(--wall-h) * 0.5), 440px);
     --a4-w: calc(var(--a4-h) / 1.414);
     position: relative;
     display: flex;
@@ -1386,8 +1403,49 @@ footer::before {
 .wall-items {
     flex: 1;
     display: flex;
-    gap: 36px;
+    gap: 72px;
     margin-top: 10px;
+}
+
+/* Een clustertje: concepten van hetzelfde lab dicht bij elkaar, een beetje over elkaar heen */
+.wall-cluster {
+    display: flex;
+    flex-direction: column;
+}
+
+.wall-cluster-label {
+    font-family: var(--font-hand);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 0 18px 8px;
+    color: color-mix(in srgb, var(--tint) 80%, black);
+    transform: rotate(-2deg);
+}
+
+/* een met de hand getrokken boogje onder de labnaam */
+.wall-cluster-label::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 6px;
+    margin-top: 2px;
+    border-bottom: 2px solid color-mix(in srgb, var(--tint) 60%, transparent);
+    border-radius: 0 0 50% 50%;
+}
+
+.wall-cluster-items {
+    flex: 1;
+    display: flex;
+}
+
+.wall-cluster-items > .wall-item + .wall-item {
+    margin-left: calc(var(--a4-w) * -0.1);
+}
+
+/* laag gehangen velletjes schuiven naar rechts, zodat hun printje links ruimte heeft */
+.wall-item-low .a4 {
+    left: calc(var(--a4-w) * 0.3);
 }
 
 /* Eén concept: een kolom met een A4'tje, afwisselend hoog en laag gehangen */
@@ -1395,7 +1453,7 @@ footer::before {
     --rot: -1deg;
     position: relative;
     flex: none;
-    width: calc(var(--a4-w) + 56px);
+    width: calc(var(--a4-w) * 1.32);
 }
 
 .tilt-0 { --rot: -1.2deg; }
@@ -1413,7 +1471,7 @@ footer::before {
     width: var(--a4-w);
     height: var(--a4-h);
     padding: 30px 22px 16px;
-    font-size: clamp(12px, calc(var(--a4-w) * 0.052), 14px);
+    font-size: clamp(11px, calc(var(--a4-w) * 0.05), 13px);
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 24px -6px rgba(0, 0, 0, 0.14);
     transform: rotate(var(--rot));
@@ -1447,55 +1505,130 @@ footer::before {
     background-color: color-mix(in srgb, var(--tint) 45%, transparent);
 }
 
-.a4 .lab-callnr {
+/* Het velletje is met de hand beschreven: lijntjespapier met kantlijn, handschrift, een potloodschets */
+.a4,
+.a4 * {
+    font-family: var(--font-hand);
+}
+
+.a4 {
+    color: #2a2b33;
+    background-image:
+        linear-gradient(90deg, transparent 30px, rgba(233, 69, 124, 0.22) 30px, rgba(233, 69, 124, 0.22) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 21px, rgba(58, 134, 255, 0.13) 21px, rgba(58, 134, 255, 0.13) 22px);
+    background-position: 0 0, 0 46px;
+    background-color: white;
+    padding-left: 40px;
+}
+
+.a4-callnr {
+    position: absolute;
     top: 12px;
     right: 16px;
+    font-family: var(--font-hand);
+    font-size: 17px;
+    color: #9a9890;
 }
 
-.a4 .lab-badge {
-    align-self: flex-start;
-    margin-bottom: 6px;
+.a4-title {
+    padding-right: 44px;
+    font-family: var(--font-hand);
+    font-size: 2.1em;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 6px;
+    color: #1f2030;
 }
 
-.a4 h3 {
-    font-size: 1.35em;
-    line-height: 1.2;
-    margin-bottom: 8px;
-    color: var(--ink);
-}
-
-.a4 h3 a {
+.a4-title a {
     color: inherit;
     text-decoration: none;
 }
 
-.a4 h3 a:hover {
-    color: color-mix(in srgb, var(--tint) 80%, black);
+.a4-underline {
+    display: block;
+    width: 70%;
+    height: 9px;
+    margin: 2px 0 10px -2px;
+    overflow: visible;
+}
+
+.a4-underline path {
+    fill: none;
+    stroke: var(--tint);
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: url(#krabbel);
 }
 
 .a4-body {
     flex: 1;
     overflow: hidden;
-    line-height: 1.5;
-    -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent);
-    mask-image: linear-gradient(to bottom, black 72%, transparent);
+    font-size: 1.45em;
+    line-height: 22px;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
 }
 
-.a4-body .lab-description {
-    margin-bottom: 10px;
+.a4-text {
+    margin-bottom: 6px;
 }
 
-.a4 .lab-facts {
-    font-size: 0.95em;
+.a4-tags {
+    color: #8a8780;
+}
+
+.a4-tags span {
+    margin-right: 4px;
+}
+
+.a4-links {
+    list-style: none;
+    margin-top: 4px;
+}
+
+.a4-links a {
+    color: color-mix(in srgb, var(--tint) 80%, black);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.a4-lab a {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Eigen notities in potlood, alleen lokaal zichtbaar */
+.a4-journal {
+    list-style: none;
+    margin-top: 6px;
+    color: #9a9890;
+    transform: rotate(-1.5deg);
+}
+
+/* Potloodschets van de zeshoek-cluster rechtsonder */
+.a4-sketch {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    width: 44px;
+    opacity: 0.6;
+    transform: rotate(calc(var(--rot) * -6));
+}
+
+.a4-sketch .hex-cluster path {
+    fill: none !important;
+    stroke: #6b6a70;
+    stroke-width: 2.4;
+    filter: url(#krabbel);
 }
 
 .a4-more {
     align-self: flex-start;
     margin-top: 6px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-hand);
+    font-size: 19px;
     color: color-mix(in srgb, var(--tint) 75%, black);
 }
 
@@ -1503,47 +1636,74 @@ footer::before {
     content: " →";
 }
 
-/* De foto hangt als polaroid half over het A4'tje */
-.wall-photo {
+/*
+ * De screenshot als printje schuin op de rand van het velletje geplakt, half eroverheen.
+ * Hoog gehangen velletjes: rechtsboven; laag gehangen: linksonder.
+ */
+.a4-print {
+    position: absolute;
+    z-index: 1;
+    top: 26%;
+    right: -38%;
+    display: block;
+    width: 62%;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 4px 10px -2px rgba(0, 0, 0, 0.16);
+    transform: rotate(calc(4deg + var(--rot) * 2));
+    pointer-events: none;
+}
+
+.wall-item-low .a4-print {
+    top: auto;
+    right: auto;
+    bottom: 22%;
+    left: -34%;
+    transform: rotate(calc(-5deg + var(--rot) * 2));
+}
+
+.a4-print img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+}
+
+.a4-print::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 52px;
+    height: 14px;
+    transform: translateX(-50%) rotate(3deg);
+    background-color: rgba(235, 230, 215, 0.75);
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+
+/* Stickies op de hoek van het velletje geplakt, half over de rand */
+.a4-stickies {
     position: absolute;
     z-index: 2;
-    left: 42%;
-    bottom: 0;
-    width: calc(var(--a4-w) * 0.62);
-    transform: rotate(calc(var(--rot) * -2.4));
-}
-
-.wall-item-low .wall-photo {
-    top: 0;
-    bottom: auto;
-    left: 18%;
-}
-
-.wall-photo:hover {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14), 0 12px 28px rgba(0, 0, 0, 0.16);
-}
-
-/* Stickies zitten op de rechterrand van het A4'tje */
-.wall-stickies {
-    position: absolute;
-    z-index: 3;
-    right: -10px;
-    top: 50%;
+    right: -22px;
+    bottom: 34px;
     flex-direction: column;
+    gap: 6px;
     padding: 0;
+    pointer-events: none;
 }
 
-.wall-item-low .wall-stickies {
-    top: 22%;
+.a4-stickies .lab-sticky {
+    width: 112px;
+    min-height: 84px;
+    font-size: 19px;
+    transform: rotate(calc(var(--rot) * -3));
 }
 
-.wall-empty {
-    margin-top: 12%;
-    color: var(--muted);
-}
-
-.wall-empty.lab-sticky {
-    color: var(--ink);
+/* Met een sticky erop wijkt de potloodschets */
+.a4:has(.a4-stickies) .a4-sketch {
+    display: none;
 }
 
 /* De koelkast: staat linksonder op de vloer, concepten hangen met magneetjes op de deur */
@@ -1619,18 +1779,28 @@ footer::before {
     font-size: 12px;
 }
 
-.wall-item-fridge .a4 h3 {
-    font-size: 15px;
-    margin-bottom: 0;
+.wall-item-fridge .a4 {
+    padding-left: 36px;
+    background-position: 0 0, 0 100px;
+}
+
+.wall-item-fridge .a4-title {
+    font-size: 22px;
+    margin: 0;
+    padding-right: 40px;
 }
 
 .wall-item-fridge .a4-body,
-.wall-item-fridge .lab-badge {
+.wall-item-fridge .a4-underline,
+.wall-item-fridge .a4-print,
+.wall-item-fridge .a4-stickies,
+.wall-item-fridge .a4-sketch {
     display: none;
 }
 
 .wall-item-fridge .a4-more {
-    font-size: 10px;
+    font-size: 16px;
+    margin-top: 0;
 }
 
 /* een zeshoekig magneetje in plaats van plakband */
@@ -1682,32 +1852,40 @@ footer::before {
     mask-image: none;
 }
 
-.a4-open .a4-body,
-.a4-open .lab-badge {
+.a4-open .a4-body {
     display: block;
+    font-size: 24px;
+    line-height: 30px;
 }
 
-.a4-open .lab-badge {
-    display: inline-block;
+.a4-open .a4-title {
+    font-size: 44px;
+}
+
+.a4-open {
+    background-position: 0 0, 0 108px;
+    background-image:
+        linear-gradient(90deg, transparent 30px, rgba(233, 69, 124, 0.22) 30px, rgba(233, 69, 124, 0.22) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 29px, rgba(58, 134, 255, 0.13) 29px, rgba(58, 134, 255, 0.13) 30px);
 }
 
 .a4-open .a4-more {
     display: none;
 }
 
-.a4-open-photo {
-    display: block;
-    width: 100%;
-    max-height: 260px;
-    object-fit: cover;
-    object-position: top;
-    margin: 4px 0 18px;
-    box-shadow: 0 0 0 1px var(--medium-gray);
+.a4-open .a4-print,
+.wall-item-low .a4-open .a4-print {
+    position: relative;
+    inset: auto;
+    width: 80%;
+    margin: 4px 0 16px;
+    transform: rotate(-1deg);
 }
 
-.a4-open-stickies {
-    margin-top: 18px;
-    padding: 0;
+.a4-open .a4-stickies {
+    position: static;
+    flex-direction: row;
+    margin-top: 16px;
 }
 
 .a4-dialog-close {
@@ -1750,24 +1928,15 @@ footer::before {
     }
 
     .wall-items {
-        gap: 24px;
+        gap: 40px;
     }
 
     .a4 {
-        padding: 26px 16px 12px;
+        padding: 26px 16px 12px 38px;
     }
 
     .a4.a4-open {
-        padding: 36px 24px 24px;
+        padding: 36px 24px 24px 44px;
     }
 
-    /* kleinere foto, meer naar rechts, zodat de tekst leesbaar blijft */
-    .wall-photo {
-        left: 42%;
-        width: calc(var(--a4-w) * 0.5);
-    }
-
-    .wall-item-low .wall-photo {
-        left: 40%;
-    }
 }

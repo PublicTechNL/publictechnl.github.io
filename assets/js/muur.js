@@ -59,17 +59,6 @@
         copy.classList.add('a4-open');
         var item = a4.closest('.wall-item');
         if (item && item.style.cssText) sheet.style.cssText = item.style.cssText;
-        // de foto en de stickies gaan mee op het grote velletje
-        var photo = item && item.querySelector('.wall-photo img');
-        if (photo) {
-            var img = document.createElement('img');
-            img.src = photo.src;
-            img.alt = '';
-            img.className = 'a4-open-photo';
-            copy.insertBefore(img, copy.querySelector('.a4-body'));
-        }
-        var stickies = item && item.querySelector('.wall-stickies');
-        if (stickies) copy.appendChild(stickies.cloneNode(true)).className = 'lab-stickies a4-open-stickies';
         sheet.appendChild(copy);
         dialog.showModal();
     }
