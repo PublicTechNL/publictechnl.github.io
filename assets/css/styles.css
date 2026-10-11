@@ -3271,3 +3271,19 @@ footer {
 .agenda-org a {
     color: color-mix(in srgb, var(--lab, var(--ink)) 80%, black);
 }
+
+/* Kleine schermen: het labelplakband plakt gewoon achter de titel in plaats van erbuiten */
+@media (max-width: 768px) {
+    .agenda-title {
+        display: block;
+    }
+
+    .agenda-body h3 a.agenda-tape {
+        position: relative;
+        left: auto;
+        top: -3px;
+        display: inline-block;
+        margin-left: 6px;
+        font-size: 17px;
+    }
+}
