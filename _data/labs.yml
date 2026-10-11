@@ -1,4 +1,4 @@
-# Thematische labs binnen Public Tech NL Labs: elk domein of type probleem z'n eigen LABS.
+# De labs van Public Tech NL LABS: Johans interesses, verdeeld over de twee polen (remix en lab).
 # Een project hoort bij een lab via het veld `lab` in _data/projects.yml.
 # Een labpagina is een bestand met `layout: lab` en `lab: <id>` in de front matter.
 #
@@ -6,53 +6,71 @@
 #   label          - tekst op het badge bij een project en in het menu
 #   name           - naam van het lab
 #   code           - twee letters voor het catalogusnummer op de kaarten, zoals in een kaartenbak
-#   color          - kleur uit het spectrum: pink, orange, amber, yellow, green, blue, violet
-#   rainbow        - true: de ring van het beeldmerk in pastel-regenboog, midden en losse zeshoek in labkleur (optioneel)
+#   color          - labkleur: pink, purple, indigo, red (remix-pool, jgroenen.nl) of green, darkgreen (lab-pool, everybit)
 #   domain         - eigen domein dat naar de labpagina doorverwijst (optioneel)
 #   path           - pagina van het lab op deze site
-#   heading        - kop op de labpagina; het laatste deel (heading_accent) komt in regenboog
+#   heading        - kop op de labpagina; het laatste deel (heading_accent) in de labkleur
 #   description    - korte uitleg, op de homepage en de labpagina
 #   intro          - extra alinea op de labpagina (optioneel)
 
-- id: mijn-bureau
-  label: mijn bureau
-  name: Mijn Bureau LABS
-  code: MB
-  color: blue
-  path: /mijn-bureau/
-  heading: "Concepten voor"
-  heading_accent: "samenwerken"
-  description: "Concepten voor samenwerken: samen schrijven, chatten, videobellen en plannen, open source en zonder afhankelijkheid van grote cloudplatforms. Hoe ziet een digitaal bureau eruit dat echt van jezelf is?"
+- id: remix-culture
+  label: remix culture
+  name: Remix Culture LABS
+  code: RC
+  color: pink
+  path: /remix-culture/
+  heading: "Creatieve"
+  heading_accent: "experimenten"
+  description: "Creative coding en remix culture: muziek, beeld, merk en vorm, en wie eigenaar is van digitale werken. Remixen, recombineren, opnieuw beginnen. Wat ontstaat er als je bestaande dingen op een nieuwe manier samenvoegt?"
 
-- id: publieke-innovatie
-  label: publieke innovatie
-  name: Publieke Innovatie LABS
-  code: PI
-  color: orange
-  path: /publieke-innovatie/
-  heading: "Concepten voor"
-  heading_accent: "innovatie&shy;management"
-  description: "Concepten voor innovatiemanagement: ideeën ophalen, prioriteren, financieren en delen. Hoe organiseer je vernieuwing in en tussen publieke organisaties, open en samen?"
-
-- id: public-tech
-  label: public tech
-  name: Public Tech LABS
-  code: PT
-  color: green
-  path: /public-tech/
-  heading: "Verantwoorde inzet van"
-  heading_accent: "technologie"
-  description: "Concepten voor verantwoorde inzet van technologie: registers, standaarden en schema's voor algoritmes, sensoren en data. Hoe leg je vast wat je inzet, waarom, en wie ervoor verantwoordelijk is?"
-
-- id: fediverse
-  label: fediverse
-  name: Fediverse LABS
-  code: FV
-  color: violet
-  rainbow: true
+- id: social-web
+  label: social web
+  name: Social Web LABS
+  code: SW
+  color: purple
   domain: fedilabs.nl
-  path: /fediverse/
-  heading: "Fediverse-"
-  heading_accent: "concepten"
-  description: "Concepten voor het fediverse: het open, gedecentraliseerde netwerk van sociale media zoals Mastodon. Hoe kunnen overheden en publieke organisaties hier zelf de regie nemen over hun communicatie, zonder afhankelijk te zijn van commerciële platforms?"
+  path: /social-web/
+  heading: "Experimenten rondom het"
+  heading_accent: "sociale web"
+  description: "Experimenten rondom het sociale web: het fediverse, het open, gedecentraliseerde netwerk van sociale media zoals Mastodon. Hoe nemen mensen, gemeenschappen en publieke organisaties zelf de regie over hun communicatie, zonder afhankelijk te zijn van commerciële platforms?"
   intro: "Hier verzamel ik concepten rond Mastodon en andere fediverse-diensten, uitgewerkt tot prototypes en proofs of concept: om te laten zien wat er kan, en om van te leren. Alles is open source, dus kijk gerust mee in de code."
+
+- id: civic-tech
+  label: civic tech
+  name: Civic Tech LABS
+  code: CT
+  color: indigo
+  path: /civic-tech/
+  heading: "Technologie voor en met"
+  heading_accent: "inwoners"
+  description: "Civic tech: technologie waarmee inwoners en overheid samen werken aan hun omgeving. Gesprekken met veel mensen, samen zorgen voor de openbare ruimte, meedoen en meebeslissen. Hoe geef je inwoners een stem en een rol?"
+
+- id: digitale-commons
+  label: digitale commons
+  name: Digitale Commons LABS
+  code: DC
+  color: red
+  path: /digitale-commons/
+  heading: "Digitale"
+  heading_accent: "commons"
+  description: "Digitale autonomie en commons governance: samenwerktools voor de samenleving, open source en zonder afhankelijkheid van grote cloudplatforms, en de afspraken eromheen: rollen, standaarden, ecosystemen. Hoe maak en onderhoud je digitale voorzieningen die van ons allemaal zijn?"
+
+- id: open-innovatie
+  label: open innovatie
+  name: Open Innovatie LABS
+  code: OI
+  color: green
+  path: /open-innovatie/
+  heading: "Open werken aan"
+  heading_accent: "publieke innovatie"
+  description: "Gereedschap voor open publieke innovatie: ideeën verzamelen, overzicht houden, pitchen, prioriteren, financieren en kennis ontsluiten. Hoe organiseer je vernieuwing in en tussen publieke organisaties, open en samen?"
+
+- id: publieke-controle
+  label: publieke controle
+  name: Publieke Controle LABS
+  code: PC
+  color: darkgreen
+  path: /publieke-controle/
+  heading: "Publieke"
+  heading_accent: "controle"
+  description: "Verantwoorde govtech: registers, standaarden en schema's waarmee overheden vastleggen welke algoritmes, sensoren en data ze inzetten, waarom, en wie verantwoordelijk is. Zodat de samenleving kan meekijken."

@@ -140,7 +140,7 @@
         if (r.left < t.left || r.right > t.right) item.scrollIntoView({ inline: 'center', block: 'nearest' });
     });
 
-    // Rode draadjes tussen verbonden concepten, van speldje naar speldje (bovenaan de velletjes)
+    // Draadjes (standaard rood) tussen verbonden concepten, met een stukje plakband aan elk eind, van speldje naar speldje (bovenaan de velletjes)
     var wall = scroller.querySelector('.wall');
     var threads = scroller.querySelector('.wall-threads');
     function drawThreads() {
@@ -149,20 +149,38 @@
         threads.setAttribute('width', wall.scrollWidth);
         threads.setAttribute('height', wall.scrollHeight);
         var out = '';
-        function pin(item) {
+        // vaste "willekeurige" waarde 0..1 uit een tekst, zodat een speldje niet verspringt
+        function rand(text) {
+            var h = 2166136261;
+            for (var i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
+            return ((h >>> 0) % 1000) / 1000;
+        }
+        // een stukje plakband over het eind van het draadje, schuin in een vaste "willekeurige" hoek
+        function tape(p, key) {
+            var angle = Math.round(-35 + rand(key + 'r') * 70);
+            return '<rect class="thread-tape" x="' + (p.x - 13) + '" y="' + (p.y - 5) + '" width="26" height="10" rx="1"' +
+                ' transform="rotate(' + angle + ' ' + p.x + ' ' + p.y + ')"/>';
+        }
+        // elk stickertje op een eigen plek op het velletje (bovenste helft, niet tegen de rand)
+        function pin(item, key) {
             var r = item.querySelector('.a4').getBoundingClientRect();
-            return { x: r.left - base.left + r.width * 0.78, y: r.top - base.top + 14 };
+            return {
+                x: r.left - base.left + r.width * (0.14 + rand(key + 'x') * 0.72),
+                y: r.top - base.top + r.height * (0.05 + rand(key + 'y') * 0.4)
+            };
         }
         scroller.querySelectorAll('.wall-item[data-verbonden]').forEach(function (from) {
-            from.dataset.verbonden.split(' ').forEach(function (id) {
+            from.dataset.verbonden.split(' ').forEach(function (link) {
+                var parts = link.split(':'), id = parts[0], kleur = parts[1] || 'rood';
                 var to = scroller.querySelector('.wall-item[data-id="' + id + '"]');
                 if (!to) return;
-                var a = pin(from), b = pin(to);
+                var key = from.dataset.id + '>' + id;
+                var a = pin(from, key + ':van'), b = pin(to, key + ':naar');
                 // het draadje hangt een beetje door
                 var sag = Math.min(120, Math.abs(b.x - a.x) * 0.18 + 30);
                 var mx = (a.x + b.x) / 2, my = Math.max(a.y, b.y) + sag;
-                out += '<path d="M' + a.x + ' ' + a.y + ' Q' + mx + ' ' + my + ' ' + b.x + ' ' + b.y + '"/>';
-                out += '<circle cx="' + a.x + '" cy="' + a.y + '" r="5"/><circle cx="' + b.x + '" cy="' + b.y + '" r="5"/>';
+                out += '<g class="thread-' + kleur + '"><path d="M' + a.x + ' ' + a.y + ' Q' + mx + ' ' + my + ' ' + b.x + ' ' + b.y + '"/>';
+                out += tape(a, key + ':van') + tape(b, key + ':naar') + '</g>';
             });
         });
         threads.innerHTML = out;

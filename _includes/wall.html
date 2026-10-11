@@ -49,7 +49,7 @@ Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur
                     {% for cluster_lab in site.data.labs %}
                     {% assign cluster = items | where: "lab", cluster_lab.id %}
                     {% if cluster.size > 0 %}
-                    <div class="wall-cluster" style="--tint: var(--r-{{ cluster_lab.color }})">
+                    <div class="wall-cluster" style="--tint: var(--pencil-{{ cluster_lab.color }})">
                         <p class="wall-cluster-label">{{ cluster_lab.label }}</p>
                         <div class="wall-cluster-items">{% for project in cluster %}{% include wall-item.html i=forloop.index %}{% endfor %}</div>
                     </div>

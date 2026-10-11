@@ -7,7 +7,7 @@ layout: default
 {% assign heading_end = lab.heading | slice: -1 %}
 {% include header.html %}
 
-<section class="lab-intro lab-intro-{{ lab.id }}" style="--lab: var(--r-{{ lab.color }})">
+<section class="lab-intro lab-intro-{{ lab.id }}" style="--lab: var(--pencil-{{ lab.color }})">
     <div class="container">
         <div class="lab-intro-content">
             <div class="lab-intro-text">
@@ -25,7 +25,7 @@ layout: default
     </div>
 </section>
 
-{% capture lab_tint %}var(--r-{{ lab.color }}){% endcapture %}
+{% capture lab_tint %}var(--pencil-{{ lab.color }}){% endcapture %}
 {% include wall.html projects=lab_projects tint=lab_tint %}
 
 {{ content }}

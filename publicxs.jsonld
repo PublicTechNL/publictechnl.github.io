@@ -4,13 +4,13 @@ permalink: /publicxs.jsonld
 ---
 {% comment %}
 De inhoud van deze site als linked data (JSON-LD), naar het informatiemodel van eduXS / PublicXS:
-Organisation, Funding, Topic, Collaboration, Standard, Document en Service, met hun relaties.
+Organisation, Topic, Collaboration, Standard, Document en Service, met hun relaties.
 Eigen namespace met de klasse- en relatienamen uit het model; waar het kan ook schema.org.
 Concepten zijn Service, Standard of Document (veld publicxs_type, anders afgeleid uit de tags);
 labs zijn Topic; partners en organisatoren zijn Organisation; PUBLIC TECH NL en agendamomenten zijn Collaboration.
 {% endcomment %}
 {% assign base = site.url | append: site.baseurl %}
-{%- capture orgs -%}{{ site.author.name }}|{{ site.sponsor.name }}{% for p in site.data.projects %}{% if p.partner %}|{{ p.partner | remove: " (sponsor)" }}{% endif %}{% endfor %}{% for e in site.data.agenda %}{% if e.organisator %}|{{ e.organisator }}{% endif %}{% if e.met %}|{{ e.met }}{% endif %}{% endfor %}{%- endcapture -%}
+{%- capture orgs -%}{{ site.author.name }}|{{ site.builder.name }}{% for p in site.data.projects %}{% if p.partner %}|{{ p.partner }}{% endif %}{% endfor %}{% for e in site.data.agenda %}{% if e.organisator %}|{{ e.organisator }}{% endif %}{% if e.met %}|{{ e.met }}{% endif %}{% endfor %}{%- endcapture -%}
 {% assign org_names = orgs | split: "|" | uniq %}
 {
   "@context": {
@@ -41,19 +41,12 @@ labs zijn Topic; partners en organisatoren zijn Organisation; PUBLIC TECH NL en 
       "coordinatedBy": "{{ base }}/id/organisation/{{ site.author.name | slugify }}",
       "relatedTo": [{% for lab in site.data.labs %}"{{ base }}/id/topic/{{ lab.id }}"{% unless forloop.last %}, {% endunless %}{% endfor %}]
     },
-    {
-      "@id": "{{ base }}/id/funding/{{ site.sponsor.name | slugify }}",
-      "@type": "Funding",
-      "name": {{ "Sponsoring door " | append: site.sponsor.name | jsonify }},
-      "funds": "{{ base }}/id/collaboration/public-tech-nl"
-    },
     {% for org in org_names %}{
       "@id": "{{ base }}/id/organisation/{{ org | slugify }}",
       "@type": ["Organisation", "schema:Organization"],
       "name": {{ org | jsonify }}{% if org == site.author.name %},
-      "url": "{{ site.author.url }}"{% elsif org == site.sponsor.name %},
-      "url": "{{ site.sponsor.url }}",
-      "givesOut": "{{ base }}/id/funding/{{ site.sponsor.name | slugify }}"{% endif %}{% capture dev %}{% for p in site.data.projects %}{% assign pn = p.partner | remove: " (sponsor)" %}{% if pn == org %}"{{ base }}/id/concept/{{ p.id }}",{% endif %}{% endfor %}{% endcapture %}{% if dev != "" %},
+      "url": "{{ site.author.url }}"{% elsif org == site.builder.name %},
+      "url": "{{ site.builder.url }}"{% endif %}{% capture dev %}{% if org == site.builder.name %}"{{ base }}/id/collaboration/public-tech-nl",{% endif %}{% for p in site.data.projects %}{% assign pn = p.partner %}{% if pn == org %}"{{ base }}/id/concept/{{ p.id }}",{% endif %}{% endfor %}{% endcapture %}{% if dev != "" %},
       "develops": [{{ dev | split: "," | join: ", " }}]{% endif %}
     },
     {% endfor %}{% for lab in site.data.labs %}{
@@ -84,7 +77,7 @@ labs zijn Topic; partners en organisatoren zijn Organisation; PUBLIC TECH NL en 
       "url": {{ p.url | jsonify }}{% endif %}{% if p.repo %},
       "schema:codeRepository": {{ p.repo | jsonify }}{% endif %}{% if p.tags %},
       "keywords": {{ p.tags | jsonify }}{% endif %},
-      "relatedTo": [{% if p.lab %}"{{ base }}/id/topic/{{ p.lab }}"{% endif %}{% for v in p.verbonden %}{% if p.lab or forloop.index > 1 %}, {% endif %}"{{ base }}/id/concept/{{ v }}"{% endfor %}]
+      "relatedTo": [{% if p.lab %}"{{ base }}/id/topic/{{ p.lab }}"{% endif %}{% for v in p.verbonden %}{% if p.lab or forloop.index > 1 %}, {% endif %}"{{ base }}/id/concept/{{ v.naar | default: v }}"{% endfor %}]
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]

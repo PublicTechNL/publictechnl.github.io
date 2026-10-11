@@ -4,10 +4,10 @@ permalink: /agenda.ics
 ---
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//PUBLIC TECH NL//Hackathon-agenda//NL
+PRODID:-//PUBLIC TECH NL//Public Tech Agenda//NL
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:Public Tech Hackathons
+X-WR-CALNAME:Public Tech Agenda
 X-WR-TIMEZONE:Europe/Amsterdam
 {% for e in site.data.agenda %}{% assign end = e.eind | default: e.datum | date: "%s" | plus: 86400 | date: "%Y%m%d" %}BEGIN:VEVENT
 UID:{{ e.id }}@publictech.nl

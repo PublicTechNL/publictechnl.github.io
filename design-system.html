@@ -3,6 +3,8 @@ layout: default
 title: Design system
 permalink: /design-system/
 css: /assets/css/design-system.css
+noindex: true
+sitemap: false
 ---
 {% include header.html %}
 
@@ -10,14 +12,14 @@ css: /assets/css/design-system.css
     <div class="container">
         <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name }}</a> · design system</p>
         <h1>Design <span class="accent-text">system</span></h1>
-        <p class="ds-lead">De vormgeving van {{ site.name }} komt uit een mixer met drie merklagen: <strong>jgroenen.nl</strong> als basis, het logo van <strong>Apitecture</strong> voor vorm en karakter, en de <strong>regenboog</strong> van de labs. Hieronder staat alles van klein naar groot, volgens atomic design. Eerst de vormtaal, daarna fundamenten, atomen, moleculen, organismen, templates en pagina's. Alle voorbeelden gebruiken de echte CSS en includes van deze site.</p>
+        <p class="ds-lead">De vormgeving van {{ site.name }} komt uit een mixer met twee polen: de <strong>remix</strong>-kleuren van jgroenen.nl (creativiteit, open samenwerken) en het klinische <strong>lab</strong>-groen van everybit (methode, structuur), samengebracht in het <strong>papier en plakband</strong> van de labs zelf. Hieronder staat alles van klein naar groot, volgens atomic design. Eerst de vormtaal, daarna fundamenten, atomen, moleculen, organismen, templates en pagina's. Alle voorbeelden gebruiken de echte CSS en includes van deze site.</p>
     </div>
 </section>
 
 <div class="container ds-layout">
     <nav class="ds-nav" aria-label="Design system">
         <ol>
-            <li><a href="#merklagen">Merklagen</a></li>
+            <li><a href="#merklagen">Architectuur en merk</a></li>
             <li><a href="#vormtaal">Vormtaal</a></li>
             <li><a href="#fundamenten">Fundamenten</a></li>
             <li><a href="#atomen">Atomen</a></li>
@@ -32,41 +34,108 @@ css: /assets/css/design-system.css
 
         <!-- Merklagen -->
         <section class="ds-section" id="merklagen">
-            <h2 class="ds-title"><span class="ds-step">0</span>Merklagen</h2>
-            <p class="ds-intro-text">Drie lagen, elk met een eigen rol. De kern is gedeeld en kan later ook voor jgroenen.nl en apitecture.nl gebruikt worden; de labs-laag is alleen voor de labs.</p>
-            <div class="ds-layers">
-                <article class="ds-layer ds-layer-kern">
-                    <p class="lab-kicker">Laag 1 · kern</p>
-                    <h3>jgroenen.nl</h3>
-                    <p>De persoon. Rustig en persoonlijk: papier, witte kaarten, oranje als enige accent.</p>
+            <h2 class="ds-title"><span class="ds-step">0</span>Architectuur en merk</h2>
+            <p class="ds-intro-text">De stamboom: wie onder wie hangt, van persoon via holding en bedrijven naar publictech.nl. Daaronder de merken: drie leveren een merklaag aan de vormgeving van deze site (kern, everybit, labs); de andere staan erbij ter vergelijking.</p>
+
+            {% comment %}Organigram: elk niveau een rij naast elkaar, vierkante blokjes, rechte lijnen. Onder de boom de merken.{% endcomment %}
+            {% assign apitecture_img = '/assets/logos/apitecture.png' | relative_url %}
+            <div class="ds-org-scroll">
+            <svg class="ds-org-lines" aria-hidden="true"></svg>
+            <ul class="ds-org">
+                <li>
+                    <a href="https://jgroenen.nl" class="ds-sq" style="--brand: #fb5632">
+                        <img src="{{ '/assets/jgroenen/johan-groenen.jpg' | relative_url }}" alt="" class="ds-sq-logo ds-sq-round">
+                        <strong>Johan Groenen</strong><small>persoon</small>
+                        <span class="ds-sq-sw"><i style="background:#F3F2EF"></i><i style="background:#fb5632"></i><i style="background:#333"></i></span>
+                    </a>
                     <ul>
-                        <li>Papier <code>#F3F2EF</code>, kaarten wit</li>
-                        <li>Oranje <code>#fb5632</code></li>
-                        <li>Ronde knoppen, kleine grijze tags</li>
-                        <li>Links met <span class="link-more">verder</span>, citaten in Georgia</li>
+                        <li>
+                            <a href="https://everybit.nl" class="ds-sq" style="--brand: #3AC286">
+                                <img src="{{ '/assets/logos/everybit.png' | relative_url }}" alt="" class="ds-sq-logo">
+                                <strong>everybit.</strong><small>holding · investeert</small>
+                                <span class="ds-sq-sw"><i style="background:#000"></i><i style="background:#fff"></i><i style="background:#3AC286"></i></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{ site.builder.url }}" class="ds-sq" style="--brand: #ff5900">
+                                        <span class="ds-sq-logo ds-sq-dark"><img src="{{ apitecture_img }}" alt=""></span>
+                                        <strong>Apitecture</strong><small>werk-bv · advies</small>
+                                        <span class="ds-sq-sw"><i style="background:#141416"></i><i style="background:#fff"></i><i style="background:#ff5900"></i></span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="https://www.apitecture.io" class="ds-sq" style="--brand: #ff5900">
+                                                <span class="ds-sq-logo ds-sq-dark"><img src="{{ apitecture_img }}" alt=""></span>
+                                                <strong>apitecture.io</strong><small>draaiende diensten</small>
+                                                <span class="ds-sq-sw"><i style="background:#141416"></i><i style="background:#fff"></i><i style="background:#ff5900"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ '/' | relative_url }}" class="ds-sq ds-sq-here" style="--brand: var(--jg-purple)">
+                                        <span class="ds-sq-logo">{% include tape-mark.html %}</span>
+                                        <strong>PUBLIC TECH NL</strong><small>hier · {{ site.data.projects.size }}</small><em class="ds-sq-note">voorlopig in Apitecture BV</em>
+                                        <span class="ds-sq-sw"><i style="background:var(--jg-pink)"></i><i style="background:var(--jg-red)"></i><i style="background:var(--jg-pink-light)"></i><i style="background:var(--eb-green)"></i><i style="background:var(--jg-indigo)"></i><i style="background:var(--jg-purple)"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.tiltshift.nl" class="ds-sq" style="--brand: #1E59A6">
+                                        <img src="{{ '/assets/logos/tiltshift.svg' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
+                                        <strong>Tiltshift</strong><small>samen · workshops</small>
+                                        <span class="ds-sq-sw"><i style="background:#1E59A6"></i><i style="background:#E64544"></i><i style="background:#1D1621"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="https://www.codefor.nl" class="ds-sq" style="--brand: #71BF9D">
+                                <img src="{{ '/assets/logos/codefornl.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
+                                <strong>Code for NL</strong><small>stichting</small>
+                                <span class="ds-sq-sw"><i style="background:#71BF9D"></i><i style="background:#DF5531"></i><i style="background:#777876"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.opennederland.nl" class="ds-sq" style="--brand: #dc3545">
+                                <img src="{{ '/assets/logos/opennederland.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
+                                <strong>Open Nederland</strong><small>vereniging</small>
+                                <span class="ds-sq-sw"><i style="background:#dc3545"></i><i style="background:#2c3e50"></i><i style="background:#4a4a4a"></i></span>
+                            </a>
+                        </li>
                     </ul>
+                </li>
+            </ul>
+            </div>
+
+            <h3 class="ds-subtitle">De merken</h3>
+            <div class="ds-brands">
+                <article class="ds-brand-card" style="--brand: #fb5632">
+                    <p class="ds-brand-kicker">Merklaag 1 · kern · jgroenen.nl</p>
+                    <p>Rustig en persoonlijk: papier, witte kaarten met een dunne rand, ronde knoppen. Levert de remix-pool: rood, roze en paars voor creativiteit, open samenwerken en evolutie door recombinatie.</p>
                 </article>
-                <article class="ds-layer ds-layer-apitecture">
-                    <p class="lab-kicker">Laag 2 · sponsor</p>
-                    <h3><span class="apitecture-logo ds-layer-logo" role="img" aria-label="Apitecture" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></h3>
-                    <p>De sponsor. Technisch en precies: het logo levert de zeshoek, het eigen oranje en de monospace.</p>
-                    <ul>
-                        <li>Zeshoek als vorm</li>
-                        <li>Oranje <code>#ff5900</code>, nacht <code>#141416</code></li>
-                        <li>Monospace voor details</li>
-                    </ul>
+                <article class="ds-brand-card" style="--brand: #000">
+                    <p class="ds-brand-kicker">Merklaag 2 · holding · everybit.nl</p>
+                    <p>Binair en sober: zwart op wit, het logo als formule <code>(0|1)+</code>. Levert de lab-pool: klinisch groen <code>#3AC286</code> voor het laboratorium, de methode en de taxonomie, plus inkt en monospace.</p>
                 </article>
-                <article class="ds-layer ds-layer-labs">
-                    <p class="lab-kicker">Laag 3 · werkplaats</p>
-                    <h3>{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></h3>
-                    <p>De innovatiewerkplaats. Volwassen speels: de regenboog in het merk, per lab één kleur.</p>
-                    <ul>
-                        <li>Zeshoek-cluster in regenboog als beeldmerk</li>
-                        <li>Regenboog alleen in beeldmerk en merkstreep</li>
-                        <li>Zeshoekpatroon als achtergrond</li>
-                        <li>Polaroids met plakband</li>
-                        <li>De muur: A4'tjes, polaroids en stickies, van links naar rechts</li>
-                    </ul>
+                <article class="ds-brand-card ds-brand-card-labs" style="--brand: var(--jg-purple)">
+                    <p class="ds-brand-kicker">Merklaag 3 · labs · publictech.nl</p>
+                    <p>Volwassen speels. Stukjes plakband als beeldmerk, één per lab; verder per lab één gedempte potloodkleur. De muur met krabbels, printjes en stickies.</p>
+                </article>
+                <article class="ds-brand-card" style="--brand: #ff5900">
+                    <p class="ds-brand-kicker">Werk-bv · advies, bouwt publictech.nl · apitecture.nl</p>
+                    <p>Technisch en precies. Oranje <code>#ff5900</code> en nacht <code>#141416</code>, een zeshoek in het logo. Draaiende diensten onder hetzelfde logo op apitecture.io: "advanced data services".</p>
+                </article>
+                <article class="ds-brand-card" style="--brand: #1E59A6">
+                    <p class="ds-brand-kicker">Gezamenlijke werk-bv · workshops · tiltshift.nl</p>
+                    <p>"Voor de mensen die het moeten doen." Blauw <code>#1E59A6</code> en rood <code>#E64544</code> op wit, donker <code>#1D1621</code>. Helvetica Neue Bold voor koppen, Atkinson Hyperlegible voor tekst.</p>
+                </article>
+                <article class="ds-brand-card" style="--brand: #71BF9D">
+                    <p class="ds-brand-kicker">Stichting · codefor.nl</p>
+                    <p>Het beeldmerk <code>&lt;/</code> in mintgroen <code>#71BF9D</code>, oranje <code>#DF5531</code> als accent, grijs voor tekst. Koppen in Anton, smal en in hoofdletters; tekst in Roboto.</p>
+                </article>
+                <article class="ds-brand-card" style="--brand: #dc3545">
+                    <p class="ds-brand-kicker">Vereniging · opennederland.nl</p>
+                    <p>"Verbinder van Open." Een met de penseel getrokken cirkel. Rood <code>#dc3545</code>, donker blauwgrijs <code>#2c3e50</code>, afronding 8px, zachte schaduwen.</p>
                 </article>
             </div>
         </section>
@@ -75,65 +144,96 @@ css: /assets/css/design-system.css
         <section class="ds-section" id="vormtaal">
             <h2 class="ds-title"><span class="ds-step">1</span>Vormtaal</h2>
             <div class="ds-hero">
-                <div class="ds-hero-mark">{% include hex-cluster.html %}</div>
+                <div class="ds-hero-mark">{% include tape-mark.html %}</div>
                 <div>
-                    <p class="ds-hero-title">Zeshoek <span class="ds-times">×</span> <span class="accent-text">regenboog</span></p>
-                    <p class="ds-intro-text">Twee dingen dragen het hele merk. De <strong>zeshoek</strong> komt uit het logo van Apitecture: degelijk, technisch, bouwsteen naast bouwsteen. De <strong>regenboog</strong> is van de labs: creatief, open, elk domein een eigen kleur. Samen vormen ze het beeldmerk: de zeshoek-cluster in regenboog. De opbouw is die van het Apitecture-logo: zes zeshoeken wijzen met hun punten naar een kleinere middelste en raken elkaar punt aan punt. De zeshoek linksonder is langs dezelfde lijn naar buiten geschoven: het concept dat uit de bouwstenen breekt.</p>
+                    <p class="ds-hero-title"><span class="ds-pole-remix">Remix</span> <span class="ds-times">×</span> <span class="ds-pole-lab">lab</span></p>
+                    <p class="ds-intro-text">Het design system staat op twee polen. De warme pool komt van <strong>jgroenen.nl</strong>: creativiteit en open samenwerken. De klinische pool komt van <strong>everybit</strong>: het laboratorium en de methode. Alles op deze site hoort bij een van de twee, en het materiaal (papier, plakband, stickies, draadjes) brengt ze samen op de muur.</p>
                 </div>
+            </div>
+
+            <div class="ds-poles">
+                <article class="ds-pole ds-pole-card-remix">
+                    <p class="ds-brand-kicker">Pool 1 · remix · van jgroenen.nl</p>
+                    <p class="ds-pole-swatches"><i style="background: var(--jg-red)"></i><i style="background: var(--jg-pink)"></i><i style="background: var(--jg-pink-light)"></i><i style="background: var(--jg-purple)"></i><i style="background: var(--jg-indigo)"></i></p>
+                    <p class="ds-pole-colors">rood <code>--jg-red</code> · roze <code>--jg-pink</code> · lichtroze <code>--jg-pink-light</code> · paars <code>--jg-purple</code> · indigo <code>--jg-indigo</code></p>
+                    <h4>Inspiratie</h4>
+                    <ul>
+                        <li><strong>Creativiteit</strong>: ideeën mogen rommelig beginnen</li>
+                        <li><strong>Open houding</strong>: alles hangt zichtbaar aan de muur, ook wat nog niet af is</li>
+                        <li><strong>Open samenwerken</strong>: iedereen kan een sticky plakken of een concept oppakken</li>
+                        <li><strong>Remix culture</strong>: concepten bouwen voort op elkaar</li>
+                        <li><strong>Evolutie door recombinatie</strong>: nieuwe dingen ontstaan uit het verbinden van bestaande</li>
+                    </ul>
+                    <h4>Waar je het ziet</h4>
+                    <ul>
+                        <li>roze <strong>stickies</strong> met ideeën, in handschrift</li>
+                        <li>rode en paarse <strong>draadjes</strong> tussen concepten: de recombinaties</li>
+                        <li><strong>handschrift</strong> in indigo balpeninkt, de roze <strong>kantlijn</strong></li>
+                        <li>het <strong>beeldmerk</strong>: stukjes plakband over elkaar, gerecombineerd</li>
+                        <li><strong>knoppen</strong> en acties in rood: meedoen</li>
+                        <li>de labs <strong>Remix Culture</strong> (roze), <strong>Social Web</strong> (paars), <strong>Civic Tech</strong> (indigo) en <strong>Digitale Commons</strong> (rood): mensen en gemeenschap</li>
+                    </ul>
+                </article>
+                <article class="ds-pole ds-pole-card-lab">
+                    <p class="ds-brand-kicker">Pool 2 · lab · van everybit</p>
+                    <p class="ds-pole-swatches"><i style="background: var(--eb-green)"></i><i style="background: var(--eb-green-dark)"></i><i style="background: var(--ink)"></i><i style="background: #fff"></i></p>
+                    <p class="ds-pole-colors">groen <code>--eb-green</code> · donkergroen <code>--eb-green-dark</code> · inkt <code>--ink</code> · wit</p>
+                    <h4>Inspiratie</h4>
+                    <ul>
+                        <li><strong>Laboratorium</strong>: een plek om te proberen en te meten</li>
+                        <li><strong>Wetenschappelijke methode</strong>: van hypothese (schetsboek) via proef (werkbank, buiten spelen) naar resultaat (uitgevlogen)</li>
+                        <li><strong>Gestructureerde innovatie</strong>: een funnel met vaste fases</li>
+                        <li><strong>Informatiearchitectuur</strong>: elk concept heeft een vaste plek en een vaste identiteit</li>
+                        <li><strong>Taxonomie</strong>: labs, fases en soorten als ordening</li>
+                    </ul>
+                    <h4>Waar je het ziet</h4>
+                    <ul>
+                        <li><strong>catalogusnummers</strong> en <strong>zonelabels</strong> in monospace, in groen</li>
+                        <li>de <strong>zonebalk</strong> en de <strong>fases</strong> van de muur</li>
+                        <li><strong>groene lijntjes</strong> op het papier: het labjournaal</li>
+                        <li><strong>linked data</strong> (PublicXS): de taxonomie als open data</li>
+                        <li>de <strong>headerstreep</strong> en de lijnen van het organigram</li>
+                        <li>de labs <strong>Open Innovatie</strong> (groen): de methode van de werkplaats zelf, en <strong>Publieke Controle</strong> (donkergroen): registers, standaarden en schema's</li>
+                    </ul>
+                </article>
             </div>
 
             <ol class="ds-rules">
                 <li>
-                    <strong>Eén vorm: de zeshoek</strong>
-                    <span>Elke markering is een zeshoek met de punt naar boven: status, stap, nummer, labkleur. Geen rondjes, geen vierkantjes. Bewuste uitzonderingen: het plakband waarmee de foto's hangen, en de gele stickies met ideeën. Gebruik <code>--hexagon</code> als <code>clip-path</code> en <code>--hex-ratio</code> voor de breedte.</span>
+                    <strong>Elke kleur hoort bij een pool</strong>
+                    <span>Warm (rood, roze, paars) is wat mensen toevoegen: ideeën, verbindingen, acties. Groen is de structuur van het lab: ordening, fases, nummers, data. Andere kleuren zijn er niet.</span>
                 </li>
                 <li>
-                    <strong>Vaste volgorde</strong>
-                    <span>Roze, oranje, amber, geel, groen, blauw, violet. Altijd in deze volgorde, en een kleur betekent iets: een lab. Fases (schetsboek, werkbank, uitgevlogen…) hebben geen eigen kleur; het zijn namen in de kleur van het lab waarin je kijkt, of neutraal grijs op het overzicht. Overal waar een lab verschijnt (indextab, badge, plakband, beeldmerk) heeft het z'n eigen kleur.</span>
+                    <strong>Materiaal is de vorm</strong>
+                    <span>Alles wat er staat, kun je in het echt aan een muur hangen: lijntjespapier, printjes, stickies, plakband, draadjes, een magneet. Markeringen zijn een stukje plakband, geen geometrische vorm.</span>
                 </li>
                 <li>
-                    <strong>Regenboog alleen in het merk</strong>
-                    <span>De regenboog zit in het beeldmerk (de cluster) en in de streep onder de header en boven de footer. Nergens anders: niet in tekst, knoppen, tags of achtergronden. Een accentwoord in een kop krijgt één kleur: de labkleur, of het oranje van de kern.</span>
+                    <strong>Labs verdeeld over de polen</strong>
+                    <span>Vier labs uit de remix-pool (mensen en gemeenschap), twee uit de lab-pool (methode en structuur). Fases hebben geen eigen kleur. Overal waar een lab verschijnt (tabje, plakband, krabbelstreep, beeldmerk) heeft het z'n eigen kleur.</span>
                 </li>
                 <li>
                     <strong>Volwassen speels, geen kermis</strong>
-                    <span>Speels zit in de vorm (zeshoeken, polaroids, de muur), niet in de hoeveelheid kleur. Kleur betekent iets, of is er niet. Niets beweegt uit zichzelf; alleen bij hover een kleine reactie.</span>
+                    <span>Creatief in materiaal, rustig in kleur. Kleur betekent iets of is er niet. Niets beweegt uit zichzelf.</span>
                 </li>
                 <li>
-                    <strong>Punt aan punt, geen honingraat</strong>
-                    <span>Zeshoeken liggen niet zij aan zij, maar raken elkaar met de punten, met driehoekige openingen ertussen, zoals in het Apitecture-logo. Dat geldt voor het beeldmerk en voor het achtergrondpatroon: één zachte tint (de labkleur of neutraal), altijd vervagend naar één kant.</span>
+                    <strong>Papier als ondergrond</strong>
+                    <span>Lijntjespapier met groene lijntjes (lab) en een roze kantlijn (remix), met hooguit één zachte vlek in de kleur van de context. Verder geen patronen.</span>
                 </li>
             </ol>
 
-            <h3 class="ds-subtitle">Spectrum</h3>
-            <div class="ds-spectrum">
-                {% assign spectrum = "pink:roze,orange:oranje,amber:amber,yellow:geel,green:groen,blue:blauw,violet:violet" | split: "," %}
-                {% for kleur in spectrum %}{% assign k = kleur | split: ":" %}
-                <figure><span class="hex" style="--hex: var(--r-{{ k[0] }})"></span><figcaption>{{ k[1] }}<code>--r-{{ k[0] }}</code></figcaption></figure>
-                {% endfor %}
-            </div>
-
             <h3 class="ds-subtitle">Labkleuren</h3>
-            <p class="ds-note" style="margin-bottom: var(--space-4)">Elk lab krijgt één kleur uit het spectrum (<code>color</code> in <code>_data/labs.yml</code>). Het beeldmerk van een lab is de cluster in tinten van die kleur, met de losse zeshoek in volle kleur. Met <code>rainbow: true</code> staat de ring in pastel-regenboog en blijven midden en losse zeshoek in de labkleur, zoals bij Fediverse LABS.</p>
+            <p class="ds-note" style="margin-bottom: var(--space-4)">Elk lab krijgt één kleur uit een van de twee polen (<code>color</code> in <code>_data/labs.yml</code>, als <code>--pencil-*</code>), alleen voor kleine markeringen: plakband, krabbelstreep, het randje van een tabje. Het beeldmerk van een lab is het hoofdlogo met alleen het stukje van dat lab in kleur; de andere drie zijn transparant.</p>
             <div class="ds-labcolors">
                 {% for lab in site.data.labs %}
-                <figure style="--lab: var(--r-{{ lab.color }})"><span class="ds-labcolors-mark">{% include lab-mark.html %}</span><figcaption><strong>{{ lab.name }}</strong><code>--r-{{ lab.color }}</code></figcaption></figure>
+                <figure style="--lab: var(--pencil-{{ lab.color }})"><span class="ds-labcolors-mark">{% include lab-mark.html %}</span><figcaption><strong>{{ lab.name }}</strong><code>--pencil-{{ lab.color }}</code></figcaption></figure>
                 {% endfor %}
-            </div>
-
-            <h3 class="ds-subtitle">Zeshoekmaten</h3>
-            <div class="ds-hexsizes" style="--tint: var(--r-violet)">
-                <figure><span class="ds-step">3</span><figcaption>46 · stap en nummer</figcaption></figure>
-                <figure><span class="ds-hexsizes-cluster">{% include hex-cluster.html %}</span><figcaption>cluster · beeldmerk</figcaption></figure>
             </div>
 
             <h3 class="ds-subtitle">Motieven</h3>
             <div class="ds-motifs">
-                <figure class="ds-motif"><div class="ds-motif-box"><span class="ds-motif-cluster">{% include hex-cluster.html %}</span></div><figcaption><strong>Cluster</strong> · beeldmerk van de labs, met één losse zeshoek zoals in het Apitecture-logo</figcaption></figure>
-                <figure class="ds-motif"><div class="ds-motif-box ds-motif-pattern"></div><figcaption><strong>Zeshoekpatroon</strong> · <code>--hex-pattern-mask</code>, punt aan punt zoals in het logo, in één zachte tint, vervaagt naar links</figcaption></figure>
-                <figure class="ds-motif"><div class="ds-motif-box"><div class="ds-rainbow" style="background: var(--rainbow); width: 100%"></div></div><figcaption><strong>Regenboogstreep</strong> · alleen onder de header en boven de footer. Op een labpagina zoomt de headerstreep in (×4) met de labkleur in het midden; bij navigeren zoomt hij in, uit of schuift hij mee.</figcaption></figure>
+                <figure class="ds-motif"><div class="ds-motif-box"><span class="ds-motif-cluster">{% include tape-mark.html %}</span></div><figcaption><strong>Beeldmerk</strong> · stukjes plakband, één per lab</figcaption></figure>
                 <figure class="ds-motif"><div class="ds-motif-box ds-motif-wall"><span class="ds-mini-a4"></span><span class="ds-mini-a4 ds-mini-a4-low"></span><span class="ds-mini-fridge"></span></div><figcaption><strong>De muur</strong> · een lange witte muur van links (koelkast, schetsboek) naar rechts (uitgevlogen). Concepten hangen als A4'tjes met plakband, met polaroids en stickies erbij. De muur is een slider: schuiven met pijlen, vegen of de zonebalk.</figcaption></figure>
-                <figure class="ds-motif"><div class="ds-motif-box" style="--tint: var(--r-orange)"><span class="lab-photo ds-motif-polaroid"><img src="{{ '/assets/previews/minipol.jpg' | relative_url }}" alt=""></span></div><figcaption><strong>Plakband</strong> · foto's hangen met een strookje in de kleur van hun lab</figcaption></figure>
+                <figure class="ds-motif"><div class="ds-motif-box" style="--tint: var(--jg-red)"><span class="lab-photo ds-motif-polaroid"><img src="{{ '/assets/previews/minipol.jpg' | relative_url }}" alt=""></span></div><figcaption><strong>Plakband</strong> · foto's hangen met een strookje in de kleur van hun lab</figcaption></figure>
             </div>
         </section>
 
@@ -143,7 +243,7 @@ css: /assets/css/design-system.css
             <p class="ds-intro-text">De design tokens: CSS custom properties in <code>assets/css/styles.css</code>. Componenten gebruiken alleen deze tokens, nooit losse waarden.</p>
 
             <h3 class="ds-subtitle">Kleur</h3>
-            {% assign color_groups = "kern:--paper,--card,--ink,--dark-gray,--muted,--medium-gray,--accent,--accent-dark|apitecture:--apitecture-orange,--apitecture-night|regenboog:--r-pink,--r-orange,--r-amber,--r-yellow,--r-green,--r-blue,--r-violet" | split: "|" %}
+            {% assign color_groups = "kern:--paper,--card,--ink,--dark-gray,--muted,--medium-gray,--accent,--accent-dark|remix (jgroenen.nl):--jg-red,--jg-pink,--jg-pink-light,--jg-purple,--jg-indigo|lab (everybit):--eb-green,--eb-green-dark|labs:--pencil-pink,--pencil-purple,--pencil-indigo,--pencil-red,--pencil-green,--pencil-darkgreen" | split: "|" %}
             {% for group in color_groups %}
             {% assign parts = group | split: ":" %}
             <p class="ds-label">{{ parts[0] }}</p>
@@ -157,9 +257,7 @@ css: /assets/css/design-system.css
                 {% endfor %}
             </div>
             {% endfor %}
-            <p class="ds-label">regenboogverloop</p>
-            <div class="ds-rainbow" style="background: var(--rainbow)"></div>
-            <p class="ds-note"><code>--rainbow</code> · alleen voor de merkstreep onder de header en boven de footer.</p>
+            <p class="ds-note">De remix-pool (<code>--jg-*</code>) en de lab-pool (<code>--eb-*</code>) zijn de enige kleuren; de labkleuren <code>--pencil-*</code> zijn daar tinten van. Handschrift staat in indigo balpeninkt <code>--ink-pen</code>.</p>
 
             <h3 class="ds-subtitle">Typografie</h3>
             <div class="ds-type">
@@ -193,7 +291,7 @@ css: /assets/css/design-system.css
             </div>
 
             <h3 class="ds-subtitle">Beweging</h3>
-            <p class="ds-note">Rustig, geen kermis. Niets beweegt uit zichzelf: geen lopende regenboog, geen pulserende vormen. Alleen bij hover reageert iets: een kaart komt een paar pixels omhoog, het verloop van een knop schuift. <code>--duration-fast</code> 0.2s, <code>--duration</code> 0.3s, <code>--duration-slow</code> 0.6s. Bij <code>prefers-reduced-motion</code> staat ook dat stil.</p>
+            <p class="ds-note">Rustig, geen kermis. Niets beweegt uit zichzelf. Alleen bij hover reageert iets: een kaart komt een paar pixels omhoog, het verloop van een knop schuift. <code>--duration-fast</code> 0.2s, <code>--duration</code> 0.3s, <code>--duration-slow</code> 0.6s. Bij <code>prefers-reduced-motion</code> staat ook dat stil.</p>
 
         </section>
 
@@ -217,19 +315,19 @@ css: /assets/css/design-system.css
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo"><p class="lab-kicker" style="margin: 0">Public Tech NL Labs · fediverse</p></div>
-                    <p class="ds-name">Kicker <code>.lab-kicker</code> · met regenboogzeshoekje</p>
+                    <p class="ds-name">Kicker <code>.lab-kicker</code> · met een stukje plakband</p>
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo"><ul class="lab-tags" style="margin: 0"><li>open source</li><li>community</li><li>participatie</li><li>data</li><li>privacy by design</li><li>governance</li></ul></div>
                     <p class="ds-name">Tag <code>.lab-tags li</code> · kleur wisselt per positie</p>
                 </div>
                 <div class="ds-specimen">
-                    <div class="ds-demo">{% for lab in site.data.labs %}<a href="{{ lab.path | relative_url }}" class="lab-badge" style="--lab: var(--r-{{ lab.color }}); margin: 0">{{ lab.label }}</a>{% endfor %}</div>
+                    <div class="ds-demo">{% for lab in site.data.labs %}<a href="{{ lab.path | relative_url }}" class="lab-badge" style="--lab: var(--pencil-{{ lab.color }}); margin: 0">{{ lab.label }}</a>{% endfor %}</div>
                     <p class="ds-name">Labbadge <code>.lab-badge</code> · in de labkleur</p>
                 </div>
                 <div class="ds-specimen">
-                    <div class="ds-demo"><span class="dot-active"></span> <span class="hex"></span> <span class="hex" style="--hex: var(--r-violet)"></span></div>
-                    <p class="ds-name">Zeshoek <code>.hex</code> · en de stip <code>.dot-active</code> van jgroenen.nl, alleen voor de kernlaag</p>
+                    <div class="ds-demo"><span class="dot-active"></span> <span class="hex"></span> <span class="hex" style="--hex: var(--jg-purple)"></span></div>
+                    <p class="ds-name">Stukje plakband <code>.hex</code> · en de stip <code>.dot-active</code> van jgroenen.nl, alleen voor de kernlaag</p>
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo"><ul class="lab-stickies" style="padding: 0"><li class="lab-sticky">organisatieprofiel</li><li class="lab-sticky">koppelen met agenda</li></ul></div>
@@ -241,11 +339,7 @@ css: /assets/css/design-system.css
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo">{% include logo.html %}</div>
-                    <p class="ds-name">Labslogo <code>_includes/logo.html</code> · cluster plus woordmerk, LABS in dezelfde regenboog</p>
-                </div>
-                <div class="ds-specimen">
-                    <div class="ds-demo ds-demo-dark"><span class="apitecture-logo" role="img" aria-label="Apitecture" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></div>
-                    <p class="ds-name">Apitecture-logo in regenboog <code>.apitecture-logo</code></p>
+                    <p class="ds-name">Labslogo <code>_includes/logo.html</code> · stukjes plakband (één per lab) plus woordmerk; LABS in het oranje van de kern</p>
                 </div>
             </div>
         </section>
@@ -257,12 +351,12 @@ css: /assets/css/design-system.css
 
             <div class="ds-grid">
                 <div class="ds-specimen ds-specimen-wide">
-                    <div class="ds-demo"><nav class="ds-zone-nav" style="--tint: var(--r-green)">{% for status in site.data.statuses %}{% if forloop.index == 3 %}<span class="lab-index-item lab-index-empty">{{ status.label }} <span class="lab-count">0</span></span>{% else %}<a href="#moleculen" class="lab-index-item">{{ status.label }} <span class="lab-count">{{ forloop.index }}</span></a>{% endif %}{% endfor %}</nav></div>
+                    <div class="ds-demo"><nav class="ds-zone-nav" style="--tint: var(--eb-green)">{% for status in site.data.statuses %}{% if forloop.index == 3 %}<span class="lab-index-item lab-index-empty">{{ status.label }} <span class="lab-count">0</span></span>{% else %}<a href="#moleculen" class="lab-index-item">{{ status.label }} <span class="lab-count">{{ forloop.index }}</span></a>{% endif %}{% endfor %}</nav></div>
                     <p class="ds-name">Zonebalk <code>.wall-nav</code> · de fases als knoppen boven de muur, met aantal; de zone die in beeld is licht op. Een lege fase krijgt een stippelrand.</p>
                 </div>
                 <div class="ds-specimen">
-                    <div class="ds-demo ds-demo-polaroid" style="--tint: var(--r-violet)"><span class="lab-photo"><img src="{{ '/assets/previews/mastodon-external-accounts-feed.jpg' | relative_url }}" alt=""></span></div>
-                    <p class="ds-name">Polaroid <code>.lab-photo</code> · met plakband in de labkleur, de uitzondering op de zeshoekregel</p>
+                    <div class="ds-demo ds-demo-polaroid" style="--tint: var(--jg-purple)"><span class="lab-photo"><img src="{{ '/assets/previews/mastodon-external-accounts-feed.jpg' | relative_url }}" alt=""></span></div>
+                    <p class="ds-name">Polaroid <code>.lab-photo</code> · met plakband in de labkleur</p>
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo"><dl class="lab-facts" style="width: 100%"><dt>Met</dt><dd>Code for NL</dd><dt>Website</dt><dd><a href="#moleculen">jgroenen.nl</a></dd><dt>Code</dt><dd><a href="#moleculen" class="lab-repo">broncode</a></dd></dl></div>
@@ -278,16 +372,16 @@ css: /assets/css/design-system.css
         <!-- Organismen -->
         <section class="ds-section" id="organismen">
             <h2 class="ds-title"><span class="ds-step">5</span>Organismen</h2>
-            <p class="ds-intro-text">Zelfstandige onderdelen van een pagina. De header staat bovenaan en de footer onderaan deze pagina; de indextabs (<code>_includes/side-tabs.html</code>) zijn de navigatie: één tab per lab met een wit zeshoekje en het aantal concepten, rechts uit het scherm; het huidige lab steekt verder uit en bij hover verschijnt de naam. Op schermen smaller dan 1180px steken ze onderaan omhoog. Er is geen menu bovenin.</p>
-            <p class="ds-intro-text">De concepten hangen op de muur (<code>_includes/wall.html</code>): links de koelkast, dan de fases van schetsboek tot uitgevlogen. De muur is een horizontale slider die zacht vastklikt op de zones; <code>assets/js/muur.js</code> regelt de pijlen, de zonebalk en het groot openen van een A4'tje.</p>
+            <p class="ds-intro-text">Zelfstandige onderdelen van een pagina. De header staat bovenaan en de footer onderaan deze pagina; de indextabs (<code>_includes/side-tabs.html</code>) zijn de navigatie: één tab per lab met een stukje plakband in de labkleur en het aantal concepten, rechts uit het scherm; het huidige lab steekt verder uit en bij hover verschijnt de naam. Op schermen smaller dan 1180px opent een hamburger in de header ze als menu over het hele scherm, groot en met naam. Er is geen menu bovenin.</p>
+            <p class="ds-intro-text">De concepten hangen op de muur (<code>_includes/wall.html</code>): links de koelkast, dan de fases van schetsboek tot uitgevlogen. De muur is een horizontale slider die vrij schuift; <code>assets/js/muur.js</code> regelt de pijlen, de zonebalk en het groot openen van een A4'tje.</p>
 
-            <p class="ds-name">Concept op de muur <code>_includes/wall-item.html</code> · een met de hand beschreven A4'tje op lijntjespapier, met plakband in de labkleur, een krabbelstreep onder de titel en een potloodschets van de cluster; de screenshot als printje en ideeën als stickies. Afwisselend hoog en laag gehangen, licht scheef. Binnen een zone hangen concepten per lab in een clustertje bij elkaar (<code>.wall-cluster</code>), met de labnaam in handschrift erboven. Concepten die met elkaar te maken hebben (<code>verbonden</code> in de data) krijgen een rood draadje van speldje naar speldje (<code>.wall-threads</code>). In een geopend velletje klapt <code>{ } linked data</code> het stukje PublicXS-data van dat concept open, met de vaste URI.</p>
+            <p class="ds-name">Concept op de muur <code>_includes/wall-item.html</code> · een met de hand beschreven A4'tje op lijntjespapier, met plakband in de labkleur, een krabbelstreep onder de titel en een potloodschets van de cluster; de screenshot als printje en ideeën als stickies. Afwisselend hoog en laag gehangen, licht scheef. Binnen een zone hangen concepten per lab in een clustertje bij elkaar (<code>.wall-cluster</code>), met de labnaam in handschrift erboven. Concepten die met elkaar te maken hebben (<code>verbonden</code> in de data) krijgen een draadje (rood, of blauw), met aan elk eind een stukje plakband (<code>.wall-threads</code>). In een geopend velletje klapt <code>{ } linked data</code> het stukje PublicXS-data van dat concept open, met de vaste URI.</p>
             {% assign project = site.data.projects | where: "id", "opendiensten" | first %}
             <div class="ds-organism ds-wall-demo">
                 <div class="wall-items">{% include wall-item.html i=1 %}</div>
             </div>
 
-            <p class="ds-name">Koelkast <code>.fridge</code> · concepten op pauze hangen met een zeshoekig magneetje op de deur</p>
+            <p class="ds-name">Koelkast <code>.fridge</code> · concepten op pauze hangen met een rond magneetje op de deur</p>
             {% assign fridge_items = site.data.projects | where: "status", "koelkast" %}
             <div class="ds-organism ds-wall-demo">
                 <div class="fridge"><span class="fridge-freezer" aria-hidden="true"></span><div class="fridge-door">{% for project in fridge_items %}{% include wall-item.html i=forloop.index fridge=true %}{% endfor %}</div><span class="fridge-handle" aria-hidden="true"></span></div>
@@ -297,7 +391,7 @@ css: /assets/css/design-system.css
             <div class="ds-organism ds-collage">{% include collage.html %}</div>
 
             <p class="ds-name">Zone <code>.wall-zone</code> · een stuk muur per fase, met het label in monospace en de omschrijving eronder; zones gescheiden door een stippellijn</p>
-            <div class="ds-organism" style="--tint: var(--r-orange)">
+            <div class="ds-organism" style="--tint: var(--jg-red)">
                 {% assign demo_status = site.data.statuses | where: "id", "buiten-spelen" | first %}
                 <h2 class="wall-zone-label">{{ demo_status.label }} <span class="lab-count">19</span></h2>
                 <p class="wall-zone-note">{{ demo_status.description }}</p>
@@ -343,7 +437,7 @@ css: /assets/css/design-system.css
             <p class="ds-intro-text">De templates gevuld met echte inhoud.</p>
             <ul class="ds-pages">
                 <li><a href="{{ '/' | relative_url }}"><strong>{{ site.name }}</strong><span>Alle projecten, per status</span></a></li>
-                <li><a href="{{ '/agenda/' | relative_url }}"><strong>Public Tech Hackathons</strong><span>/agenda/ · ook als agendafeed</span></a></li>
+                <li><a href="{{ '/agenda/' | relative_url }}"><strong>Public Tech Agenda</strong><span>/agenda/ · ook als agendafeed</span></a></li>
                 {% for lab in site.data.labs %}
                 <li><a href="{{ lab.path | relative_url }}"><strong>{{ lab.name }}</strong><span>{{ lab.domain | default: lab.path }}</span></a></li>
                 {% endfor %}
@@ -355,6 +449,42 @@ css: /assets/css/design-system.css
 {% include footer.html %}
 
 <script>
+    // Organigram: lijnen van de onderkant van elk blokje naar de bovenkant van zijn kinderen
+    (function () {
+        var wrap = document.querySelector('.ds-org-scroll');
+        var svg = wrap && wrap.querySelector('.ds-org-lines');
+        if (!svg) return;
+        function draw() {
+            var base = wrap.getBoundingClientRect();
+            var sx = wrap.scrollLeft;
+            svg.setAttribute('width', wrap.scrollWidth);
+            svg.setAttribute('height', wrap.scrollHeight);
+            var out = '';
+            wrap.querySelectorAll('.ds-org li').forEach(function (li) {
+                var node = li.querySelector(':scope > .ds-sq');
+                var kids = li.querySelector(':scope > ul');
+                if (!node || !kids) return;
+                var p = node.getBoundingClientRect();
+                var px = p.left + p.width / 2 - base.left + sx, py = p.bottom - base.top;
+                var targets = Array.prototype.map.call(kids.children, function (c) { return c.querySelector(':scope > .ds-sq'); });
+                var tops = targets.filter(Boolean).map(function (t) {
+                    var r = t.getBoundingClientRect();
+                    return { x: r.left + r.width / 2 - base.left + sx, y: r.top - base.top };
+                });
+                if (!tops.length) return;
+                var midY = Math.round((py + Math.min.apply(null, tops.map(function (t) { return t.y; }))) / 2);
+                out += 'M' + px + ' ' + py + 'V' + midY;
+                if (tops.length > 1) out += 'M' + tops[0].x + ' ' + midY + 'H' + tops[tops.length - 1].x;
+                else out += 'H' + tops[0].x;
+                tops.forEach(function (t) { out += 'M' + t.x + ' ' + midY + 'V' + t.y; });
+            });
+            svg.innerHTML = '<path d="' + out + '"/>';
+        }
+        window.addEventListener('load', draw);
+        window.addEventListener('resize', draw);
+        draw();
+    })();
+
     // Toon de werkelijke waarde van elke token naast het staaltje
     (function () {
         var root = getComputedStyle(document.documentElement);

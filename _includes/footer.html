@@ -2,10 +2,11 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-column">
-                <h3 class="footer-brand">{% include hex-cluster.html %}<span>{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></span></h3>
-                <p>Open labs voor publieke technologie. Georganiseerd door <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
-                <p class="footer-org">Mogelijk gemaakt door
-                    <a href="{{ site.sponsor.url }}"><span class="apitecture-logo" role="img" aria-label="Sponsor: {{ site.sponsor.name }}" style="--logo: url('{{ '/assets/logos/apitecture.png' | relative_url }}')"></span></a>
+                <h3 class="footer-brand">{% include tape-mark.html %}<span>{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></span></h3>
+                <p>Open labs voor publieke technologie.</p>
+                <p class="footer-credit">concept by <a href="{{ site.author.url }}">{{ site.author.name }}</a>.</p>
+                <p class="footer-credit">built by
+                    <a href="{{ site.builder.url }}" class="footer-credit-logo"><img src="{{ '/assets/logos/apitecture.png' | relative_url }}" alt="{{ site.builder.name }}" width="160" height="17"></a>
                 </p>
             </div>
             <div class="footer-column">
@@ -25,8 +26,8 @@
             </div>
         </div>
         <div class="copyright">
-            <p><a href="{{ '/agenda/' | relative_url }}">Hackathon-agenda</a> · <a href="{{ '/publicxs.jsonld' | relative_url }}">Open data (PublicXS)</a> · <a href="{{ '/design-system/' | relative_url }}">Design system</a></p>
-            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.author.url }}">{{ site.author.name }}</a> · sponsor <a href="{{ site.sponsor.url }}">{{ site.sponsor.name }}</a></p>
+            <p><a href="{{ '/agenda/' | relative_url }}">Agenda</a> · <a href="{{ '/publicxs.jsonld' | relative_url }}">Open data (PublicXS)</a></p>
+            <p>&copy; {{ site.time | date: "%Y" }} <a href="{{ site.author.url }}">{{ site.author.name }}</a></p>
         </div>
     </div>
 </footer>

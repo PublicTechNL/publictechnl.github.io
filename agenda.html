@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Public Tech Hackathon-agenda
+title: Public Tech Agenda
 description: Hackathons, open hack dagen en andere momenten waarop publieke tech-concepten een stap verder komen.
 permalink: /agenda/
+brand: agenda
 ---
 {% comment %}
 Komend en geweest wordt bepaald bij het bouwen van de site (site.time).
@@ -21,8 +22,8 @@ Na een moment schuift het pas naar "geweest" bij de volgende build.
     <div class="container">
         <div class="lab-intro-content">
             <div class="lab-intro-text">
-                <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name }}</a> · agenda</p>
-                <h1>Public Tech <span class="accent-text">Hackathons</span></h1>
+                <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name | remove: " LABS" }}</a> · agenda</p>
+                <h1>Public Tech <span class="accent-text">Agenda</span></h1>
                 <p>Een verzameling van hackathons, open hack dagen en andere momenten waarop publieke tech-concepten een stap verder komen: van schetsboek naar werkbank, van werkbank naar buiten spelen.</p>
                 <p>Organiseer je zelf een hackathon of open hack dag voor publieke technologie? Laat het weten, dan zet ik hem erbij.</p>
                 <div class="lab-intro-actions">
@@ -36,6 +37,7 @@ Korte beschrijving:
 ' | url_encode }}" class="btn btn-secondary">Zet je hackathon erop</a>
                 </div>
             </div>
+            <div class="lab-intro-art lab-intro-cal">{% include cal-mark.html %}</div>
         </div>
     </div>
 </section>

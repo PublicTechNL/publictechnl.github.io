@@ -1,0 +1,12 @@
+{% comment %}
+Beeldmerk van PUBLIC TECH NL LABS: stukjes plakband over elkaar, één per lab, in de potloodkleur van dat lab
+(volgorde en kleur uit _data/labs.yml). Met `include.lab` het beeldmerk van één lab: dezelfde stukjes,
+alleen dat van het lab in kleur, de andere transparant. Met `include.sketch` alleen de omtrek, als potloodschets.
+{% endcomment %}
+{% assign tape_rots = "-8,5,-3,7,-5,4" | split: "," %}
+{% assign tape_dx = "0,4,0,3,1,4" | split: "," %}
+<svg class="tape-mark{% if include.sketch %} tape-mark-sketch{% endif %}{% if include.lab %} tape-mark-lab{% endif %}" viewBox="-4 -6 70 78" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+{% for lab in site.data.labs limit: 6 %}{% assign r = tape_rots[forloop.index0] %}{% assign dx = tape_dx[forloop.index0] %}{% assign ghost = false %}{% if include.lab and include.lab.id != lab.id %}{% assign ghost = true %}{% endif %}
+    <rect{% if ghost %} class="tape-ghost"{% endif %} x="{{ dx }}" y="{{ forloop.index0 | times: 10 | plus: 2 }}" width="56" height="13" rx="1" transform="rotate({{ r }} {{ dx | plus: 28 }} {{ forloop.index0 | times: 10 | plus: 8 }})"{% unless ghost %} style="fill: var(--pencil-{{ lab.color }})"{% endunless %}/>
+{% endfor %}
+</svg>

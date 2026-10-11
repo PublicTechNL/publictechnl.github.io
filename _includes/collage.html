@@ -8,7 +8,7 @@ Met `static=true` (header) zonder links en zonder alt-teksten: dan is het puur d
     </figure>
     {% for project in uitgelicht limit: 2 %}
     {% assign concept_lab = site.data.labs | where: "id", project.lab | first %}
-    {% if include.static %}<span{% else %}<a href="{{ project.url }}"{% endif %} class="lab-photo lab-collage-concept lab-collage-concept-{{ forloop.index }}"{% if concept_lab %} style="--tint: var(--r-{{ concept_lab.color }})"{% endif %}>
+    {% if include.static %}<span{% else %}<a href="{{ project.url }}"{% endif %} class="lab-photo lab-collage-concept lab-collage-concept-{{ forloop.index }}"{% if concept_lab %} style="--tint: var(--pencil-{{ concept_lab.color }})"{% endif %}>
         <img src="{{ '/assets/previews/' | append: project.id | append: '.jpg' | relative_url }}" alt="{% unless include.static %}Concept: {{ project.title }}{% endunless %}">
         <span class="lab-collage-caption">{{ project.title }}</span>
     {% if include.static %}</span>{% else %}</a>{% endif %}

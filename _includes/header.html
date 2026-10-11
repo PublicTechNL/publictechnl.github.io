@@ -1,14 +1,9 @@
 {% comment %}
-Merkstreep onder de header. Homepage: de hele regenboog. Labpagina: ingezoomd (×4) met de labkleur in het midden,
-met aan weerszijden nog een uitgerekt stuk regenboog. Bij navigeren zoomt of schuift hij vanaf de vorige stand
-(sessionStorage): regenboog → lab is inzoomen, lab → regenboog uitzoomen, lab → lab schuiven.
---strip-f is de plek van de kleur in de regenboog (0 = roze, 1 = violet).
+Merkstreep onder de header: een dunne lijn in lab-groen (everybit); op een labpagina in de potloodkleur van het lab.
+Bij navigeren loopt de kleur vloeiend over vanaf de vorige pagina (sessionStorage).
 {% endcomment %}
 {% assign strip_lab = site.data.labs | where: "id", page.lab | first %}
-{% assign strip_map = "pink:0,orange:0.2,amber:0.3,yellow:0.4,green:0.6,blue:0.8,violet:1" | split: "," %}
-{% assign strip_f = "" %}
-{% if strip_lab %}{% for pair in strip_map %}{% assign kv = pair | split: ":" %}{% if kv[0] == strip_lab.color %}{% assign strip_f = kv[1] %}{% endif %}{% endfor %}{% endif %}
-<header class="strip" style="{% if strip_f != "" %}--strip-f: {{ strip_f }}; --strip-s: 4{% else %}--strip-f: 0.5; --strip-s: 1{% endif %}">
+<header class="strip" style="{% if strip_lab %}--strip-color: var(--pencil-{{ strip_lab.color }}){% else %}--strip-color: var(--eb-green){% endif %}">
     <span class="strip-bar" aria-hidden="true"><span class="strip-rainbow"></span></span>
     <div class="container">
         <nav>
@@ -20,9 +15,27 @@ met aan weerszijden nog een uitgerekt stuk regenboog. Bij navigeren zoomt of sch
             {% elsif page.url == '/' %}
             <span class="header-visual header-visual-collage" aria-hidden="true">{% include collage.html static=true %}</span>
             {% endif %}
+            <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="side-tabs" aria-label="Menu"><span></span></button>
         </nav>
     </div>
 </header>
+{% include side-tabs.html %}
+<script>
+    // Hamburger: opent de tabjes als menu over het hele scherm (alleen op smalle schermen zichtbaar)
+    (function () {
+        var toggle = document.querySelector('.menu-toggle');
+        var menu = document.getElementById('side-tabs');
+        if (!toggle || !menu) return;
+        function setOpen(open) {
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu');
+            document.body.classList.toggle('menu-open', open);
+        }
+        toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+        menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    })();
+</script>
 <script>
     (function () {
         var header = document.querySelector('header.strip');
@@ -37,11 +50,10 @@ met aan weerszijden nog een uitgerekt stuk regenboog. Bij navigeren zoomt of sch
             header.setAttribute('style', prev);
             // beginstand vastleggen, daarna meteen naar de nieuwe stand: de transitie doet de rest
             var bar = header.querySelector('.strip-rainbow');
-            getComputedStyle(bar).transform;
+            getComputedStyle(bar).backgroundColor;
             header.classList.remove('strip-still');
             getComputedStyle(bar).transitionDuration;
             header.setAttribute('style', target);
         } catch (e) {}
     })();
 </script>
-{% include side-tabs.html %}

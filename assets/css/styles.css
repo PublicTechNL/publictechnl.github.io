@@ -26,8 +26,8 @@
 /*
  * Design tokens. Drie merklagen, zie /design-system/:
  *   kern       - jgroenen.nl: papier, kaarten, oranje, ronde knoppen
- *   apitecture - het logo: zeshoek, eigen oranje, monospace, nacht
- *   labs       - regenboog, per lab een eigen kleur (fases hebben geen kleur)
+ *   everybit   - inkt, monospace, nuchterheid (de holding)
+ *   labs       - papier en plakband, per lab één potloodkleur (fases hebben geen kleur)
  */
 :root {
     /* Kern (jgroenen.nl) */
@@ -50,9 +50,9 @@
     --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
     --font-serif: Georgia, 'Times New Roman', serif;
-    /* Plakbriefjesgeel, alleen voor stickies */
-    --sticky: #fff1a1;
-    --sticky-edge: #fbe57a;
+    /* Roze plakbriefjes: ideeën horen bij de remix-pool */
+    --sticky: #fcd6e7;
+    --sticky-edge: #f6b3cc;
 
     /* Handschrift, alleen voor ideeën op stickies */
     --font-hand: 'Caveat', 'Bradley Hand', cursive;
@@ -80,27 +80,30 @@
     --duration: 0.3s;
     --duration-slow: 0.6s;
 
-    /* Apitecture (logo) */
-    --apitecture-orange: #ff5900;
+    /*
+     * Twee polen (zie /design-system/#vormtaal):
+     * remix (jgroenen.nl) - rood, roze, paars: creativiteit, open samenwerken, remix, evolutie door recombinatie
+     * lab (everybit)      - klinisch groen: laboratorium, methode, gestructureerde innovatie, taxonomie
+     */
+    --jg-red: #fb5632;
+    --jg-pink: #ee4bab;
+    --jg-pink-light: #f6b3cc;
+    --jg-purple: #703289;
+    --jg-indigo: #2d2576;
+    --eb-green: #3AC286;
+    --eb-green-dark: #1f8a5c;
+    /* Apitecture: alleen voor de achtergrond van hun logo */
     --apitecture-night: #141416;
-    --hexagon: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-    /* Breedte : hoogte van een zeshoek met de punt boven */
-    --hex-ratio: 0.866;
-    /* Zeshoekpatroon zoals in het logo: punt aan punt, met driehoeken ertussen */
-    --hex-pattern: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2255.43%22 height=%2232.00%22%3E%3Cg fill=%22none%22 stroke=%22%236364ff%22 stroke-opacity=%220.16%22 stroke-width=%221%22%3E%3Cpolygon points=%220.00,-12.80 11.09,-6.40 11.09,6.40 0.00,12.80 -11.09,6.40 -11.09,-6.40%22/%3E%3Cpolygon points=%2255.43,-12.80 66.51,-6.40 66.51,6.40 55.43,12.80 44.34,6.40 44.34,-6.40%22/%3E%3Cpolygon points=%220.00,19.20 11.09,25.60 11.09,38.40 0.00,44.80 -11.09,38.40 -11.09,25.60%22/%3E%3Cpolygon points=%2255.43,19.20 66.51,25.60 66.51,38.40 55.43,44.80 44.34,38.40 44.34,25.60%22/%3E%3Cpolygon points=%2227.71,3.20 38.80,9.60 38.80,22.40 27.71,28.80 16.63,22.40 16.63,9.60%22/%3E%3C/g%3E%3C/svg%3E");
-    --hex-pattern-size: 55.43px 32.00px;
-    /* Zelfde patroon als masker: de regenboog schijnt door de lijnen */
-    --hex-pattern-mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2255.43%22 height=%2232.00%22%3E%3Cg fill=%22none%22 stroke=%22%23000%22 stroke-opacity=%220.32%22 stroke-width=%221.2%22%3E%3Cpolygon points=%220.00,-12.80 11.09,-6.40 11.09,6.40 0.00,12.80 -11.09,6.40 -11.09,-6.40%22/%3E%3Cpolygon points=%2255.43,-12.80 66.51,-6.40 66.51,6.40 55.43,12.80 44.34,6.40 44.34,-6.40%22/%3E%3Cpolygon points=%220.00,19.20 11.09,25.60 11.09,38.40 0.00,44.80 -11.09,38.40 -11.09,25.60%22/%3E%3Cpolygon points=%2255.43,19.20 66.51,25.60 66.51,38.40 55.43,44.80 44.34,38.40 44.34,25.60%22/%3E%3Cpolygon points=%2227.71,3.20 38.80,9.60 38.80,22.40 27.71,28.80 16.63,22.40 16.63,9.60%22/%3E%3C/g%3E%3C/svg%3E");
 
-    /* Labs: regenboog */
-    --r-pink: #e9457c;
-    --r-orange: #fb5632;
-    --r-amber: #fb8c32;
-    --r-yellow: #f5c400;
-    --r-green: #2ec27e;
-    --r-blue: #3a86ff;
-    --r-violet: #6364ff;
-    --rainbow: linear-gradient(90deg, var(--r-pink), var(--r-orange), var(--r-yellow), var(--r-green), var(--r-blue), var(--r-violet));
+    /* Labkleuren: vier uit de remix-pool, twee uit de lab-pool; voor plakband, krabbelstreep, tabjes */
+    --pencil-pink: #e56aac;
+    --pencil-red: #ef6b4d;
+    --pencil-indigo: #4c4598;
+    --pencil-purple: #8a4fa3;
+    --pencil-green: #3fb37f;
+    --pencil-darkgreen: #2a8562;
+    /* Balpeninkt voor handschrift: het diepe indigo van jgroenen.nl */
+    --ink-pen: #2d2576;
 }
 
 * {
@@ -134,30 +137,21 @@ header {
     padding: 8px 0;
 }
 
-/*
- * Merkstreep: de regenboog als zoombare strook.
- * De strook is twee keer zo breed als het scherm; de regenboog zit in het middelste deel,
- * met aan weerszijden effen roze en violet, zodat er bij inzoomen nooit een gat valt.
- * transform: eerst verschuiven, dan schalen rond het midden; zo komt kleur f in het midden.
- */
 .strip-bar {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 4px;
+    height: 3px;
     overflow: hidden;
 }
 
+/* Merkstreep: een dunne lijn in donkere inkt; op een labpagina in de potloodkleur van het lab */
 .strip-rainbow {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -50%;
-    width: 200%;
-    background: linear-gradient(90deg, var(--r-pink) 25%, var(--r-orange) 35%, var(--r-yellow) 45%, var(--r-green) 55%, var(--r-blue) 65%, var(--r-violet) 75%);
-    transform: translateX(calc(var(--strip-s, 1) * (0.5 - var(--strip-f, 0.5)) * 50%)) scaleX(var(--strip-s, 1));
-    transition: transform var(--duration-slow) ease;
+    inset: 0;
+    background-color: var(--strip-color, var(--ink));
+    transition: background-color var(--duration-slow) ease;
 }
 
 header.strip-still .strip-rainbow {
@@ -236,16 +230,6 @@ footer {
     padding: 60px 0 20px;
 }
 
-footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: var(--rainbow);
-}
-
 .footer-content {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -305,27 +289,18 @@ footer::before {
     --tint: var(--muted);
 }
 
-/* Intro: regenboogwaas met een vervagend zeshoekpatroon */
+/* Intro: lijntjespapier met kantlijn en één zachte vlek in de kleur van de context */
 .lab-intro {
     position: relative;
     isolation: isolate;
     padding: 160px 0 80px;
-    background-color: var(--paper);
-    background-image: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--lab, var(--accent)) 9%, transparent), transparent 45%);
-}
-
-.lab-intro::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -3;
-    background: color-mix(in srgb, var(--lab, var(--ink)) 30%, transparent);
-    -webkit-mask-image: var(--hex-pattern-mask), linear-gradient(110deg, transparent 5%, black 60%);
-    -webkit-mask-size: var(--hex-pattern-size), 100% 100%;
-    -webkit-mask-composite: source-in;
-    mask-image: var(--hex-pattern-mask), linear-gradient(110deg, transparent 5%, black 60%);
-    mask-size: var(--hex-pattern-size), 100% 100%;
-    mask-composite: intersect;
+    --margin-x: calc(max(40px, (100vw - 1200px) / 2 + 40px) - 26px);
+    background-color: #fbfaf7;
+    /* lijntjespapier: blauwe lijntjes, een roze kantlijn, en één zachte vlek in de kleur van de context */
+    background-image:
+        radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--lab, var(--accent)) 9%, transparent), transparent 45%),
+        linear-gradient(90deg, transparent var(--margin-x), rgba(238, 75, 171, 0.3) var(--margin-x), rgba(238, 75, 171, 0.3) calc(var(--margin-x) + 1px), transparent calc(var(--margin-x) + 1px)),
+        repeating-linear-gradient(180deg, transparent 0, transparent 31px, rgba(58, 194, 134, 0.16) 31px, rgba(58, 194, 134, 0.16) 32px);
 }
 
 .lab-intro-content {
@@ -342,12 +317,13 @@ footer::before {
 .lab-kicker::before {
     content: "";
     display: inline-block;
-    width: calc(11px * var(--hex-ratio));
-    height: 11px;
+    width: 16px;
+    height: 7px;
     margin-right: 8px;
-    vertical-align: -1px;
-    clip-path: var(--hexagon);
+    vertical-align: 1px;
+    transform: rotate(-8deg);
     background: currentColor;
+    opacity: 0.45;
 }
 
 .lab-kicker {
@@ -744,7 +720,6 @@ footer::before {
     }
 }
 
-/* Regenboog-accenten */
 /* Accentwoord in een kop: één kleur, de labkleur of het oranje van de kern */
 .accent-text {
     color: color-mix(in srgb, var(--lab, var(--accent)) 85%, black);
@@ -760,19 +735,19 @@ footer::before {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: color-mix(in srgb, var(--lab, var(--r-violet)) 75%, black);
+    color: color-mix(in srgb, var(--lab, var(--jg-purple)) 75%, black);
     text-decoration: none;
-    background-color: color-mix(in srgb, var(--lab, var(--r-violet)) 14%, white);
+    background-color: color-mix(in srgb, var(--lab, var(--jg-purple)) 14%, white);
 }
 
 .lab-badge::before {
     content: "";
     display: inline-block;
-    width: calc(9px * var(--hex-ratio));
-    height: 9px;
+    width: 13px;
+    height: 6px;
     margin-right: 6px;
-    clip-path: var(--hexagon);
-    background-color: var(--lab, var(--r-violet));
+    transform: rotate(-8deg);
+    background-color: var(--lab, var(--jg-purple));
 }
 
 .btn-light {
@@ -781,7 +756,7 @@ footer::before {
 }
 
 .btn-light:hover {
-    background: var(--r-yellow);
+    background: var(--jg-pink-light);
 }
 
 .lab-intro-art {
@@ -792,7 +767,7 @@ footer::before {
 
 .lab-intro-art {
     flex: 1 1 40%;
-    color: var(--r-violet);
+    color: var(--jg-purple);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -806,34 +781,32 @@ footer::before {
     margin-top: 10px;
 }
 
-.footer-org {
+/* Credits: "concept by Johan Groenen. built by Apitecture." Apitecture in de originele kleuren */
+.footer-credit {
+    font-family: var(--font-mono);
     font-size: 13px;
     color: #aaa;
 }
 
-.footer-org a {
-    display: block;
-    width: fit-content;
-    margin-top: 8px;
-    opacity: 0.9;
-    transition: opacity 0.2s;
+.footer-column .footer-credit + .footer-credit {
+    margin-top: 4px;
 }
 
-.footer-org a:hover {
+.footer-credit-logo {
+    display: inline-block;
+    vertical-align: -3px;
+    margin-left: 6px;
+    opacity: 0.9;
+}
+
+.footer-credit-logo:hover {
     opacity: 1;
 }
 
-/* Het logo als masker: beeldmerk wit met oranje accent, letters in regenboog */
-.apitecture-logo {
+.footer-credit-logo img {
     display: block;
-    width: 200px;
-    aspect-ratio: 1000 / 109;
-    -webkit-mask: var(--logo) no-repeat center / contain;
-    mask: var(--logo) no-repeat center / contain;
-    background:
-        linear-gradient(var(--apitecture-orange), var(--apitecture-orange)) 0 95% / 3.4% 40% no-repeat,
-        linear-gradient(90deg, white 0 12%, transparent 12%),
-        linear-gradient(90deg, var(--r-pink) 12%, var(--r-orange) 30%, var(--r-yellow) 47%, var(--r-green) 64%, var(--r-blue) 82%, var(--r-violet) 100%);
+    width: 140px;
+    height: auto;
 }
 
 /* Atomen uit jgroenen.nl */
@@ -868,17 +841,18 @@ footer::before {
     background-color: var(--accent);
 }
 
-/* Zeshoek als losse vorm */
+/* Een los stukje plakband als markering */
 .hex {
     display: inline-block;
-    width: 1em;
-    height: 1.15em;
-    clip-path: var(--hexagon);
-    background-color: var(--hex, var(--apitecture-orange));
+    width: 1.5em;
+    height: 0.6em;
+    transform: rotate(-6deg);
+    background-color: var(--hex, var(--accent));
+    opacity: 0.85;
 }
 
-/* Beeldmerk: zeshoek-cluster in regenboog */
-.hex-cluster {
+/* Beeldmerk: stukjes plakband, één per lab */
+.tape-mark {
     display: block;
     width: 100%;
     height: auto;
@@ -891,32 +865,21 @@ footer::before {
     gap: 10px;
 }
 
-.footer-brand .hex-cluster {
+.footer-brand .tape-mark {
     width: 28px;
 }
 
-/*
- * Beeldmerk van een lab: de cluster in dekkende tinten van de labkleur (gemengd met wit, geen transparantie).
- * Midden en losse zeshoek in volle kleur, de ring loopt van vol naar licht.
- */
+/* Beeldmerk van een lab: de stukjes plakband van het hoofdlogo, alleen dat van dit lab in kleur */
 .lab-mark {
     display: block;
 }
 
-.lab-mark .hex-cluster path:nth-child(1),
-.lab-mark .hex-cluster path.hex-cluster-out { fill: var(--lab) !important; }
-.lab-mark .hex-cluster path:nth-child(2) { fill: color-mix(in srgb, var(--lab) 85%, white) !important; }
-.lab-mark .hex-cluster path:nth-child(3) { fill: color-mix(in srgb, var(--lab) 70%, white) !important; }
-.lab-mark .hex-cluster path:nth-child(4) { fill: color-mix(in srgb, var(--lab) 55%, white) !important; }
-.lab-mark .hex-cluster path:nth-child(5) { fill: color-mix(in srgb, var(--lab) 42%, white) !important; }
-.lab-mark .hex-cluster path:nth-child(6) { fill: color-mix(in srgb, var(--lab) 30%, white) !important; }
-
-/* Meer regenboog: de ring in dekkende pastel-regenboog */
-.lab-mark-rainbow .hex-cluster path:nth-child(2) { fill: color-mix(in srgb, var(--r-pink) 55%, white) !important; }
-.lab-mark-rainbow .hex-cluster path:nth-child(3) { fill: color-mix(in srgb, var(--r-orange) 55%, white) !important; }
-.lab-mark-rainbow .hex-cluster path:nth-child(4) { fill: color-mix(in srgb, var(--r-amber) 55%, white) !important; }
-.lab-mark-rainbow .hex-cluster path:nth-child(5) { fill: color-mix(in srgb, var(--r-yellow) 55%, white) !important; }
-.lab-mark-rainbow .hex-cluster path:nth-child(6) { fill: color-mix(in srgb, var(--r-green) 55%, white) !important; }
+/* de andere drie stukjes: transparant plakband */
+.tape-mark .tape-ghost {
+    fill: rgba(43, 43, 43, 0.06);
+    stroke: rgba(43, 43, 43, 0.14);
+    stroke-width: 0.6;
+}
 
 .lab-intro-art .lab-mark {
     width: 100%;
@@ -1037,17 +1000,18 @@ footer::before {
     gap: 6px;
 }
 
+/* Papieren tabjes, zoals scheidingskaarten: wit, met een randje in de labkleur */
 .side-tab {
-    --lab: var(--card);
+    --lab: var(--medium-gray);
     display: flex;
     align-items: center;
     gap: 10px;
     height: 42px;
-    padding: 0 14px 0 16px;
+    padding: 0 14px 0 12px;
     border-radius: var(--radius-md) 0 0 var(--radius-md);
-    /* gedempte labkleur: rustiger, en wit blijft goed leesbaar */
-    background-color: color-mix(in srgb, var(--lab) 78%, #1d1d24);
-    color: white;
+    border-left: 4px solid var(--lab);
+    background-color: var(--card);
+    color: var(--ink);
     text-decoration: none;
     box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.08);
     transform: translateX(6px);
@@ -1060,13 +1024,13 @@ footer::before {
     width: 20px;
 }
 
-/* Het witte zeshoekje als tekentje */
+/* Een stukje plakband in de labkleur als tekentje */
 .side-tab-hex {
-    width: calc(16px * var(--hex-ratio));
-    height: 16px;
-    margin: 0 3px;
-    clip-path: var(--hexagon);
-    background-color: white;
+    width: 16px;
+    height: 7px;
+    margin: 0 2px;
+    transform: rotate(-8deg);
+    background-color: var(--lab);
 }
 
 /* Aantal experimenten, naast het tekentje */
@@ -1078,8 +1042,7 @@ footer::before {
 }
 
 .side-tab-home {
-    background-color: var(--card);
-    color: var(--ink);
+    --lab: var(--accent);
 }
 
 .side-tab-label {
@@ -1104,76 +1067,209 @@ footer::before {
 
 /* Het huidige lab steekt verder uit */
 .side-tab.is-active {
-    padding-left: 24px;
+    padding-left: 20px;
     box-shadow: -4px 4px 14px rgba(0, 0, 0, 0.14);
 }
 
+/* Hamburger en plakbandmenu: alleen op smalle schermen */
+.menu-toggle,
+.menu-stack {
+    display: none;
+}
+
 /*
- * Smalle schermen: de tabs staan onderaan op de rand van een kaartje,
- * in de kleur van het actieve tabje. De andere tabjes staan er net achter.
+ * Smalle schermen: geen tabjes aan de rand, maar een hamburger in de header
+ * die de tabjes als menu over het hele scherm opent, groot en met naam.
  */
 @media (max-width: 1180px) {
-    .side-tabs {
-        top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 4px;
-        padding-bottom: 8px;
+    nav .logo-link {
+        margin-right: auto;
     }
 
-    /* De rand van het kaartje */
-    .side-tabs::after {
+    .menu-toggle {
+        position: relative;
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 44px;
+        height: 44px;
+        margin-left: 12px;
+        border: 0;
+        border-radius: var(--radius-md);
+        background: transparent;
+        cursor: pointer;
+    }
+
+    /* De hamburger als drie stukjes plakband; op een labpagina is het middelste in de labkleur */
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+        display: block;
+        width: 26px;
+        height: 6px;
+        border-radius: 1px;
+        transition: transform var(--duration-fast), opacity var(--duration-fast);
+    }
+
+    .menu-toggle span {
+        position: relative;
+        background-color: var(--strip-color, var(--ink-pen));
+        opacity: 0.9;
+        transform: rotate(3deg);
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
         content: "";
         position: absolute;
         left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-        height: 8px;
-        background-color: var(--active);
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.06), 0 -4px 12px rgba(0, 0, 0, 0.08);
+        background-color: var(--ink-pen);
     }
 
-    .side-tab {
-        position: relative;
-        z-index: 0;
-        flex: 0 1 auto;
-        min-width: 0;
-        gap: 6px;
-        height: 44px;
-        padding: 0 12px;
-        border-radius: var(--radius-md) var(--radius-md) 0 0;
-        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08);
-        transform: translateY(4px);
+    .menu-toggle span::before {
+        top: -9px;
+        left: -2px;
+        transform: rotate(-7deg);
     }
 
-    /* Het actieve tabje hoort bij het kaartje en loopt er naadloos in over */
-    .side-tab.is-active {
-        z-index: 2;
-        height: 52px;
-        padding-left: 12px;
-        margin-bottom: -8px;
-        padding-bottom: 8px;
-        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
+    .menu-toggle span::after {
+        top: 9px;
+        left: 1px;
+        transform: rotate(5deg);
+    }
+
+    /* open: twee stukjes over elkaar als een kruisje */
+    .menu-toggle[aria-expanded="true"] span {
+        background-color: transparent;
         transform: none;
     }
 
-    .side-tab:hover,
-    .side-tab:focus-visible {
-        transform: translateY(0);
+    .menu-toggle[aria-expanded="true"] span::before {
+        left: 0;
+        transform: translateY(9px) rotate(45deg);
     }
 
-    .side-tab:hover .side-tab-label,
-    .side-tab:focus-visible .side-tab-label {
-        max-width: 0;
+    .menu-toggle[aria-expanded="true"] span::after {
+        left: 0;
+        transform: translateY(-9px) rotate(-45deg);
     }
 
-    body {
-        padding-bottom: 60px;
+    /* het beeld van de pagina in de header valt weg: de hamburger is nu het plakband */
+    .header-visual {
+        display: none !important;
+    }
+
+    /* Het menu: de tabjes, over het hele scherm, onder de header */
+    .side-tabs {
+        display: none;
+        top: var(--header-h);
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 24px 16px 32px;
+        overflow-y: auto;
+        background-color: var(--paper);
+    }
+
+    body.menu-open .side-tabs {
+        display: flex;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* in het menu: geen losse tabjes, maar de stapel plakband */
+    .side-tabs > .side-tab {
+        display: none;
+    }
+
+    .menu-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        max-width: 420px;
+        margin: auto;
+        padding: 8px 0 24px;
+    }
+
+    /* Elk stukje plakband is een link, met de labnaam erop geschreven */
+    .menu-tape {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 92%;
+        height: 64px;
+        margin-left: calc(var(--dx) * 4px);
+        padding: 0 22px 0 26px;
+        border-radius: 3px;
+        background-color: var(--lab);
+        color: white;
+        text-decoration: none;
+        opacity: 0.94;
+        transform: rotate(var(--rot));
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 6px 14px -6px rgba(0, 0, 0, 0.25);
+    }
+
+    .menu-tape-name {
+        font-family: var(--font-hand);
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .menu-tape-count {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        opacity: 0.85;
+    }
+
+    /* het huidige lab: een dun inktlijntje eronder, als onderstreping */
+    .menu-tape.is-active .menu-tape-name {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 5px;
+    }
+
+    .menu-stack-home,
+    .menu-stack-agenda {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 6px 0 14px;
+        font-family: var(--font-hand);
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--ink-pen);
+        text-decoration: none;
+    }
+
+    .menu-stack-agenda {
+        margin: 22px 0 0;
+    }
+
+    .menu-stack-home.is-active,
+    .menu-stack-agenda.is-active {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
+
+    .menu-stack .side-tab-count {
+        font-size: 13px;
+        color: var(--eb-green-dark);
+    }
+
+    .menu-stack .side-tab-cal {
+        width: 24px;
     }
 }
 
@@ -1205,6 +1301,7 @@ footer::before {
     .header-visual {
         display: block;
         width: 52px;
+        margin-left: auto;
     }
 
     .header-visual-collage {
@@ -1304,7 +1401,7 @@ footer::before {
  * De muur: één lange witte muur van links naar rechts (zie _includes/wall.html en assets/js/muur.js).
  * Links de koelkast en de ideeën, rechts wat live is. Concepten hangen als A4'tjes met plakband,
  * met hun foto als polaroid en ideeën als stickies. De muur is een slider: horizontaal schuiven met
- * de pijlen, vegen of de zonebalk; hij klikt zacht vast op de zones. De pagina scrolt gewoon verticaal.
+ * de pijlen, vegen of de zonebalk. De pagina scrolt gewoon verticaal.
  */
 .wall-scroller {
     position: relative;
@@ -1334,7 +1431,6 @@ footer::before {
     overflow-x: auto;
     overflow-y: hidden;
     overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--medium-gray) transparent;
@@ -1410,8 +1506,8 @@ footer::before {
 }
 
 .wall-nav .lab-index-item.is-current {
-    border-color: color-mix(in srgb, var(--tint) 70%, var(--ink));
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tint) 70%, var(--ink));
+    border-color: var(--eb-green-dark);
+    box-shadow: inset 0 0 0 1px var(--eb-green-dark);
 }
 
 .wall {
@@ -1430,7 +1526,6 @@ footer::before {
 
 .wall-zone {
     position: relative;
-    scroll-snap-align: start;
     scroll-margin-left: max(40px, calc((100vw - 1200px) / 2 + 40px));
     display: flex;
     flex-direction: column;
@@ -1449,7 +1544,7 @@ footer::before {
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--tint) 80%, black);
+    color: var(--eb-green-dark);
 }
 
 .wall-zone-label .lab-count {
@@ -1483,7 +1578,7 @@ footer::before {
     font-weight: 600;
     line-height: 1;
     margin: 0 0 18px 8px;
-    color: color-mix(in srgb, var(--tint) 80%, black);
+    color: var(--ink-pen);
     transform: rotate(-2deg);
 }
 
@@ -1576,22 +1671,24 @@ footer::before {
 }
 
 .a4 {
-    color: #2a2b33;
+    color: var(--ink-pen);
     background-image:
-        linear-gradient(90deg, transparent 30px, rgba(233, 69, 124, 0.22) 30px, rgba(233, 69, 124, 0.22) 31px, transparent 31px),
-        repeating-linear-gradient(180deg, transparent 0, transparent 21px, rgba(58, 134, 255, 0.13) 21px, rgba(58, 134, 255, 0.13) 22px);
+        linear-gradient(90deg, transparent 30px, rgba(238, 75, 171, 0.26) 30px, rgba(238, 75, 171, 0.26) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 21px, rgba(58, 194, 134, 0.18) 21px, rgba(58, 194, 134, 0.18) 22px);
     background-position: 0 0, 0 46px;
     background-color: white;
     padding-left: 40px;
 }
 
+/* het catalogusnummer: ordening, dus lab-groen */
 .a4-callnr {
     position: absolute;
     top: 12px;
     right: 16px;
-    font-family: var(--font-hand);
-    font-size: 17px;
-    color: #9a9890;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--eb-green-dark);
 }
 
 .a4-title {
@@ -1601,7 +1698,7 @@ footer::before {
     font-weight: 700;
     line-height: 1;
     margin-top: 6px;
-    color: #1f2030;
+    color: var(--ink-pen);
 }
 
 .a4-title a {
@@ -1652,7 +1749,8 @@ footer::before {
 }
 
 .a4-links a {
-    color: color-mix(in srgb, var(--tint) 80%, black);
+    color: var(--ink-pen);
+    text-decoration-color: color-mix(in srgb, var(--tint) 70%, transparent);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
@@ -1671,7 +1769,7 @@ footer::before {
     transform: rotate(-1.5deg);
 }
 
-/* Potloodschets van de zeshoek-cluster rechtsonder */
+/* Potloodschets van het beeldmerk rechtsonder */
 .a4-sketch {
     position: absolute;
     right: 18px;
@@ -1681,7 +1779,7 @@ footer::before {
     transform: rotate(calc(var(--rot) * -6));
 }
 
-.a4-sketch .hex-cluster path {
+.a4-sketch .tape-mark rect {
     fill: none !important;
     stroke: #6b6a70;
     stroke-width: 2.4;
@@ -1693,7 +1791,8 @@ footer::before {
     margin-top: 6px;
     font-family: var(--font-hand);
     font-size: 19px;
-    color: color-mix(in srgb, var(--tint) 75%, black);
+    color: var(--ink-pen);
+    opacity: 0.75;
 }
 
 .a4-more::after {
@@ -1772,7 +1871,7 @@ footer::before {
 
 /* De koelkast: staat linksonder op de vloer, concepten hangen met magneetjes op de deur */
 .wall-zone-koelkast {
-    width: calc(var(--a4-w) * 1.1 + 8px);
+    flex: none;
 }
 
 .fridge {
@@ -1867,14 +1966,15 @@ footer::before {
     margin-top: 0;
 }
 
-/* een zeshoekig magneetje in plaats van plakband */
+/* een rond magneetje in plaats van plakband */
 .wall-item-fridge .a4::before {
     top: -7px;
-    width: calc(16px * var(--hex-ratio));
-    height: 16px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
     transform: translateX(-50%);
-    clip-path: var(--hexagon);
     background-color: var(--tint);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Een A4'tje van de muur gehaald */
@@ -1929,8 +2029,8 @@ footer::before {
 .a4-open {
     background-position: 0 0, 0 108px;
     background-image:
-        linear-gradient(90deg, transparent 30px, rgba(233, 69, 124, 0.22) 30px, rgba(233, 69, 124, 0.22) 31px, transparent 31px),
-        repeating-linear-gradient(180deg, transparent 0, transparent 29px, rgba(58, 134, 255, 0.13) 29px, rgba(58, 134, 255, 0.13) 30px);
+        linear-gradient(90deg, transparent 30px, rgba(238, 75, 171, 0.26) 30px, rgba(238, 75, 171, 0.26) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 29px, rgba(58, 194, 134, 0.18) 29px, rgba(58, 194, 134, 0.18) 30px);
 }
 
 .a4-open .a4-more {
@@ -2012,15 +2112,25 @@ footer::before {
 }
 
 .side-tab-cal {
-    width: 16px;
-    height: 16px;
-    margin: 0 2px;
-    border-radius: 3px;
-    background: linear-gradient(white 0 0) bottom / 100% 11px no-repeat, var(--accent);
+    width: 20px;
+}
+
+/* Beeldmerk van de Public Tech Agenda: het kalenderblaadje, klein en groot */
+.cal-mark {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.lab-intro-cal .cal-mark {
+    max-width: 240px;
+    transform: rotate(-4deg);
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
 }
 
 /*
- * Public Tech Hackathon-agenda: komende momenten als scheurkalenderblaadjes met de gegevens ernaast.
+ * Public Tech Agenda: komende momenten als scheurkalenderblaadjes met de gegevens ernaast.
  */
 .agenda {
     padding: 56px 0 90px;
@@ -2170,7 +2280,7 @@ footer::before {
     }
 }
 
-/* Rode draadjes tussen verbonden concepten, met een speldje aan elk eind */
+/* Draadjes tussen verbonden concepten (rood, of paars), met een stukje plakband aan elk eind */
 .wall-threads {
     position: absolute;
     top: 0;
@@ -2180,19 +2290,30 @@ footer::before {
     pointer-events: none;
 }
 
+/* draadjes zijn verbindingen en recombinaties: rood en paars uit de remix-pool */
+.wall-threads {
+    --thread: #e0442a;
+}
+
+.wall-threads .thread-paars,
+.wall-threads .thread-blauw {
+    --thread: var(--jg-purple);
+}
+
 .wall-threads path {
     fill: none;
-    stroke: #c8102e;
+    stroke: var(--thread);
     stroke-width: 2;
     stroke-linecap: round;
     filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.18));
 }
 
-.wall-threads circle {
-    fill: #c8102e;
-    stroke: white;
-    stroke-width: 1.5;
-    filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
+/* het stukje plakband over het eind van het draadje: licht, half doorzichtig */
+.wall-threads .thread-tape {
+    fill: color-mix(in srgb, var(--thread) 22%, #f3efe2);
+    fill-opacity: 0.85;
+    stroke: rgba(0, 0, 0, 0.06);
+    stroke-width: 0.5;
 }
 
 /* Linked data van een concept, in het geopende velletje: potloodlinkje en een uitgeprint strookje */
@@ -2264,4 +2385,14 @@ footer::before {
 
 .a4-ld-data a {
     color: color-mix(in srgb, var(--tint) 80%, black);
+}
+
+/* In de koelkast hangen de velletjes recht onder elkaar, niet hoog/laag verspringend */
+.wall-item-fridge.wall-item-low .a4 {
+    left: 0;
+}
+
+/* Plakband is een tikje doorzichtig, ook in het beeldmerk */
+.tape-mark rect {
+    fill-opacity: 0.9;
 }

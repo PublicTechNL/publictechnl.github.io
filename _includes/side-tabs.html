@@ -1,29 +1,43 @@
 {% comment %}
 Indextabs aan de rand van het scherm, zoals scheidingskaarten in een kaartenbak: de navigatie van de site.
-Eén tab per lab met een wit zeshoekje en het aantal concepten; de tab van het huidige lab steekt verder uit.
-Op brede schermen rechts, op smalle schermen onderaan, staand op de rand van het kaartje van het actieve tabje.
+Eén tab per lab met een stukje plakband in de labkleur en het aantal concepten; de tab van het huidige lab steekt verder uit.
+Op brede schermen rechts aan de rand; op smalle schermen opent de hamburger ze als menu over het hele scherm.
 {% endcomment %}
 {% assign active_lab = site.data.labs | where: "id", page.lab | first %}
-<nav class="side-tabs" aria-label="Labs" style="--active: {% if active_lab %}var(--r-{{ active_lab.color }}){% else %}var(--card){% endif %}">
+<nav class="side-tabs" id="side-tabs" aria-label="Labs" style="--active: {% if active_lab %}var(--pencil-{{ active_lab.color }}){% else %}var(--card){% endif %}">
     <a href="{{ '/' | relative_url }}" class="side-tab side-tab-home{% if page.url == '/' %} is-active{% endif %}"{% if page.url == '/' %} aria-current="page"{% endif %}>
-        <span class="side-tab-icon">{% include hex-cluster.html %}</span>
+        <span class="side-tab-icon">{% include tape-mark.html %}</span>
         <span class="side-tab-count">{{ site.data.projects.size }}</span>
         <span class="side-tab-label">Alle labs</span>
     </a>
     {% for lab in site.data.labs %}
     {% assign lab_items = site.data.projects | where: "lab", lab.id %}
-    <a href="{{ lab.path | relative_url }}" class="side-tab{% if page.lab == lab.id %} is-active{% endif %}" style="--lab: var(--r-{{ lab.color }})"{% if page.lab == lab.id %} aria-current="page"{% endif %}>
+    <a href="{{ lab.path | relative_url }}" class="side-tab{% if page.lab == lab.id %} is-active{% endif %}" style="--lab: var(--pencil-{{ lab.color }})"{% if page.lab == lab.id %} aria-current="page"{% endif %}>
         <span class="side-tab-icon side-tab-hex"></span>
         <span class="side-tab-count">{{ lab_items.size }}</span>
         <span class="side-tab-label">{{ lab.name | remove: " LABS" }}</span>
     </a>
     {% endfor %}
-    {% comment %}De agenda: hackathons en open hack dagen. Het getal is het aantal komende momenten.{% endcomment %}
+    {% comment %}De Public Tech Agenda: hackathons, open hack dagen en dergelijke. Het getal is het aantal komende momenten.{% endcomment %}
     {% assign today = site.time | date: "%Y-%m-%d" %}{% assign upcoming_count = 0 %}
     {% for e in site.data.agenda %}{% assign last_day = e.eind | default: e.datum | date: "%Y-%m-%d" %}{% if last_day >= today %}{% assign upcoming_count = upcoming_count | plus: 1 %}{% endif %}{% endfor %}
     <a href="{{ '/agenda/' | relative_url }}" class="side-tab side-tab-agenda{% if page.url == '/agenda/' %} is-active{% endif %}"{% if page.url == '/agenda/' %} aria-current="page"{% endif %}>
-        <span class="side-tab-icon side-tab-cal" aria-hidden="true"></span>
+        <span class="side-tab-icon side-tab-cal" aria-hidden="true">{% include cal-mark.html %}</span>
         <span class="side-tab-count">{{ upcoming_count }}</span>
-        <span class="side-tab-label">Hackathons</span>
+        <span class="side-tab-label">Agenda</span>
     </a>
+    {% comment %}Op smalle schermen: het menu als de stapel plakband uit het logo, met de labnamen erop{% endcomment %}
+    {% assign tape_rots = "-8,5,-3,7,-5,4" | split: "," %}
+    {% assign tape_dx = "0,4,0,3,1,4" | split: "," %}
+    <div class="menu-stack">
+        <a href="{{ '/' | relative_url }}" class="menu-stack-home{% if page.url == '/' %} is-active{% endif %}">Alle labs <span class="side-tab-count">{{ site.data.projects.size }}</span></a>
+        {% for lab in site.data.labs %}
+        {% assign lab_items = site.data.projects | where: "lab", lab.id %}
+        <a href="{{ lab.path | relative_url }}" class="menu-tape{% if page.lab == lab.id %} is-active{% endif %}" style="--lab: var(--pencil-{{ lab.color }}); --rot: {{ tape_rots[forloop.index0] }}deg; --dx: {{ tape_dx[forloop.index0] }}"{% if page.lab == lab.id %} aria-current="page"{% endif %}>
+            <span class="menu-tape-name">{{ lab.label }}</span>
+            <span class="menu-tape-count">{{ lab_items.size }}</span>
+        </a>
+        {% endfor %}
+        <a href="{{ '/agenda/' | relative_url }}" class="menu-stack-agenda{% if page.url == '/agenda/' %} is-active{% endif %}"><span class="side-tab-cal" aria-hidden="true">{% include cal-mark.html %}</span> Agenda <span class="side-tab-count">{{ upcoming_count }}</span></a>
+    </div>
 </nav>

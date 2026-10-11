@@ -10,10 +10,11 @@
 #   partner                   - opdrachtgever of samenwerkingspartner (optioneel)
 #   sinds                     - jaar van start (optioneel)
 #   tags                      - lijst met trefwoorden (optioneel)
-#   lab                       - id uit _data/labs.yml, bijv. fediverse (optioneel)
+#   lab                       - id uit _data/labs.yml: remix-culture, social-web, civic-tech, digitale-commons, open-innovatie, publieke-controle (optioneel)
 #   uitgelicht                - true: hangt in de collage op de homepage (houd het bij twee)
 #   ideeen                    - lijst met ideeën die als sticky op de kaart geplakt worden (optioneel)
-#   verbonden                 - id's van concepten waarmee een rood draadje op de muur gespannen wordt (optioneel)
+#   verbonden                 - concepten waarmee een draadje op de muur gespannen wordt (optioneel):
+#                               een id (rood draadje), of {naar: id, kleur: paars} voor een andere kleur (rood, paars)
 #   publicxs_type             - Service, Standard of Document in het PublicXS-model (optioneel; anders afgeleid uit de tags)
 #   bijgewerkt                - wanneer je er laatst aan werkte, JJJJ-MM-DD (optioneel)
 #   volgende_stap, notitie    - labjournaal: alleen zichtbaar bij lokaal `jekyll serve`
@@ -24,7 +25,7 @@
   url: "https://minipol.nl"
   status: buiten-spelen
   uitgelicht: true
-  lab: publieke-innovatie
+  lab: civic-tech
   tags: [participatie, open source]
   volgende_stap: ""
   notitie: ""
@@ -34,7 +35,7 @@
   description: "Open en gratis publiek toegankelijke SaaS-omgevingen voor community-organisaties, zoals videobellen en samen documenten schrijven."
   url: "https://www.opendiensten.nl"
   status: buiten-spelen
-  lab: mijn-bureau
+  lab: digitale-commons
   partner: "Code for NL"
   tags: [open source, community]
   ideeen:
@@ -47,7 +48,8 @@
   description: "Beheertool waarin een organisatie vastlegt in welke projecten en processen sensoren, algoritmes en data worden ingezet, met doelen, afwegingen en verantwoordelijkheden. Prototype bij de Provincie Noord-Brabant."
   url: "https://www.algoritmeregister.org/pnb-sensoren/"
   status: buiten-spelen
-  lab: public-tech
+  verbonden: [algoritmeregister-schemas]
+  lab: publieke-controle
   partner: "Provincie Noord-Brabant"
   tags: [algoritmes, sensoren, transparantie]
   volgende_stap: ""
@@ -58,7 +60,7 @@
   description: "Herbruikbare schema's voor het vastleggen van de inzet van sensoren en algoritmes, zoals de algoritmestandaard, DPIA, IAMA en maatschappelijke-baten-afwegingen."
   url: "https://www.algoritmeregister.org/schemas/"
   status: buiten-spelen
-  lab: public-tech
+  lab: publieke-controle
   tags: [standaard, algoritmes, sensoren]
   volgende_stap: ""
   notitie: ""
@@ -68,7 +70,7 @@
   description: "Standaard voor algoritmische transparantie in de publieke sector."
   url: "https://www.algorithmregister.org"
   status: uitgevlogen
-  lab: public-tech
+  lab: publieke-controle
   partner: "Eurocities"
   tags: [standaard, algoritmes, transparantie]
   volgende_stap: ""
@@ -80,7 +82,7 @@
   url: "https://www.standaardvoorpubliekecode.nl"
   preview_url: "https://www.codefor.nl//community-translations-standard/nl/"
   status: uitgevlogen
-  lab: public-tech
+  lab: digitale-commons
   tags: [standaard, open source]
   volgende_stap: ""
   notitie: ""
@@ -91,7 +93,7 @@
   url: "https://clarity.codefor.nl/"
   status: buiten-spelen
   uitgelicht: true
-  lab: publieke-innovatie
+  lab: open-innovatie
   partner: "Code for NL"
   tags: [participatie, openbare ruimte, kennisdeling]
   volgende_stap: ""
@@ -102,7 +104,9 @@
   description: "Gedegen boekhouding van alle gegevens die in de organisatie worden gebruikt."
   url: "https://www.gegevensboekhouding.nl"
   status: buiten-spelen
-  lab: public-tech
+  verbonden:
+    - {naar: cdolodex, kleur: paars}
+  lab: publieke-controle
   tags: [data]
   volgende_stap: ""
   notitie: ""
@@ -112,7 +116,7 @@
   description: "Crowdfundingplatform voor open samenwerking tussen publieke organisaties."
   url: "https://www.opensamen.nl"
   status: schetsboek
-  lab: publieke-innovatie
+  lab: open-innovatie
   tags: [samenwerking, financiering]
   volgende_stap: ""
   notitie: ""
@@ -122,6 +126,7 @@
   description: "Registratie van intellectueel eigendom voor digitale werken."
   url: "https://www.takenode.org"
   status: uitgevlogen
+  lab: remix-culture
   tags: [eigendom]
   volgende_stap: ""
   notitie: ""
@@ -131,6 +136,7 @@
   description: "Taaksysteem voor het schoonhouden van de openbare ruimte."
   url: "https://www.cleanstreet.nl"
   status: koelkast
+  lab: civic-tech
   tags: [openbare ruimte]
   volgende_stap: ""
   notitie: "Website reageerde niet op 2026-10-08."
@@ -141,7 +147,7 @@
   url: "https://www.jgroenen.nl/leaderboard/"
   repo: "https://github.com/jgroenen/leaderboard"
   status: buiten-spelen
-  lab: publieke-innovatie
+  lab: open-innovatie
   tags: [open source, community, prioritering]
   volgende_stap: ""
   notitie: "Proof of concept; haalt issues op via proxy.apitecture.io."
@@ -152,7 +158,7 @@
   url: "https://www.jgroenen.nl/social-overheid-nl-demo-dag/"
   repo: "https://github.com/jgroenen/social-overheid-nl-demo-dag"
   status: buiten-spelen
-  lab: fediverse
+  lab: social-web
   tags: [open source, community]
   volgende_stap: ""
   notitie: "Demo, gebruikt tijdens een demodag."
@@ -164,7 +170,7 @@
   repo: "https://github.com/jgroenen/embed-mastodon-post"
   status: buiten-spelen
   partner: "Code for NL"
-  lab: fediverse
+  lab: social-web
   tags: [open source, kennisdeling]
   volgende_stap: ""
   notitie: "Prototype."
@@ -175,7 +181,7 @@
   url: "https://www.jgroenen.nl/community-workspace-prototype/"
   repo: "https://github.com/jgroenen/community-workspace-prototype"
   status: buiten-spelen
-  lab: mijn-bureau
+  lab: digitale-commons
   tags: [community, samenwerking]
   volgende_stap: ""
   notitie: "Proof of concept."
@@ -186,7 +192,7 @@
   url: "https://www.jgroenen.nl/mastodon-external-accounts-feed/"
   repo: "https://github.com/jgroenen/mastodon-external-accounts-feed"
   status: buiten-spelen
-  lab: fediverse
+  lab: social-web
   tags: [open source, communicatie]
   volgende_stap: ""
   notitie: "Proof of concept."
@@ -197,7 +203,7 @@
   url: "https://www.jgroenen.nl/teksten-tool/"
   repo: "https://github.com/jgroenen/teksten-tool"
   status: buiten-spelen
-  lab: publieke-innovatie
+  lab: digitale-commons
   tags: [contracten, governance, open source]
   volgende_stap: ""
   notitie: "Proof of concept."
@@ -208,7 +214,7 @@
   url: "https://www.jgroenen.nl/docs-no-cloud/"
   repo: "https://github.com/jgroenen/docs-no-cloud"
   status: buiten-spelen
-  lab: mijn-bureau
+  lab: digitale-commons
   partner: "Code for NL"
   tags: [open source, privacy by design, samenwerking]
   volgende_stap: ""
@@ -220,7 +226,7 @@
   url: "https://www.jgroenen.nl/Open-Source-Ecosysteem/"
   repo: "https://github.com/jgroenen/Open-Source-Ecosysteem"
   status: koelkast
-  lab: publieke-innovatie
+  lab: digitale-commons
   tags: [kennisdocument, open source, governance]
   volgende_stap: ""
   notitie: "Schrijfsel; herstructurering van een oorspronkelijk document, dat ook op de site staat."
@@ -231,6 +237,7 @@
   url: "https://www.jgroenen.nl/samenMuziekMaken/"
   repo: "https://github.com/jgroenen/samenMuziekMaken"
   status: buiten-spelen
+  lab: remix-culture
   tags: [muziek, privacy by design]
   volgende_stap: ""
   notitie: "Proof of concept, werktitel samenMuziekMaken. Gebouwd met wavesurfer.js en Dexie (IndexedDB)."
@@ -241,6 +248,7 @@
   url: "https://www.jgroenen.nl/tiltshift-audio-brand-experiment/"
   repo: "https://github.com/jgroenen/tiltshift-audio-brand-experiment"
   status: buiten-spelen
+  lab: remix-culture
   partner: "TiltShift"
   tags: [branding, audio, experiment]
   volgende_stap: ""
@@ -252,7 +260,7 @@
   url: "https://www.jgroenen.nl/CDOlodex/"
   repo: "https://github.com/jgroenen/CDOlodex"
   status: buiten-spelen
-  lab: public-tech
+  lab: publieke-controle
   tags: [data, governance]
   volgende_stap: ""
   notitie: "Prototype, met fictieve gegevens."
@@ -263,7 +271,7 @@
   url: "https://www.jgroenen.nl/RoutineMasterPro/"
   repo: "https://github.com/jgroenen/RoutineMasterPro"
   status: buiten-spelen
-  lab: mijn-bureau
+  lab: digitale-commons
   tags: [productiviteit]
   volgende_stap: ""
   notitie: "Prototype, gebouwd met Vue."
@@ -274,19 +282,20 @@
   url: "https://www.jgroenen.nl/pitchdeck/"
   repo: "https://github.com/jgroenen/pitchdeck"
   status: buiten-spelen
-  lab: publieke-innovatie
+  lab: open-innovatie
   tags: [ondernemen, privacy by design]
   volgende_stap: ""
   notitie: "Werkend prototype. Statische app met native ES modules, opslag in localStorage."
 
 - id: publictechnl
   title: "Public Tech NL LABS"
-  description: "Deze kaartenbak zelf: een open innovatiewerkplaats waarin concepten per lab en per fase te bekijken zijn, met een eigen design system rond zeshoek en regenboog."
+  description: "Deze kaartenbak zelf: een open innovatiewerkplaats waarin concepten per lab en per fase te bekijken zijn, met een eigen design system van papier en plakband."
   url: "https://publictech.nl"
   repo: "https://github.com/PublicTechNL/publictechnl.github.io"
   status: werkbank
-  lab: publieke-innovatie
-  partner: "Apitecture (sponsor)"
+  verbonden: [pitchdeck]
+  lab: open-innovatie
+  partner: "Apitecture"
   tags: [kennisdeling, design system, open source]
   volgende_stap: ""
   notitie: "Jekyll-site; zie /design-system/."
@@ -297,7 +306,7 @@
   status: schetsboek
   verbonden: [publictechnl]
   publicxs_type: Service
-  lab: publieke-innovatie
+  lab: open-innovatie
   tags: [kennisdeling, standaard, interoperabiliteit]
   volgende_stap: ""
   notitie: "Preview: het informatiemodel van eduXS (versie 2025.02.11). Inspiratie: eduXS van SURF, https://www.surf.nl/themas/interoperabiliteit/projecten-en-samenwerkingen/project-eduxs"
@@ -307,7 +316,7 @@
   description: "Een eigen Mastodon-server voor het dorp Zwammerdam, waar alle inwoners en verenigingen een account kunnen krijgen. Lokaal nieuws, aankondigingen en gesprekken op een plek van het dorp zelf, en toch verbonden met de rest van het fediverse."
   preview_url: "https://damsezaken.nu"
   status: schetsboek
-  lab: fediverse
+  lab: social-web
   tags: [lokale gemeenschap, verenigingen, communicatie]
   volgende_stap: ""
   notitie: "Preview: damsezaken.nu."
@@ -317,7 +326,7 @@
   description: "Een Mastodon-server voor KHABBAZ, waar de culturele verenigingen van Alphen aan den Rijn en de omliggende dorpen hun activiteiten kunnen promoten en content kunnen delen: met elkaar en met de buitenwereld."
   preview_url: "https://khabbaz.nl/"
   status: schetsboek
-  lab: fediverse
+  lab: social-web
   tags: [cultuur, verenigingen, communicatie]
   volgende_stap: ""
   notitie: "Preview: khabbaz.nl."
@@ -328,7 +337,17 @@
   url: "https://publictech.nl/innovatiekaarten/"
   repo: "https://github.com/PublicTechNL/innovatiekaarten"
   status: buiten-spelen
-  lab: publieke-innovatie
+  lab: open-innovatie
   tags: [innovatiemethode, workshop]
   volgende_stap: ""
   notitie: "Live, maar nog behoorlijk brak."
+
+- id: msocial
+  title: "MSocial"
+  description: "Een knipoog naar W Social: waarom een nieuw Europees netwerk opzetten als het al bestaat en zich bewezen heeft? M is gewoon Mastodon, gehost in Europa en verbonden via ActivityPub. Het werkt vandaag al: own your feed."
+  url: "https://www.msocial.eu/"
+  status: uitgevlogen
+  lab: social-web
+  tags: [mastodon, Europa, spoof]
+  volgende_stap: ""
+  notitie: "Spoof van W Social; live."
