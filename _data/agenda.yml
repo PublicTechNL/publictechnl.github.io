@@ -1,4 +1,4 @@
-# Public Tech Agenda: een verzameling hackathons, open hack dagen en andere momenten
+# Public Tech Events (/events/): een verzameling hackathons, open hack dagen en andere momenten
 # waarop publieke tech-concepten een stap verder komen. Iedereen kan een moment aanmelden
 # (via de knop "Zet je hackathon erop": een GitHub-issue, of gewoon via contact).
 #
@@ -15,6 +15,7 @@
 #   aanmelden   - link om je aan te melden (optioneel)
 #   beschrijving
 #   concepten   - id's uit _data/projects.yml die er een stap zetten (optioneel)
+#   lab         - id uit _data/labs.yml: het lab waar het event bij hoort; krijgt een stukje plakband over de titel (optioneel)
 #
 # Voorbeeld:
 #
@@ -31,4 +32,24 @@
 #   beschrijving: "Een dag samen bouwen aan open oplossingen voor publieke vraagstukken."
 #   concepten: [publicxs, zwammerdam-mastodon]
 
-[]
+- id: remix-2026-beeld-en-geluid
+  naam: "REMIX 2026"
+  soort: remix-dag
+  datum: 2026-10-02
+  tijd: "11:00–16:00"
+  plek: "Beeld & Geluid, Hilversum"
+  organisator: "Beeld & Geluid"
+  lab: remix-culture
+  met: "The Media Ahead, St.Joost School of Art and Design en ArtEZ"
+  url: "https://www.beeldengeluid.nl/remix"
+  beschrijving: "Een dag voor kunststudenten en startende kunstenaars over het gebruik van archiefmateriaal in nieuw werk: interviews, artist talks, workshops over auteursrecht en zoeken in archieven, en een expo. Engelstalig."
+
+- id: publiek-domein-dag-2027
+  naam: "Publiek Domein Dag 2027"
+  soort: publiek domein dag
+  datum: 2027-01-15
+  plek: "Academiegebouw, Universiteit Leiden"
+  organisator: "Publiek Domein Werkgroep"
+  lab: remix-culture
+  url: "https://publiekdomeindag.nl/"
+  beschrijving: "Een dag over werken die op 1 januari 2027 in het publieke domein komen, van makers die in 1956 overleden: lezingen, een juridisch panel over het auteursrecht van nu, en makers die publiek-domeinmateriaal hergebruiken in nieuw werk."

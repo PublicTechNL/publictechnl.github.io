@@ -1,0 +1,10 @@
+{% comment %}
+Beeldmerk van Public Tech Events: drie ronde hartjes in de plakbandkleuren die elkaar overlappen als een venndiagram, elk net iets anders gedraaid en net iets anders van grootte, met in het midden een overlap van alle drie:
+momenten waar mensen met hart voor publieke tech elkaar ontmoeten, en hun werelden elkaar raken.
+{% endcomment %}
+{% capture heart %}M0 15 C -5 11, -16 5, -16 -4 A 8.2 8.2 0 0 1 0 -6 A 8.2 8.2 0 0 1 16 -4 C 16 5, 5 11, 0 15 Z{% endcapture %}
+<svg class="events-mark" viewBox="-3.3 -4.9 62.8 51.7" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="{{ heart }}" transform="translate(21 15) rotate(-11) scale(1.3)" style="fill: var(--pencil-pink, #e56aac)"/>
+    <path d="{{ heart }}" transform="translate(43 18) rotate(9) scale(0.88)" style="fill: var(--pencil-red, #ef6b4d)"/>
+    <path d="{{ heart }}" transform="translate(26.2 27) rotate(17.6) scale(0.98)" style="fill: var(--pencil-green, #3fb37f)"/>
+</svg>

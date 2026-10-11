@@ -341,6 +341,15 @@ sitemap: false
                     <div class="ds-demo">{% include logo.html %}</div>
                     <p class="ds-name">Labslogo <code>_includes/logo.html</code> · stukjes plakband (één per lab) plus woordmerk; LABS in het oranje van de kern</p>
                 </div>
+                <div class="ds-specimen">
+                    <div class="ds-demo"><div class="logo"><span class="logo-icon">{% include events-mark.html %}</span><div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">EVENTS</span></div></div></div>
+                    <p class="ds-name">Eventslogo <code>_includes/events-mark.html</code> · drie hartjes in de plakbandkleuren, half over elkaar, elk net iets anders gedraaid en van grootte; met in het midden een overlap van alle drie</p>
+                </div>
+                <div class="ds-specimen">
+                    {% assign demo_lab = site.data.labs | where: "id", "remix-culture" | first %}
+                    <div class="ds-demo" style="--lab: var(--pencil-{{ demo_lab.color }})"><h3 class="agenda-title" style="font-size: 24px; margin: 14px 0 0">REMIX 2026 <a href="{{ demo_lab.path | relative_url }}" class="agenda-tape" style="position: absolute; left: 100%; top: -16px; margin-left: -14px; padding: 2px 12px 1px; font-family: var(--font-hand); font-size: 20px; font-weight: 700; color: white; text-decoration: none; background-color: var(--lab); opacity: 0.9; transform: rotate(-6deg); white-space: nowrap">{{ demo_lab.label }}</a></h3></div>
+                    <p class="ds-name">Labelplakband <code>.agenda-tape</code> · een event dat bij een lab hoort (<code>lab</code> in de data) krijgt een stukje plakband in de labkleur schuin over het einde van de titel</p>
+                </div>
             </div>
         </section>
 
@@ -387,6 +396,10 @@ sitemap: false
                 <div class="fridge"><span class="fridge-freezer" aria-hidden="true"></span><div class="fridge-door">{% for project in fridge_items %}{% include wall-item.html i=forloop.index fridge=true %}{% endfor %}</div><span class="fridge-handle" aria-hidden="true"></span></div>
             </div>
 
+            <p class="ds-name">Event <code>_includes/agenda-item.html</code> · een scheurkalenderblaadje met de datum, daarnaast soort en plek, titel (met labelplakband als het bij een lab hoort), tijd, beschrijving en organisator; komende events met een aanmeldknop, geweest events iets lichter</p>
+            {% assign demo_events = site.data.agenda | sort: "datum" | reverse %}
+            <div class="ds-organism"><ol class="agenda-list" style="margin: 0">{% for e in demo_events limit: 1 %}{% include agenda-item.html %}{% endfor %}</ol></div>
+
             <p class="ds-name">Collage <code>.lab-collage</code> · de deur en de concepten met <code>uitgelicht: true</code>, als polaroids op een muur</p>
             <div class="ds-organism ds-collage">{% include collage.html %}</div>
 
@@ -428,6 +441,17 @@ sitemap: false
                     </div>
                     <figcaption><strong>Labpagina</strong> · <code>_layouts/lab.html</code></figcaption>
                 </figure>
+                <figure class="ds-wire">
+                    <div class="ds-wire-page">
+                        <span class="ds-wire-block ds-wire-header">Header · PUBLIC TECH NL / EVENTS met de hartjes</span>
+                        <span class="ds-wire-block ds-wire-intro">Intro · Public Tech Events, uitleg, knoppen (agendafeed, event aanmelden), hartjes groot</span>
+                        <span class="ds-wire-block ds-wire-shelf">Komend · events als scheurkalenderblaadjes</span>
+                        <span class="ds-wire-block">Geweest · iets lichter</span>
+                        <span class="ds-wire-block">Laten we het samen doen</span>
+                        <span class="ds-wire-block ds-wire-footer">Footer</span>
+                    </div>
+                    <figcaption><strong>Events</strong> · <code>events.html</code>, data in <code>_data/agenda.yml</code>, agendafeed <code>/events.ics</code></figcaption>
+                </figure>
             </div>
         </section>
 
@@ -437,7 +461,7 @@ sitemap: false
             <p class="ds-intro-text">De templates gevuld met echte inhoud.</p>
             <ul class="ds-pages">
                 <li><a href="{{ '/' | relative_url }}"><strong>{{ site.name }}</strong><span>Alle projecten, per status</span></a></li>
-                <li><a href="{{ '/agenda/' | relative_url }}"><strong>Public Tech Agenda</strong><span>/agenda/ · ook als agendafeed</span></a></li>
+                <li><a href="{{ '/events/' | relative_url }}"><strong>Public Tech Events</strong><span>/events/ · ook als agendafeed</span></a></li>
                 {% for lab in site.data.labs %}
                 <li><a href="{{ lab.path | relative_url }}"><strong>{{ lab.name }}</strong><span>{{ lab.domain | default: lab.path }}</span></a></li>
                 {% endfor %}

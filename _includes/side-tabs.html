@@ -18,13 +18,13 @@ Op brede schermen rechts aan de rand; op smalle schermen opent de hamburger ze a
         <span class="side-tab-label">{{ lab.name | remove: " LABS" }}</span>
     </a>
     {% endfor %}
-    {% comment %}De Public Tech Agenda: hackathons, open hack dagen en dergelijke. Het getal is het aantal komende momenten.{% endcomment %}
+    {% comment %}Public Tech Events: hackathons, open hack dagen en dergelijke. Het getal is het aantal komende momenten.{% endcomment %}
     {% assign today = site.time | date: "%Y-%m-%d" %}{% assign upcoming_count = 0 %}
     {% for e in site.data.agenda %}{% assign last_day = e.eind | default: e.datum | date: "%Y-%m-%d" %}{% if last_day >= today %}{% assign upcoming_count = upcoming_count | plus: 1 %}{% endif %}{% endfor %}
-    <a href="{{ '/agenda/' | relative_url }}" class="side-tab side-tab-agenda{% if page.url == '/agenda/' %} is-active{% endif %}"{% if page.url == '/agenda/' %} aria-current="page"{% endif %}>
-        <span class="side-tab-icon side-tab-cal" aria-hidden="true">{% include cal-mark.html %}</span>
+    <a href="{{ '/events/' | relative_url }}" class="side-tab side-tab-agenda{% if page.url == '/events/' %} is-active{% endif %}"{% if page.url == '/events/' %} aria-current="page"{% endif %}>
+        <span class="side-tab-icon side-tab-cal" aria-hidden="true">{% include events-mark.html %}</span>
         <span class="side-tab-count">{{ upcoming_count }}</span>
-        <span class="side-tab-label">Agenda</span>
+        <span class="side-tab-label">Events</span>
     </a>
     {% comment %}Op smalle schermen: het menu als de stapel plakband uit het logo, met de labnamen erop{% endcomment %}
     {% assign tape_rots = "-8,5,-3,7,-5,4" | split: "," %}
@@ -38,6 +38,6 @@ Op brede schermen rechts aan de rand; op smalle schermen opent de hamburger ze a
             <span class="menu-tape-count">{{ lab_items.size }}</span>
         </a>
         {% endfor %}
-        <a href="{{ '/agenda/' | relative_url }}" class="menu-stack-agenda{% if page.url == '/agenda/' %} is-active{% endif %}"><span class="side-tab-cal" aria-hidden="true">{% include cal-mark.html %}</span> Agenda <span class="side-tab-count">{{ upcoming_count }}</span></a>
+        <a href="{{ '/events/' | relative_url }}" class="menu-stack-agenda{% if page.url == '/events/' %} is-active{% endif %}"><span class="side-tab-cal" aria-hidden="true">{% include events-mark.html %}</span> Events <span class="side-tab-count">{{ upcoming_count }}</span></a>
     </div>
 </nav>

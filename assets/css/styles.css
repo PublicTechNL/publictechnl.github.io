@@ -2105,7 +2105,850 @@ footer {
 
 }
 
-/* Indextab voor de agenda: donker, met een klein scheurkalendertje als tekentje */
+/* Indextab voor de events: donker randje, met de bolletjes als tekentje */
+.side-tab-agenda {
+    --lab: var(--ink);
+    margin-top: 10px;
+}
+
+.side-tab-cal {
+    width: 20px;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .side-tab,
+    .side-tab-label {
+        transition: none;
+    }
+}
+
+/* Fase zonder projecten: wel zichtbaar, niet klikbaar */
+.lab-index-empty {
+    background-color: transparent;
+    border-color: var(--medium-gray);
+    border-style: dashed;
+    color: var(--muted);
+}
+
+.lab-index-empty:hover {
+    border-color: var(--medium-gray);
+}
+
+/* Beeld van de pagina klein in de header, alleen op kleine schermen */
+.header-visual {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-visual {
+        display: block;
+        width: 52px;
+        margin-left: auto;
+    }
+
+    .header-visual-collage {
+        width: 64px;
+        margin-right: 6px;
+    }
+
+    /* Mini-polaroids: dunne rand, klein plakbandje, geen onderschrift */
+    .header-visual .lab-collage {
+        max-width: none;
+        margin: 0;
+        pointer-events: none;
+    }
+
+    .header-visual .lab-photo {
+        padding: 2px 2px 7px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+    }
+
+    .header-visual .lab-photo::before {
+        top: -3px;
+        width: 16px;
+        height: 5px;
+    }
+
+    .header-visual figcaption,
+    .header-visual .lab-collage-caption {
+        display: none;
+    }
+
+    /* Het grote beeld onder de introductietekst valt weg */
+    .lab-intro .lab-collage,
+    .lab-intro-art {
+        display: none;
+    }
+}
+
+/* Kleine schermen: de fasebalk is één horizontaal scrollbare rij */
+@media (max-width: 768px) {
+    :root {
+        --header-h: 88px;
+        --index-h: 60px;
+    }
+
+    .lab-index-item {
+        flex: none;
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+.lab-stickies {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 6px 4px 0;
+}
+
+.lab-sticky {
+    position: relative;
+    /* altijd een vierkant briefje, nooit uitgerekt tot een balk */
+    flex: none;
+    align-self: flex-start;
+    box-sizing: border-box;
+    width: 128px;
+    min-height: 96px;
+    padding: 16px 12px 10px;
+    font-family: var(--font-hand);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--ink);
+    background-color: var(--sticky);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 6px 12px -4px rgba(0, 0, 0, 0.18);
+    transform: rotate(-2deg);
+    hyphens: auto;
+    overflow-wrap: break-word;
+}
+
+.lab-sticky:nth-child(even) {
+    transform: rotate(1.5deg);
+}
+
+/* De plakrand bovenaan het briefje */
+.lab-sticky::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background-color: var(--sticky-edge);
+}
+
+/*
+ * De muur: één lange witte muur van links naar rechts (zie _includes/wall.html en assets/js/muur.js).
+ * Links de koelkast en de ideeën, rechts wat live is. Concepten hangen als A4'tjes met plakband,
+ * met hun foto als polaroid en ideeën als stickies. De muur is een slider: horizontaal schuiven met
+ * de pijlen, vegen of de zonebalk. De pagina scrolt gewoon verticaal.
+ */
+.wall-scroller {
+    position: relative;
+    background-color: #fcfbf8;
+    border-top: 1px solid var(--medium-gray);
+    scroll-margin-top: var(--header-h);
+}
+
+.wall-stage {
+    position: relative;
+}
+
+/*
+ * Whiteboardglim: zachte schuine lichtbanen op het oppervlak. Het is de achtergrond van het scrollvenster,
+ * dus de reflectie blijft staan (zoals een lamp) terwijl de muur eronderdoor schuift.
+ */
+.wall-track {
+    background:
+        linear-gradient(112deg,
+            transparent 18%,
+            rgba(255, 255, 255, 0.95) 27%,
+            transparent 36%,
+            transparent 58%,
+            rgba(255, 255, 255, 0.7) 63%,
+            transparent 69%),
+        linear-gradient(180deg, #f4f3ef, #faf9f6 45%, #f2f1ec);
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--medium-gray) transparent;
+}
+
+.wall-track:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--tint) 60%, var(--ink));
+    outline-offset: -3px;
+}
+
+/* Pijlen aan weerszijden van de muur */
+.wall-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    padding-bottom: 4px;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--card);
+    color: var(--ink);
+    font-size: 30px;
+    line-height: 1;
+    box-shadow: 0 0 0 1px var(--medium-gray), 0 6px 16px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: opacity var(--duration-fast);
+}
+
+.wall-arrow-prev {
+    left: 16px;
+}
+
+.wall-arrow-next {
+    right: 76px;
+}
+
+.wall-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.wall-arrow:hover {
+    background-color: var(--paper);
+}
+
+/* Zonebalk: waar ben je op de muur */
+.wall-nav {
+    flex: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 12px max(40px, calc((100vw - 1200px) / 2 + 40px));
+    overflow-x: auto;
+    scrollbar-width: none;
+    background-color: color-mix(in srgb, #fcfbf8 88%, transparent);
+    position: relative;
+    z-index: 5;
+}
+
+.wall-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.wall-nav .lab-index-item {
+    flex: none;
+    font-size: 14px;
+    padding: 6px 14px;
+}
+
+.wall-nav .lab-index-item.is-current {
+    border-color: var(--eb-green-dark);
+    box-shadow: inset 0 0 0 1px var(--eb-green-dark);
+}
+
+.wall {
+    --wall-h: clamp(460px, calc(100svh - var(--header-h) - 170px), 760px);
+    --a4-h: clamp(250px, calc(var(--wall-h) * 0.5), 440px);
+    --a4-w: calc(var(--a4-h) / 1.414);
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    width: max-content;
+    height: var(--wall-h);
+    padding: 0 max(40px, calc((100vw - 1200px) / 2 + 40px)) 0;
+    /* de plint onderaan de muur */
+    border-bottom: 12px solid #ebe8e1;
+}
+
+.wall-zone {
+    position: relative;
+    scroll-margin-left: max(40px, calc((100vw - 1200px) / 2 + 40px));
+    display: flex;
+    flex-direction: column;
+    padding: 18px 48px 22px;
+    border-left: 2px dashed color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.wall-zone:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.wall-zone-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--eb-green-dark);
+}
+
+.wall-zone-label .lab-count {
+    margin-left: 6px;
+}
+
+.wall-zone-note {
+    max-width: 300px;
+    margin-top: 2px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.wall-items {
+    flex: 1;
+    display: flex;
+    gap: 72px;
+    margin-top: 10px;
+}
+
+/* Een clustertje: concepten van hetzelfde lab dicht bij elkaar, een beetje over elkaar heen */
+.wall-cluster {
+    display: flex;
+    flex-direction: column;
+}
+
+.wall-cluster-label {
+    font-family: var(--font-hand);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 0 18px 8px;
+    color: var(--ink-pen);
+    transform: rotate(-2deg);
+}
+
+/* een met de hand getrokken boogje onder de labnaam */
+.wall-cluster-label::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 6px;
+    margin-top: 2px;
+    border-bottom: 2px solid color-mix(in srgb, var(--tint) 60%, transparent);
+    border-radius: 0 0 50% 50%;
+}
+
+.wall-cluster-items {
+    flex: 1;
+    display: flex;
+}
+
+.wall-cluster-items > .wall-item + .wall-item {
+    margin-left: calc(var(--a4-w) * -0.1);
+}
+
+/* laag gehangen velletjes schuiven naar rechts, zodat hun printje links ruimte heeft */
+.wall-item-low .a4 {
+    left: calc(var(--a4-w) * 0.3);
+}
+
+/* Eén concept: een kolom met een A4'tje, afwisselend hoog en laag gehangen */
+.wall-item {
+    --rot: -1deg;
+    position: relative;
+    flex: none;
+    width: calc(var(--a4-w) * 1.32);
+}
+
+.tilt-0 { --rot: -1.2deg; }
+.tilt-1 { --rot: 0.8deg; }
+.tilt-2 { --rot: -0.4deg; }
+.tilt-3 { --rot: 1.4deg; }
+.tilt-4 { --rot: -1.8deg; }
+
+.a4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: var(--a4-w);
+    height: var(--a4-h);
+    padding: 30px 22px 16px;
+    font-size: clamp(11px, calc(var(--a4-w) * 0.05), 13px);
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 24px -6px rgba(0, 0, 0, 0.14);
+    transform: rotate(var(--rot));
+    cursor: pointer;
+    transition: box-shadow var(--duration-fast);
+}
+
+.wall-item-low .a4 {
+    top: auto;
+    bottom: 0;
+}
+
+.a4:hover {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 16px 32px -6px rgba(0, 0, 0, 0.2);
+}
+
+.a4:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--tint) 70%, black);
+    outline-offset: 4px;
+}
+
+/* Plakband bovenaan het A4'tje, in de labkleur */
+.a4::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 84px;
+    height: 22px;
+    transform: translateX(-50%) rotate(-2deg);
+    background-color: color-mix(in srgb, var(--tint) 45%, transparent);
+}
+
+/* Het velletje is met de hand beschreven: lijntjespapier met kantlijn, handschrift, een potloodschets */
+.a4,
+.a4 * {
+    font-family: var(--font-hand);
+}
+
+.a4 {
+    color: var(--ink-pen);
+    background-image:
+        linear-gradient(90deg, transparent 30px, rgba(238, 75, 171, 0.26) 30px, rgba(238, 75, 171, 0.26) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 21px, rgba(58, 194, 134, 0.18) 21px, rgba(58, 194, 134, 0.18) 22px);
+    background-position: 0 0, 0 46px;
+    background-color: white;
+    padding-left: 40px;
+}
+
+/* het catalogusnummer: ordening, dus lab-groen */
+.a4-callnr {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--eb-green-dark);
+}
+
+.a4-title {
+    padding-right: 44px;
+    font-family: var(--font-hand);
+    font-size: 2.1em;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 6px;
+    color: var(--ink-pen);
+}
+
+.a4-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.a4-underline {
+    display: block;
+    width: 70%;
+    height: 9px;
+    margin: 2px 0 10px -2px;
+    overflow: visible;
+}
+
+.a4-underline path {
+    fill: none;
+    stroke: var(--tint);
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: url(#krabbel);
+}
+
+.a4-body {
+    flex: 1;
+    overflow: hidden;
+    font-size: 1.45em;
+    line-height: 22px;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+}
+
+.a4-text {
+    margin-bottom: 6px;
+}
+
+.a4-tags {
+    color: #8a8780;
+}
+
+.a4-tags span {
+    margin-right: 4px;
+}
+
+.a4-links {
+    list-style: none;
+    margin-top: 4px;
+}
+
+.a4-links a {
+    color: var(--ink-pen);
+    text-decoration-color: color-mix(in srgb, var(--tint) 70%, transparent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.a4-lab a {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Eigen notities in potlood, alleen lokaal zichtbaar */
+.a4-journal {
+    list-style: none;
+    margin-top: 6px;
+    color: #9a9890;
+    transform: rotate(-1.5deg);
+}
+
+/* Potloodschets van het beeldmerk rechtsonder */
+.a4-sketch {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    width: 44px;
+    opacity: 0.6;
+    transform: rotate(calc(var(--rot) * -6));
+}
+
+.a4-sketch .tape-mark rect {
+    fill: none !important;
+    stroke: #6b6a70;
+    stroke-width: 2.4;
+    filter: url(#krabbel);
+}
+
+.a4-more {
+    align-self: flex-start;
+    margin-top: 6px;
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--ink-pen);
+    opacity: 0.75;
+}
+
+.a4-more::after {
+    content: " →";
+}
+
+/*
+ * De screenshot als printje schuin op de rand van het velletje geplakt, half eroverheen.
+ * Hoog gehangen velletjes: rechtsboven; laag gehangen: linksonder.
+ */
+.a4-print {
+    position: absolute;
+    z-index: 1;
+    top: 26%;
+    right: -38%;
+    display: block;
+    width: 62%;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 4px 10px -2px rgba(0, 0, 0, 0.16);
+    transform: rotate(calc(4deg + var(--rot) * 2));
+    pointer-events: none;
+}
+
+.wall-item-low .a4-print {
+    top: auto;
+    right: auto;
+    bottom: 22%;
+    left: -34%;
+    transform: rotate(calc(-5deg + var(--rot) * 2));
+}
+
+.a4-print img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+}
+
+.a4-print::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    width: 52px;
+    height: 14px;
+    transform: translateX(-50%) rotate(3deg);
+    background-color: rgba(235, 230, 215, 0.75);
+    box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+
+/* Stickies op de hoek van het velletje geplakt, half over de rand */
+.a4-stickies {
+    position: absolute;
+    z-index: 2;
+    right: -22px;
+    bottom: 34px;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    pointer-events: none;
+}
+
+.a4-stickies .lab-sticky {
+    width: 112px;
+    min-height: 84px;
+    font-size: 19px;
+    transform: rotate(calc(var(--rot) * -3));
+}
+
+/* Met een sticky erop wijkt de potloodschets */
+.a4:has(.a4-stickies) .a4-sketch {
+    display: none;
+}
+
+/* De koelkast: staat linksonder op de vloer, concepten hangen met magneetjes op de deur */
+.wall-zone-koelkast {
+    flex: none;
+}
+
+.fridge {
+    position: relative;
+    flex: none;
+    width: calc(var(--a4-w) * 1.1);
+    height: calc(var(--wall-h) * 0.84);
+    margin-top: auto;
+    border: 1px solid #dde2e7;
+    border-radius: 22px 22px 8px 8px;
+    background: linear-gradient(90deg, #f5f7f9, #e8ecf0);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.16), inset -6px 0 12px rgba(0, 0, 0, 0.03);
+}
+
+.fridge-freezer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 26%;
+    height: 2px;
+    background-color: #d4dae0;
+}
+
+/* handgrepen van vriesvak en koelkast */
+.fridge::before,
+.fridge-handle {
+    content: "";
+    position: absolute;
+    right: 14px;
+    width: 8px;
+    border-radius: 4px;
+    background-color: #cbd2d9;
+}
+
+.fridge::before {
+    top: 8%;
+    height: 12%;
+}
+
+.fridge-handle {
+    top: 31%;
+    height: 22%;
+}
+
+.fridge-door {
+    position: absolute;
+    top: 30%;
+    left: 16px;
+    right: 34px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.wall-item-fridge {
+    width: 100%;
+}
+
+.wall-item-fridge .a4 {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    padding: 16px 14px 10px;
+    font-size: 12px;
+}
+
+.wall-item-fridge .a4 {
+    padding-left: 36px;
+    background-position: 0 0, 0 100px;
+}
+
+.wall-item-fridge .a4-title {
+    font-size: 22px;
+    margin: 0;
+    padding-right: 40px;
+}
+
+.wall-item-fridge .a4-body,
+.wall-item-fridge .a4-underline,
+.wall-item-fridge .a4-print,
+.wall-item-fridge .a4-stickies,
+.wall-item-fridge .a4-sketch {
+    display: none;
+}
+
+.wall-item-fridge .a4-more {
+    font-size: 16px;
+    margin-top: 0;
+}
+
+/* een rond magneetje in plaats van plakband */
+.wall-item-fridge .a4::before {
+    top: -7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    background-color: var(--tint);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Een A4'tje van de muur gehaald */
+.a4-dialog {
+    width: min(92vw, 640px);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+.a4-dialog::backdrop {
+    background-color: rgba(20, 20, 24, 0.55);
+}
+
+.a4-dialog-sheet {
+    position: relative;
+}
+
+.a4.a4-open {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    max-height: 88vh;
+    overflow: auto;
+    padding: 44px 44px 32px;
+    font-size: 16px;
+    transform: none;
+    cursor: auto;
+}
+
+.a4-open .a4-body {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+.a4-open .a4-body {
+    display: block;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.a4-open .a4-title {
+    font-size: 44px;
+}
+
+.a4-open {
+    background-position: 0 0, 0 108px;
+    background-image:
+        linear-gradient(90deg, transparent 30px, rgba(238, 75, 171, 0.26) 30px, rgba(238, 75, 171, 0.26) 31px, transparent 31px),
+        repeating-linear-gradient(180deg, transparent 0, transparent 29px, rgba(58, 194, 134, 0.18) 29px, rgba(58, 194, 134, 0.18) 30px);
+}
+
+.a4-open .a4-more {
+    display: none;
+}
+
+.a4-open .a4-print,
+.wall-item-low .a4-open .a4-print {
+    position: relative;
+    inset: auto;
+    width: 80%;
+    margin: 4px 0 16px;
+    transform: rotate(-1deg);
+}
+
+.a4-open .a4-stickies {
+    position: static;
+    flex-direction: row;
+    margin-top: 16px;
+}
+
+.a4-dialog-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--ink);
+    color: white;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 1180px) {
+    .wall-arrow-next {
+        right: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wall-arrow {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wall-track {
+        scroll-behavior: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .wall-zone {
+        padding: 14px 28px 18px;
+    }
+
+    .wall-items {
+        gap: 40px;
+    }
+
+    .a4 {
+        padding: 26px 16px 12px 38px;
+    }
+
+    .a4.a4-open {
+        padding: 36px 24px 24px 44px;
+    }
+
+}
+
+/* Indextab voor de events: donker randje, met de bolletjes als tekentje */
 .side-tab-agenda {
     --lab: var(--ink);
     margin-top: 10px;
@@ -2115,22 +2958,24 @@ footer {
     width: 20px;
 }
 
-/* Beeldmerk van de Public Tech Agenda: het kalenderblaadje, klein en groot */
-.cal-mark {
+/* Beeldmerk van Public Tech Events: drie ronde hartjes, overlappend als een venndiagram */
+.events-mark {
     display: block;
     width: 100%;
     height: auto;
     overflow: visible;
 }
 
-.lab-intro-cal .cal-mark {
-    max-width: 240px;
-    transform: rotate(-4deg);
-    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+.events-mark path {
+    fill-opacity: 0.88;
+}
+
+.lab-intro-events .events-mark {
+    max-width: 280px;
 }
 
 /*
- * Public Tech Agenda: komende momenten als scheurkalenderblaadjes met de gegevens ernaast.
+ * Public Tech Events: komende momenten als scheurkalenderblaadjes met de gegevens ernaast.
  */
 .agenda {
     padding: 56px 0 90px;
@@ -2395,4 +3240,34 @@ footer {
 /* Plakband is een tikje doorzichtig, ook in het beeldmerk */
 .tape-mark rect {
     fill-opacity: 0.9;
+}
+
+/* Een event dat bij een lab hoort: een stukje plakband in de labkleur, schuin over het einde van de titel geplakt */
+.agenda-title {
+    position: relative;
+    display: inline-block;
+    padding-right: 4px;
+}
+
+.agenda-body h3 a.agenda-tape {
+    position: absolute;
+    left: 100%;
+    top: -16px;
+    margin-left: -14px;
+    padding: 2px 12px 1px;
+    font-family: var(--font-hand);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: white;
+    text-decoration: none;
+    background-color: var(--lab);
+    opacity: 0.9;
+    transform: rotate(-6deg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.agenda-org a {
+    color: color-mix(in srgb, var(--lab, var(--ink)) 80%, black);
 }

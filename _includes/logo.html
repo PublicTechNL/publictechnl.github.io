@@ -1,8 +1,8 @@
-{% comment %}Logo: beeldmerk plus woordmerk. Op de agenda is het PUBLIC TECH NL / AGENDA met het kalenderblaadje.{% endcomment %}
+{% comment %}Logo: beeldmerk plus woordmerk. Op de eventspagina is het PUBLIC TECH NL / EVENTS met de bolletjes.{% endcomment %}
 <div class="logo">
-    {% if page.brand == "agenda" %}
-    <span class="logo-icon">{% include cal-mark.html %}</span>
-    <div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">AGENDA</span></div>
+    {% if page.brand == "events" %}
+    <span class="logo-icon">{% include events-mark.html %}</span>
+    <div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">EVENTS</span></div>
     {% else %}
     <span class="logo-icon">{% include tape-mark.html %}</span>
     <div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></div>

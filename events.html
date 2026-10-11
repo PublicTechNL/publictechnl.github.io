@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Public Tech Agenda
+title: Public Tech Events
 description: Hackathons, open hack dagen en andere momenten waarop publieke tech-concepten een stap verder komen.
-permalink: /agenda/
-brand: agenda
+permalink: /events/
+brand: events
 ---
 {% comment %}
 Komend en geweest wordt bepaald bij het bouwen van de site (site.time).
@@ -22,13 +22,13 @@ Na een moment schuift het pas naar "geweest" bij de volgende build.
     <div class="container">
         <div class="lab-intro-content">
             <div class="lab-intro-text">
-                <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name | remove: " LABS" }}</a> · agenda</p>
-                <h1>Public Tech <span class="accent-text">Agenda</span></h1>
+                <p class="lab-kicker"><a href="{{ '/' | relative_url }}">{{ site.name | remove: " LABS" }}</a> · events</p>
+                <h1>Public Tech <span class="accent-text">Events</span></h1>
                 <p>Een verzameling van hackathons, open hack dagen en andere momenten waarop publieke tech-concepten een stap verder komen: van schetsboek naar werkbank, van werkbank naar buiten spelen.</p>
                 <p>Organiseer je zelf een hackathon of open hack dag voor publieke technologie? Laat het weten, dan zet ik hem erbij.</p>
                 <div class="lab-intro-actions">
-                    <a href="{{ '/agenda.ics' | absolute_url | replace: 'https://', 'webcal://' | replace: 'http://', 'webcal://' }}" class="btn">Zet in je agenda</a>
-                    <a href="https://github.com/PublicTechNL/publictechnl.github.io/issues/new?title={{ 'Hackathon voor de agenda: ' | url_encode }}&amp;body={{ 'Naam:
+                    <a href="{{ '/events.ics' | absolute_url | replace: 'https://', 'webcal://' | replace: 'http://', 'webcal://' }}" class="btn">Zet in je agenda</a>
+                    <a href="https://github.com/PublicTechNL/publictechnl.github.io/issues/new?title={{ 'Event voor Public Tech Events: ' | url_encode }}&amp;body={{ 'Naam:
 Datum:
 Plek:
 Organisator:
@@ -37,7 +37,7 @@ Korte beschrijving:
 ' | url_encode }}" class="btn btn-secondary">Zet je hackathon erop</a>
                 </div>
             </div>
-            <div class="lab-intro-art lab-intro-cal">{% include cal-mark.html %}</div>
+            <div class="lab-intro-art lab-intro-events">{% include events-mark.html %}</div>
         </div>
     </div>
 </section>
