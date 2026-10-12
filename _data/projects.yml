@@ -351,3 +351,12 @@
   tags: [mastodon, Europa, spoof]
   volgende_stap: ""
   notitie: "Spoof van W Social; live."
+
+- id: nostr-adresboek
+  title: "NOSTR Adresboek"
+  description: "Een adresboek op NOSTR."
+  status: ideeen
+  lab: social-web
+  tags: [nostr]
+  volgende_stap: ""
+  notitie: ""

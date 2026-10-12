@@ -1,7 +1,7 @@
 {% comment %}
 De muur: één lange witte muur van links naar rechts, waar de concepten op hangen.
 Helemaal links staat de koelkast (fase `koelkast`), daarna de andere fases in de volgorde van _data/statuses.yml:
-van schetsboek (ideeën) naar uitgevlogen (live). Het is een slider: je schuift hem met de pijlen, door te vegen of met de zonebalk.
+van ideeën (gele stickies) via schetsboek naar uitgevlogen (live). Het is een slider: je schuift hem met de pijlen, door te vegen of met de zonebalk.
 Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur van de context).
 {% endcomment %}
 {% comment %}Geen `default`: die vervangt ook een lege lijst, en dan zou een leeg lab alles tonen.{% endcomment %}
@@ -51,7 +51,7 @@ Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur
                     {% if cluster.size > 0 %}
                     <div class="wall-cluster" style="--tint: var(--pencil-{{ cluster_lab.color }})">
                         <p class="wall-cluster-label">{{ cluster_lab.label }}</p>
-                        <div class="wall-cluster-items">{% for project in cluster %}{% include wall-item.html i=forloop.index %}{% endfor %}</div>
+                        <div class="wall-cluster-items{% if status.id == "ideeen" %} wall-cluster-ideas{% endif %}">{% for project in cluster %}{% if status.id == "ideeen" %}{% include wall-idea.html %}{% else %}{% include wall-item.html i=forloop.index %}{% endif %}{% endfor %}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -59,7 +59,7 @@ Optioneel `include.projects` (standaard alle concepten) en `include.tint` (kleur
                     {% if loose.size > 0 %}
                     <div class="wall-cluster">
                         <p class="wall-cluster-label">los</p>
-                        <div class="wall-cluster-items">{% for project in loose %}{% include wall-item.html i=forloop.index %}{% endfor %}</div>
+                        <div class="wall-cluster-items{% if status.id == "ideeen" %} wall-cluster-ideas{% endif %}">{% for project in loose %}{% if status.id == "ideeen" %}{% include wall-idea.html %}{% else %}{% include wall-item.html i=forloop.index %}{% endif %}{% endfor %}</div>
                     </div>
                     {% endif %}
                 </div>

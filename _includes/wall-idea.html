@@ -1,0 +1,7 @@
+{% comment %}
+Eén idee op de muur (fase `ideeen`): nog geen A4'tje, alleen een geel plakbriefje met de titel in handschrift.
+Verwacht `project`.
+{% endcomment %}
+<article data-id="{{ project.id }}"{% if project.verbonden %} data-verbonden="{% for v in project.verbonden %}{% if v.naar %}{{ v.naar }}:{{ v.kleur | default: 'rood' }}{% else %}{{ v }}{% endif %}{% unless forloop.last %} {% endunless %}{% endfor %}"{% endif %} class="wall-item wall-idea">
+    <p class="lab-sticky lab-sticky-yellow"{% if project.description %} title="{{ project.description | escape }}"{% endif %}>{% if project.url %}<a href="{{ project.url }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</p>
+</article>

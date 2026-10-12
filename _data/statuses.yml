@@ -1,8 +1,11 @@
 # Fases van een concept in de kaartenbak, in de volgorde van de levensloop.
 # Uitgevlogen concepten zijn het lab uit, maar blijven in de kaartenbak als bewijs dat ze werken.
+- id: ideeen
+  label: Ideeën
+  description: Losse ideeën op gele stickies, nog geen concept.
 - id: schetsboek
   label: In het schetsboek
-  description: Ideeën en concepten die nog opgepakt kunnen worden.
+  description: Concepten die nog opgepakt kunnen worden.
 - id: werkbank
   label: Op de werkbank
   description: Hier wordt nu actief aan gewerkt.

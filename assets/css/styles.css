@@ -53,6 +53,9 @@
     /* Roze plakbriefjes: ideeën horen bij de remix-pool */
     --sticky: #fcd6e7;
     --sticky-edge: #f6b3cc;
+    /* Gele plakbriefjes: losse ideeën, nog voor het schetsboek */
+    --sticky-yellow: #fdf0a0;
+    --sticky-yellow-edge: #f3dc62;
 
     /* Handschrift, alleen voor ideeën op stickies */
     --font-hand: 'Caveat', 'Bradley Hand', cursive;
@@ -1397,6 +1400,20 @@ footer {
     background-color: var(--sticky-edge);
 }
 
+/* Geel briefje: een los idee in de fase Ideeën */
+.lab-sticky-yellow {
+    background-color: var(--sticky-yellow);
+}
+
+.lab-sticky-yellow::before {
+    background-color: var(--sticky-yellow-edge);
+}
+
+.lab-sticky a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /*
  * De muur: één lange witte muur van links naar rechts (zie _includes/wall.html en assets/js/muur.js).
  * Links de koelkast en de ideeën, rechts wat live is. Concepten hangen als A4'tjes met plakband,
@@ -1600,6 +1617,26 @@ footer {
 
 .wall-cluster-items > .wall-item + .wall-item {
     margin-left: calc(var(--a4-w) * -0.1);
+}
+
+/* Ideeën: losse gele stickies naast elkaar, geen A4'tjes */
+.wall-cluster-ideas {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 18px;
+    max-width: 300px;
+}
+
+.wall-cluster-items > .wall-idea + .wall-idea {
+    margin-left: 0;
+}
+
+.wall-idea {
+    width: auto;
+}
+
+.wall-idea:nth-child(even) {
+    margin-top: 22px;
 }
 
 /* laag gehangen velletjes schuiven naar rechts, zodat hun printje links ruimte heeft */

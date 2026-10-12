@@ -163,7 +163,7 @@
         }
         // elk stickertje op een eigen plek op het velletje (bovenste helft, niet tegen de rand)
         function pin(item, key) {
-            var r = item.querySelector('.a4').getBoundingClientRect();
+            var r = item.querySelector('.a4, .lab-sticky').getBoundingClientRect();
             return {
                 x: r.left - base.left + r.width * (0.14 + rand(key + 'x') * 0.72),
                 y: r.top - base.top + r.height * (0.05 + rand(key + 'y') * 0.4)
