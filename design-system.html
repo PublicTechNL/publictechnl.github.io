@@ -73,11 +73,16 @@ sitemap: false
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="{{ '/' | relative_url }}" class="ds-sq ds-sq-here" style="--brand: var(--jg-purple)">
-                                        <span class="ds-sq-logo">{% include tape-mark.html %}</span>
-                                        <strong>PUBLIC TECH NL</strong><small>hier · {{ site.data.projects.size }}</small><em class="ds-sq-note">voorlopig in Apitecture BV</em>
-                                        <span class="ds-sq-sw"><i style="background:var(--jg-pink)"></i><i style="background:var(--jg-red)"></i><i style="background:var(--jg-pink-light)"></i><i style="background:var(--eb-green)"></i><i style="background:var(--jg-indigo)"></i><i style="background:var(--jg-purple)"></i></span>
-                                    </a>
+                                    <span class="ds-sq ds-sq-skip"></span>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ '/' | relative_url }}" class="ds-sq ds-sq-here" style="--brand: var(--jg-purple)">
+                                                <span class="ds-sq-logo">{% include tape-mark.html %}</span>
+                                                <strong>PUBLIC TECH NL</strong><small>hier · {{ site.data.projects.size }}</small>
+                                                <span class="ds-sq-sw"><i style="background:var(--jg-pink)"></i><i style="background:var(--jg-red)"></i><i style="background:var(--jg-pink-light)"></i><i style="background:var(--eb-green)"></i><i style="background:var(--jg-indigo)"></i><i style="background:var(--jg-purple)"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <a href="https://www.tiltshift.nl" class="ds-sq" style="--brand: #1E59A6">
@@ -89,18 +94,23 @@ sitemap: false
                             </ul>
                         </li>
                         <li>
-                            <a href="https://www.codefor.nl" class="ds-sq" style="--brand: #71BF9D">
-                                <img src="{{ '/assets/logos/codefornl.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
-                                <strong>Code for NL</strong><small>stichting</small>
-                                <span class="ds-sq-sw"><i style="background:#71BF9D"></i><i style="background:#DF5531"></i><i style="background:#777876"></i></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.opennederland.nl" class="ds-sq" style="--brand: #dc3545">
-                                <img src="{{ '/assets/logos/opennederland.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
-                                <strong>Open Nederland</strong><small>vereniging</small>
-                                <span class="ds-sq-sw"><i style="background:#dc3545"></i><i style="background:#2c3e50"></i><i style="background:#4a4a4a"></i></span>
-                            </a>
+                            <span class="ds-sq ds-sq-skip"></span>
+                            <ul>
+                                <li>
+                                    <a href="https://www.codefor.nl" class="ds-sq" style="--brand: #71BF9D">
+                                        <img src="{{ '/assets/logos/codefornl.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
+                                        <strong>Code for NL</strong><small>stichting</small>
+                                        <span class="ds-sq-sw"><i style="background:#71BF9D"></i><i style="background:#DF5531"></i><i style="background:#777876"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.opennederland.nl" class="ds-sq" style="--brand: #dc3545">
+                                        <img src="{{ '/assets/logos/opennederland.png' | relative_url }}" alt="" class="ds-sq-logo ds-sq-contain">
+                                        <strong>Open Nederland</strong><small>vereniging</small>
+                                        <span class="ds-sq-sw"><i style="background:#dc3545"></i><i style="background:#2c3e50"></i><i style="background:#4a4a4a"></i></span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -479,6 +489,12 @@ sitemap: false
         var svg = wrap && wrap.querySelector('.ds-org-lines');
         if (!svg) return;
         function draw() {
+            // Alle blokjes even hoog (het hoogste bepaalt), zodat de bovenkanten per niveau gelijk liggen
+            var squares = wrap.querySelectorAll('.ds-sq');
+            squares.forEach(function (el) { el.style.height = ''; });
+            var h = 0;
+            squares.forEach(function (el) { if (!el.classList.contains('ds-sq-skip')) h = Math.max(h, el.offsetHeight); });
+            squares.forEach(function (el) { el.style.height = h + 'px'; });
             var base = wrap.getBoundingClientRect();
             var sx = wrap.scrollLeft;
             svg.setAttribute('width', wrap.scrollWidth);
@@ -501,6 +517,11 @@ sitemap: false
                 if (tops.length > 1) out += 'M' + tops[0].x + ' ' + midY + 'H' + tops[tops.length - 1].x;
                 else out += 'H' + tops[0].x;
                 tops.forEach(function (t) { out += 'M' + t.x + ' ' + midY + 'V' + t.y; });
+            });
+            // Een doorgang (lege plek op een niveau): de lijn loopt er recht doorheen
+            wrap.querySelectorAll('.ds-sq-skip').forEach(function (el) {
+                var r = el.getBoundingClientRect();
+                out += 'M' + (r.left + r.width / 2 - base.left + sx) + ' ' + (r.top - base.top) + 'V' + (r.bottom - base.top);
             });
             svg.innerHTML = '<path d="' + out + '"/>';
         }

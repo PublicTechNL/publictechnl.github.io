@@ -895,13 +895,15 @@ a.ds-sq:hover {
     font-size: 0.85em;
 }
 
-/* Een briefje op een blokje: juridisch anders dan in de stamboom */
-.ds-sq-note {
-    font-family: var(--font-hand);
-    font-style: normal;
-    font-size: 13px;
-    line-height: 1.1;
-    color: var(--muted);
+/* Een doorgang: een niveau overslaan, zodat een blokje op het niveau van zijn soort staat */
+.ds-sq-skip {
+    width: 0;
+    height: 90px;
+    aspect-ratio: auto;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
 }
 
 /* De twee polen */
