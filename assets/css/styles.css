@@ -186,29 +186,28 @@ nav {
     margin-right: 12px;
 }
 
+/* Public Tech NL is het merk, labs (of events) is het ding: erachter geschreven in handschrift, net over de L van NL heen */
 .logo-text {
+    display: flex;
+    align-items: baseline;
     font-size: 26px;
     font-weight: 700;
+    line-height: 1;
     color: var(--ink);
     font-family: 'Helvetica Neue', Arial, sans-serif; /* Keep original font for logo text */
-    letter-spacing: 0.5px;
+    letter-spacing: -0.4px;
     transition: color 0.3s ease;
 }
 
-/* Public Tech NL is het merk, LABS is het ding: in het oranje van de kern */
 .logo-lab {
+    display: inline-block;
+    margin-left: -0.15em;
     color: var(--accent);
-}
-
-/* In het logo staat LABS op de regel eronder */
-.logo-text {
-    line-height: 1;
-}
-
-.logo-text .logo-lab {
-    display: block;
-    width: fit-content;
-    margin-top: 2px;
+    font-family: var(--font-hand);
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: 0;
+    transform: rotate(-6deg) translateY(4px);
 }
 
 .btn {

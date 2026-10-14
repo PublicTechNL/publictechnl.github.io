@@ -7,7 +7,7 @@ De inhoud van deze site als linked data (JSON-LD), naar het informatiemodel van 
 Organisation, Topic, Collaboration, Standard, Document en Service, met hun relaties.
 Eigen namespace met de klasse- en relatienamen uit het model; waar het kan ook schema.org.
 Concepten zijn Service, Standard of Document (veld publicxs_type, anders afgeleid uit de tags);
-labs zijn Topic; partners en organisatoren zijn Organisation; PUBLIC TECH NL en agendamomenten zijn Collaboration.
+labs zijn Topic; partners en organisatoren zijn Organisation; Public Tech NL en agendamomenten zijn Collaboration.
 {% endcomment %}
 {% assign base = site.url | append: site.baseurl %}
 {%- capture orgs -%}{{ site.author.name }}|{{ site.builder.name }}{% for p in site.data.projects %}{% if p.partner %}|{{ p.partner }}{% endif %}{% endfor %}{% for e in site.data.agenda %}{% if e.organisator %}|{{ e.organisator }}{% endif %}{% if e.met %}|{{ e.met }}{% endif %}{% endfor %}{%- endcapture -%}

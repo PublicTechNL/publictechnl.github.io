@@ -38,7 +38,7 @@ sitemap: false
             <p class="ds-intro-text">De stamboom: wie onder wie hangt, van persoon via holding en bedrijven naar publictech.nl. Daaronder de merken: drie leveren een merklaag aan de vormgeving van deze site (kern, everybit, labs); de andere staan erbij ter vergelijking.</p>
 
             {% comment %}Organigram: elk niveau een rij naast elkaar, vierkante blokjes, rechte lijnen. Onder de boom de merken.{% endcomment %}
-            {% assign apitecture_img = '/assets/logos/apitecture.png' | relative_url %}
+            {% assign apitecture_img = '/assets/logos/apitecture-mark.jpeg' | relative_url %}
             <div class="ds-org-scroll">
             <svg class="ds-org-lines" aria-hidden="true"></svg>
             <ul class="ds-org">
@@ -58,15 +58,15 @@ sitemap: false
                             <ul>
                                 <li>
                                     <a href="{{ site.builder.url }}" class="ds-sq" style="--brand: #ff5900">
-                                        <span class="ds-sq-logo ds-sq-dark"><img src="{{ apitecture_img }}" alt=""></span>
-                                        <strong>Apitecture</strong><small>werk-bv · advies</small>
+                                        <img src="{{ apitecture_img }}" alt="" class="ds-sq-logo">
+                                        <strong>Apitecture</strong><small>werk-bv · advies, community en support</small>
                                         <span class="ds-sq-sw"><i style="background:#141416"></i><i style="background:#fff"></i><i style="background:#ff5900"></i></span>
                                     </a>
                                     <ul>
                                         <li>
                                             <a href="https://www.apitecture.io" class="ds-sq" style="--brand: #ff5900">
-                                                <span class="ds-sq-logo ds-sq-dark"><img src="{{ apitecture_img }}" alt=""></span>
-                                                <strong>apitecture.io</strong><small>draaiende diensten</small>
+                                                <img src="{{ apitecture_img }}" alt="" class="ds-sq-logo">
+                                                <strong>apitecture.io</strong><small>platform · hier draait het</small>
                                                 <span class="ds-sq-sw"><i style="background:#141416"></i><i style="background:#fff"></i><i style="background:#ff5900"></i></span>
                                             </a>
                                         </li>
@@ -78,7 +78,7 @@ sitemap: false
                                         <li>
                                             <a href="{{ '/' | relative_url }}" class="ds-sq ds-sq-here" style="--brand: var(--jg-purple)">
                                                 <span class="ds-sq-logo">{% include tape-mark.html %}</span>
-                                                <strong>PUBLIC TECH NL</strong><small>hier · {{ site.data.projects.size }}</small>
+                                                <strong>Public Tech NL</strong><small>hier · {{ site.data.projects.size }}</small>
                                                 <span class="ds-sq-sw"><i style="background:var(--jg-pink)"></i><i style="background:var(--jg-red)"></i><i style="background:var(--jg-pink-light)"></i><i style="background:var(--eb-green)"></i><i style="background:var(--jg-indigo)"></i><i style="background:var(--jg-purple)"></i></span>
                                             </a>
                                         </li>
@@ -132,8 +132,8 @@ sitemap: false
                     <p>Volwassen speels. Stukjes plakband als beeldmerk, één per lab; verder per lab één gedempte potloodkleur. De muur met krabbels, printjes en stickies.</p>
                 </article>
                 <article class="ds-brand-card" style="--brand: #ff5900">
-                    <p class="ds-brand-kicker">Werk-bv · advies, bouwt publictech.nl · apitecture.nl</p>
-                    <p>Technisch en precies. Oranje <code>#ff5900</code> en nacht <code>#141416</code>, een zeshoek in het logo. Draaiende diensten onder hetzelfde logo op apitecture.io: "advanced data services".</p>
+                    <p class="ds-brand-kicker">Werk-bv · advies, community en support · bouwt publictech.nl · apitecture.nl</p>
+                    <p>Licht en betrouwbaar. Nacht <code>#141416</code> en oranje <code>#ff5900</code> op papier <code>#f7f6f3</code>; de honingraat uit het logo is de vorm, één oranje cel markeert. Helvetica Neue met Atkinson Hyperlegible Mono voor labels. Deelt met deze site de tokennamen en de ruimteschaal. Op apitecture.io draait het, onder hetzelfde logo. <a href="https://apitecture.nl/design-system/">Eigen design system</a></p>
                 </article>
                 <article class="ds-brand-card" style="--brand: #1E59A6">
                     <p class="ds-brand-kicker">Gezamenlijke werk-bv · workshops · tiltshift.nl</p>
@@ -349,10 +349,10 @@ sitemap: false
                 </div>
                 <div class="ds-specimen">
                     <div class="ds-demo">{% include logo.html %}</div>
-                    <p class="ds-name">Labslogo <code>_includes/logo.html</code> · stukjes plakband (één per lab) plus woordmerk; LABS in het oranje van de kern</p>
+                    <p class="ds-name">Labslogo <code>_includes/logo.html</code> · stukjes plakband (één per lab) plus woordmerk Public Tech NL; "labs" erachter in oranje handschrift, net over de L van NL heen</p>
                 </div>
                 <div class="ds-specimen">
-                    <div class="ds-demo"><div class="logo"><span class="logo-icon">{% include events-mark.html %}</span><div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">EVENTS</span></div></div></div>
+                    <div class="ds-demo"><div class="logo"><span class="logo-icon">{% include events-mark.html %}</span><div class="logo-text">{{ site.wordmark }}<span class="logo-lab">events</span></div></div></div>
                     <p class="ds-name">Eventslogo <code>_includes/events-mark.html</code> · drie hartjes in de plakbandkleuren, half over elkaar, elk net iets anders gedraaid en van grootte; met in het midden een overlap van alle drie</p>
                 </div>
                 <div class="ds-specimen">
@@ -453,7 +453,7 @@ sitemap: false
                 </figure>
                 <figure class="ds-wire">
                     <div class="ds-wire-page">
-                        <span class="ds-wire-block ds-wire-header">Header · PUBLIC TECH NL / EVENTS met de hartjes</span>
+                        <span class="ds-wire-block ds-wire-header">Header · logo Public Tech NL / events met de hartjes</span>
                         <span class="ds-wire-block ds-wire-intro">Intro · Public Tech Events, uitleg, knoppen (agendafeed, event aanmelden), hartjes groot</span>
                         <span class="ds-wire-block ds-wire-shelf">Komend · events als scheurkalenderblaadjes</span>
                         <span class="ds-wire-block">Geweest · iets lichter</span>

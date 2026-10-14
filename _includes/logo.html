@@ -1,10 +1,10 @@
-{% comment %}Logo: beeldmerk plus woordmerk. Op de eventspagina is het PUBLIC TECH NL / EVENTS met de bolletjes.{% endcomment %}
+{% comment %}Logo: beeldmerk plus woordmerk. Op de eventspagina is het Public Tech NL met "events" eronder en de hartjes.{% endcomment %}
 <div class="logo">
     {% if page.brand == "events" %}
     <span class="logo-icon">{% include events-mark.html %}</span>
-    <div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">EVENTS</span></div>
+    <div class="logo-text">{{ site.wordmark }} <span class="logo-lab">events</span></div>
     {% else %}
     <span class="logo-icon">{% include tape-mark.html %}</span>
-    <div class="logo-text">{{ site.title | remove: " LABS" }} <span class="logo-lab">LABS</span></div>
+    <div class="logo-text">{{ site.wordmark }} <span class="logo-lab">labs</span></div>
     {% endif %}
 </div>

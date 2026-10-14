@@ -4,7 +4,7 @@ permalink: /agenda.ics
 ---
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//PUBLIC TECH NL//Public Tech Events//NL
+PRODID:-//Public Tech NL//Public Tech Events//NL
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Public Tech Events

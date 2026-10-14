@@ -824,19 +824,6 @@ a.ds-sq:hover {
     box-shadow: 0 0 0 1px var(--medium-gray);
 }
 
-/* Apitecture in de originele kleuren: wit met oranje accent op nacht, geen regenboog */
-.ds-sq-dark {
-    width: 76px;
-    padding: 0 6px;
-    background-color: var(--apitecture-night);
-}
-
-.ds-sq-dark img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
 .ds-sq-here {
     box-shadow: 0 0 0 2px var(--accent);
 }
